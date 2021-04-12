@@ -41,11 +41,11 @@ public class Join2 extends AppCompatActivity {
         final String email = userId.getText().toString().trim(); // trim = 공백 제거
         final String password = userPwcheck.getText().toString().trim();
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(Join2.this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if (task.isSuccessful()) {
+                            Toast.makeText(Join2.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Join2.this, MainActivity.class);
                             startActivity(intent);
                             finish();
