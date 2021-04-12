@@ -1,13 +1,12 @@
 package com.example.who_nextdoor;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.who_nextdoor.Join2;
-import com.example.who_nextdoor.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import javax.crypto.MacSpi;
 
 public class Join1 extends AppCompatActivity {
     @Override
@@ -16,7 +15,7 @@ public class Join1 extends AppCompatActivity {
         setContentView(R.layout.activity_join1);
     }
     public void GoMain(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
