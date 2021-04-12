@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "105111198517",
+    "project_id": "nextdoor-97fe5",
+    "storage_bucket": "nextdoor-97fe5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105111198517:android:3d878d27078bcaf70e4a7c",
+        "android_client_info": {
+          "package_name": "com.example.who_nextdoor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105111198517-svs95b40lgli46j8l4pcdangkv68l7h0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.who_nextdoor",
+            "certificate_hash": "f2ed796059fd95a8a0d7de8aa21847ddb70e31ac"
+          }
+        },
+        {
+          "client_id": "105111198517-a98if88hufmp0ukr5uulusbraq436eem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC84y8a6nAiQ07Nmo-ehbP01cL35u0QYj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105111198517-a98if88hufmp0ukr5uulusbraq436eem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
