@@ -38,22 +38,20 @@
         android:id="@+id/requestButton2"
         android:layout_width="251dp"
         android:layout_height="50dp"
-        android:layout_marginTop="500"
         android:text="인증번호 요청"
         app:backgroundTint="#B5D4F1"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintVertical_bias="0.681" />
 
     <EditText
         android:id="@+id/phone3"
         android:layout_width="235dp"
         android:layout_height="45dp"
-        android:layout_marginTop="400"
-        android:layout_marginBottom="200"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="200dp"
         android:ems="10"
         android:hint="전화번호를 - 없이 입력해 주세요"
         android:inputType="phone"
@@ -141,11 +139,15 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="261dp"
-        android:layout_height="51dp"
+        android:layout_width="260dp"
+        android:layout_height="38dp"
         android:text="비밀번호 찾기"
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="106dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

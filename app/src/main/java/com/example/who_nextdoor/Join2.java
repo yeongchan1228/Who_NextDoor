@@ -2,6 +2,7 @@ package com.example.who_nextdoor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +46,14 @@ public class Join2 extends AppCompatActivity {
     public void Finish(View v){
         final String email = userId.getText().toString().trim(); // trim = 공백 제거
         final String password = userPwcheck.getText().toString().trim();
+        if(TextUtils.isEmpty(email)){
+            Toast.makeText(this, "email을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(TextUtils.isEmpty(password)){
+            Toast.makeText(this, "password를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
                     @Override
@@ -54,7 +63,6 @@ public class Join2 extends AppCompatActivity {
                             Intent intent = new Intent(Join2.this, MainActivity.class);
                             startActivity(intent);
                             finish();
-
                         } else {
                             Toast.makeText(Join2.this, "등록 에러", Toast.LENGTH_SHORT).show();
                             return;

@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity{
     public void GoHome(View v){
         String email = userId.getText().toString().trim();
         String password = userPwcheck.getText().toString().trim();
-        Toast.makeText(getApplicationContext(), email, Toast.LENGTH_SHORT).show();
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this, "email을 입력해 주세요.", Toast.LENGTH_SHORT).show();
             return;
