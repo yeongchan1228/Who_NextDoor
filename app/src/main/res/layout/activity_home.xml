@@ -20,10 +20,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="312dp"
-        android:layout_height="304dp"
+        android:layout_width="299dp"
+        android:layout_height="306dp"
         tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="348dp" />
+        tools:layout_editor_absoluteY="346dp" />
 
     <Button
         android:id="@+id/button11"
