@@ -1,18 +1,17 @@
 package com.example.who_nextdoor;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class StartActivity extends AppCompatActivity {
 
-import javax.crypto.MacSpi;
-
-public class Join1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_join1);
+        setContentView(R.layout.activity_start);
     }
     public void GoJoin2(View v){
         Intent intent = new Intent(this, com.example.who_nextdoor.Join1.class);
@@ -20,12 +19,7 @@ public class Join1 extends AppCompatActivity {
         finish();
     }
     public void GoMain(View v){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    public void GoSingupDone(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.SignupdoneActivity.class);
+        Intent intent = new Intent(this, com.example.who_nextdoor.MainActivity.class);
         startActivity(intent);
         finish();
     }

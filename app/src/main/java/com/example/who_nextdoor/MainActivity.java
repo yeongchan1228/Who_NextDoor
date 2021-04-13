@@ -60,10 +60,15 @@ public class MainActivity extends AppCompatActivity{
                 });
 
     }
-    public void Join1(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.Join1.class);
+    public void GoFindPwd(View v){
+        Intent intent = new Intent(this, com.example.who_nextdoor.GofindpwdActivity.class);
         startActivity(intent);
         finish();
     }
 
+    public void GoStart(View v){
+        Intent intent = new Intent(this, com.example.who_nextdoor.StartActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
