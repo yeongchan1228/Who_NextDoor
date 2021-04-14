@@ -33,7 +33,7 @@
 
 
     <Button
-        android:onClick="youngchan"
+        android:onClick="sendEmail"
         android:id="@+id/requestEmail"
         android:layout_width="336dp"
         android:layout_height="56dp"

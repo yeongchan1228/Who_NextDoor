@@ -34,7 +34,7 @@ public class GofindpwdActivity extends AppCompatActivity {
 
     }
 
-    public void onClick() {
+    public void sendEmail() {
         progressDialog.setMessage("처리 중입니다. 잠시 기다려 주세요...");
         progressDialog.show();
 
