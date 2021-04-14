@@ -21,7 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 public class Join2 extends AppCompatActivity {
     private EditText userId;
-    private EditText userPwcheck;
+    private EditText userPwcheck, userPw;
+    String sld, sPw, sPw_chk;
     FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -29,7 +30,9 @@ public class Join2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join2);
+
         userId = (EditText) findViewById(R.id.Identity);
+        userPw = (EditText) findViewById(R.id.Password);
         userPwcheck = (EditText) findViewById(R.id.PasswordCheck);
         firebaseAuth = FirebaseAuth.getInstance();
     }
@@ -39,9 +42,21 @@ public class Join2 extends AppCompatActivity {
         finish();
     }
     public void GoJoin1(View v){
+        /*
         Intent intent = new Intent(this, Join1.class);
         startActivity(intent);
         finish();
+        */
+        sld = userId.getText().toString();
+        sPw = userPw.getText().toString();
+        sPw_chk = userPwcheck.getText().toString();
+
+        if(sPw.equals(sPw_chk)){
+
+        }
+        else{
+
+        }
     }
     public void Finish(View v){
         final String email = userId.getText().toString().trim(); // trim = 공백 제거
