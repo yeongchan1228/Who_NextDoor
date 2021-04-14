@@ -34,19 +34,32 @@
 
 
     <Button
-        android:onClick="sendEmail"
         android:id="@+id/requestEmail"
-        android:layout_width="336dp"
+        android:layout_width="wrap_content"
         android:layout_height="56dp"
+        android:onClick="sendEmail"
         android:text="비밀번호 받기"
         app:backgroundTint="#B5D4F1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.531" />
 
+    <Button
+        android:id="@+id/btn11"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:onClick="GoMain"
+        android:text="이전"
+        app:backgroundTint="#B5D4F1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

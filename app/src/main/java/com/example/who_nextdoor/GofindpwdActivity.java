@@ -60,6 +60,11 @@ public class GofindpwdActivity extends AppCompatActivity {
             }
         });
         }
+    public void GoMain(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
     }
 
 
