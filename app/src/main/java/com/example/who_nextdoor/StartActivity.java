@@ -13,7 +13,7 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
     }
-    public void GoJoin2(View v){
+    public void GoJoin1(View v){
         Intent intent = new Intent(this, com.example.who_nextdoor.Join1.class);
         startActivity(intent);
         finish();

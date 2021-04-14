@@ -23,11 +23,13 @@
         app:layout_constraintVertical_bias="0.705" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/Singupdone"
         android:layout_width="267dp"
         android:layout_height="175dp"
         android:text="회원 가입이 완료되었습니다. "
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="249dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

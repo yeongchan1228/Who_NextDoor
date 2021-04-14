@@ -8,12 +8,15 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="261dp"
-        android:layout_height="51dp"
+        android:layout_width="159dp"
+        android:layout_height="42dp"
         android:text="회원가입"
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.116" />
 
     <EditText
         android:id="@+id/phone"
@@ -35,27 +38,28 @@
         android:id="@+id/requestButton"
         android:layout_width="336dp"
         android:layout_height="56dp"
-        android:layout_marginTop="8dp"
         android:text="인증번호 요청"
         app:backgroundTint="#B5D4F1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.531" />
 
     <EditText
         android:id="@+id/checksum"
         android:layout_width="335dp"
         android:layout_height="69dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginBottom="224dp"
         android:ems="10"
         android:hint="인증번호 입력"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requestButton"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.657" />
 
     <Button
         android:id="@+id/checkButton"
@@ -64,9 +68,12 @@
         android:onClick="checkChecksum"
         android:text="인증번호 확인"
         app:backgroundTint="#B5D4F1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.671"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checksum" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.773" />
 
     <Button
         android:id="@+id/prev"
@@ -75,24 +82,27 @@
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginBottom="50dp"
-        android:onClick="GoJoin2"
+        android:onClick="GoStart"
         android:text="이전"
         app:backgroundTint="#B5D4F1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkButton" />
 
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="50dp"
-        android:onClick="GoSingupDone"
+        android:layout_marginEnd="96dp"
+        android:layout_marginRight="96dp"
+        android:layout_marginBottom="76dp"
+        android:onClick="GoJoin1"
         android:text="다음"
         app:backgroundTint="#B5D4F1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/prev"
+        app:layout_constraintTop_toBottomOf="@+id/checkButton"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

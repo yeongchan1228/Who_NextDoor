@@ -14,8 +14,8 @@ public class ShowpasswdActivity extends AppCompatActivity {
         setContentView(R.layout.activity_showpasswd);
     }
 
-    public void GoHome(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.HomeActivity.class);
+    public void GoMain(View v){
+        Intent intent = new Intent(this, com.example.who_nextdoor.MainActivity.class);
         startActivity(intent);
         finish();
     }

@@ -19,6 +19,11 @@ public class Join1 extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void GoStart(View v){
+        Intent intent = new Intent(this, com.example.who_nextdoor.StartActivity.class);
+        startActivity(intent);
+        finish();
+    }
     public void GoMain(View v){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

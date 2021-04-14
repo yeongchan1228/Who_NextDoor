@@ -13,8 +13,8 @@ public class SignupdoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signupdone);
     }
-    public void GoJoin2(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.Join1.class);
+    public void GoMain(View v){
+        Intent intent = new Intent(this, com.example.who_nextdoor.MainActivity.class);
         startActivity(intent);
         finish();
     }
