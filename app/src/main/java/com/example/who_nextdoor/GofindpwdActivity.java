@@ -50,11 +50,11 @@ public class GofindpwdActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(GofindpwdActivity.this, "이메일을 보냈습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(GofindpwdActivity.this, "이메일을 보냈습니다.", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 } else {
-                    Toast.makeText(GofindpwdActivity.this, "메일 보내기 실패!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(GofindpwdActivity.this, "메일 보내기 실패!", Toast.LENGTH_SHORT).show();
                 }
                 progressDialog.dismiss();
             }
