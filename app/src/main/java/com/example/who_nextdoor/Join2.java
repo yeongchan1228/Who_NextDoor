@@ -42,22 +42,28 @@ public class Join2 extends AppCompatActivity {
         finish();
     }
     public void GoJoin1(View v){
-        /*
+
         Intent intent = new Intent(this, Join1.class);
         startActivity(intent);
         finish();
-        */
+    }
+
+
+    public void GoSingupDone(View v){
         sld = userId.getText().toString();
         sPw = userPw.getText().toString();
         sPw_chk = userPwcheck.getText().toString();
 
         if(sPw.equals(sPw_chk)){
-
+            Intent intent = new Intent(this, SignupdoneActivity.class);
+            startActivity(intent);
+            finish();
         }
         else{
-
+            Toast.makeText(getApplicationContext(), "비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
         }
     }
+
     public void Finish(View v){
         final String email = userId.getText().toString().trim(); // trim = 공백 제거
         final String password = userPwcheck.getText().toString().trim();
