@@ -42,7 +42,6 @@ public class Join2 extends AppCompatActivity {
         finish();
     }
     public void GoJoin1(View v){
-
         Intent intent = new Intent(this, Join1.class);
         startActivity(intent);
         finish();
