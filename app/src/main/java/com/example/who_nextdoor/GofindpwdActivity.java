@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InlineSuggestionsRequest;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,10 +37,14 @@ public class GofindpwdActivity extends AppCompatActivity {
     }
 
     public void sendEmail(View view) {
-        progressDialog.setMessage("처리 중입니다. 잠시 기다려 주세요...");
-        progressDialog.show();
         //비밀번호 재설정 이메일 보내기
         String emailAddress = email.getText().toString().trim();
+        if(TextUtils.isEmpty(emailAddress)){
+            Toast.makeText(this, "email을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        progressDialog.setMessage("처리 중입니다. 잠시 기다려 주세요...");
+        progressDialog.show();
         firebaseAuth.sendPasswordResetEmail(emailAddress)
         .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
