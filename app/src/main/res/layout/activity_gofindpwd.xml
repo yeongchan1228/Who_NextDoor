@@ -24,6 +24,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginBottom="373dp"
         android:ems="10"
+        android:inputType="textEmailAddress"
         android:hint="이메일 주소를 입력해 주세요."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

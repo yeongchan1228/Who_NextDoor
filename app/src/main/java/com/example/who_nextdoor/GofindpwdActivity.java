@@ -34,14 +34,14 @@ public class GofindpwdActivity extends AppCompatActivity {
 
     }
 
-    public void sendEmail() {
+    public void sendEmail(View view) {
         progressDialog.setMessage("처리 중입니다. 잠시 기다려 주세요...");
         progressDialog.show();
-
         //비밀번호 재설정 이메일 보내기
         String emailAddress = email.getText().toString().trim();
+        Toast.makeText(getApplicationContext(),emailAddress,Toast.LENGTH_SHORT).show();
         firebaseAuth.sendPasswordResetEmail(emailAddress)
-        .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+        .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
