@@ -9,16 +9,18 @@
 
     <TextView
         android:id="@+id/findpwd"
-        android:textSize="40dp"
-        android:gravity="center"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:fontFamily="@font/maru"
+        android:gravity="center"
         android:text="비밀번호 찾기"
+        android:textSize="40dp"
         tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="90dp" />
+        tools:layout_editor_absoluteY="105dp" />
 
     <EditText
         android:id="@+id/email"
+        android:fontFamily="@font/maru"
         android:layout_width="335dp"
         android:layout_height="69dp"
         android:layout_marginTop="100dp"
@@ -37,29 +39,31 @@
         android:id="@+id/requestEmail"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
+        android:fontFamily="@font/maru"
         android:onClick="sendEmail"
         android:text="비밀번호 받기"
         app:backgroundTint="#B5D4F1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.531" />
+        app:layout_constraintVertical_bias="0.586" />
 
     <Button
         android:id="@+id/btn11"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
+        android:fontFamily="@font/maru"
         android:onClick="GoMain"
         android:text="이전"
         app:backgroundTint="#B5D4F1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.253"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
+        app:layout_constraintVertical_bias="0.586" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
