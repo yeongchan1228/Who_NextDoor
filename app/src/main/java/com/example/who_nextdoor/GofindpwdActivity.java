@@ -39,7 +39,6 @@ public class GofindpwdActivity extends AppCompatActivity {
         progressDialog.show();
         //비밀번호 재설정 이메일 보내기
         String emailAddress = email.getText().toString().trim();
-        Toast.makeText(getApplicationContext(),emailAddress,Toast.LENGTH_SHORT).show();
         firebaseAuth.sendPasswordResetEmail(emailAddress)
         .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
