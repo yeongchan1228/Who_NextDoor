@@ -15,7 +15,7 @@ public class Join1 extends AppCompatActivity {
         setContentView(R.layout.activity_join1);
     }
     public void GoJoin2(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.Join1.class);
+        Intent intent = new Intent(this, com.example.who_nextdoor.Join2.class);
         startActivity(intent);
         finish();
     }

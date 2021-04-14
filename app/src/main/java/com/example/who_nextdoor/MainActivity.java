@@ -65,6 +65,12 @@ public class MainActivity extends AppCompatActivity{
         finish();
     }
 
+    public void GoJoin1(View v){
+        Intent intent = new Intent(this, com.example.who_nextdoor.Join1.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void GoStart(View v){
         Intent intent = new Intent(this, com.example.who_nextdoor.StartActivity.class);
         startActivity(intent);
