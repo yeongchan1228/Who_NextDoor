@@ -8,6 +8,7 @@
 
     <Button
         android:id="@+id/button9"
+        android:fontFamily="@font/maru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
@@ -24,9 +25,11 @@
 
     <TextView
         android:id="@+id/Singupdone"
+        android:fontFamily="@font/maru"
         android:layout_width="267dp"
         android:layout_height="175dp"
-        android:text="회원 가입이 완료되었습니다. "
+        android:gravity="center"
+        android:text="회원 가입이 \n 완료되었습니다. "
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
