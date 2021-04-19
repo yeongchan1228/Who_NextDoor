@@ -29,9 +29,4 @@ public class Join1 extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    public void GoSingupDone(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.SignupdoneActivity.class);
-        startActivity(intent);
-        finish();
-    }
 }

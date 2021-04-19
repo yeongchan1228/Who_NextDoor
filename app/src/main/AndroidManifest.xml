@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Who_NextDoor">
         <activity android:name=".ShowpasswdActivity"></activity>
-        <activity android:name=".SignupdoneActivity" />
         <activity android:name=".StartActivity" />
         <activity android:name=".GofindpwdActivity" />
         <activity android:name=".MainActivity">

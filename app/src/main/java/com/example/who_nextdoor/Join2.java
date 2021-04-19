@@ -1,5 +1,6 @@
 package com.example.who_nextdoor;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -54,9 +56,17 @@ public class Join2 extends AppCompatActivity {
         sPw_chk = userPwcheck.getText().toString();
 
         if(sPw.equals(sPw_chk)){
-            Intent intent = new Intent(this, SignupdoneActivity.class);
-            startActivity(intent);
-            finish();
+            AlertDialog.Builder oh=new AlertDialog.Builder(this);
+            oh.setTitle("회원가입 성공");
+            oh.setMessage("성공");
+            oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //홈으로 가게하고 싶은데.......... 어케가지...
+                }
+            });
+            oh.setCancelable(false);
+            oh.show();
         }
         else{
             Toast.makeText(getApplicationContext(), "비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
