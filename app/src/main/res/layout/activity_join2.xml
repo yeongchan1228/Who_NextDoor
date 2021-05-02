@@ -146,7 +146,7 @@
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="50dp"
-        android:onClick="GoSingupDone"
+        android:onClick="Finish"
         android:text="다음"
         app:backgroundTint="#B5D4F1"
         app:layout_constraintBottom_toBottomOf="parent"

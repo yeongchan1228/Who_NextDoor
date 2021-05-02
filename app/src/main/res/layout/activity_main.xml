@@ -93,7 +93,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="28dp"
-        android:onClick="GoHome"
+        android:onClick="justHome"
         android:fontFamily="@font/maru"
         android:text="이전"
         android:textSize="24sp"

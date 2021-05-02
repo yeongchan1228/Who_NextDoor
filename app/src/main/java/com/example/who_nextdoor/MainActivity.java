@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity{
         userId = (EditText) findViewById(R.id.Email);
         userPwcheck = (EditText) findViewById(R.id.Pwd);
     }
+    public void justHome(View v){
+        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
     public void GoHome(View v){
         String email = userId.getText().toString().trim();
         String password = userPwcheck.getText().toString().trim();
