@@ -31,7 +31,16 @@ public class getUserInfo extends AppCompatActivity {
         }
 
     }
-        public void profileUpdate(View v) {
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getUserInfo.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void profileUpdate(View v) {
             final String name = ((EditText) findViewById(R.id.UserName)).getText().toString();
             final String phoneNumber = ((EditText) findViewById(R.id.UserPhonenumber)).getText().toString();
             final String birthDay = ((EditText) findViewById(R.id.Userbirth)).getText().toString();
