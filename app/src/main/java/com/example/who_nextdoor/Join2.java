@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.base.MoreObjects;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -68,19 +69,25 @@ public class Join2 extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                AlertDialog.Builder oh=new AlertDialog.Builder(Join2.this);
-                                oh.setTitle("회원가입 성공");
-                                oh.setMessage("성공");
-                                oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(Join2.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            AlertDialog.Builder oh=new AlertDialog.Builder(Join2.this);
+                                            oh.setMessage("인증 메일을 보냈습니다.");
+                                            oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent(Join2.this, MainActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+                                            });
+                                            oh.setCancelable(false);
+                                            oh.show();
+                                        }
                                     }
                                 });
-                                oh.setCancelable(false);
-                                oh.show();
                             } else {
                                 Toast.makeText(Join2.this, "등록 에러", Toast.LENGTH_SHORT).show();
                                 return;

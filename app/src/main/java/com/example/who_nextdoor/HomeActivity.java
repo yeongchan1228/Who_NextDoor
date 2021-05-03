@@ -53,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
         }
+      
     }
     public void Withdraw(View v){ // 회원 탈퇴 클릭 시
         AlertDialog.Builder alert_confirm = new AlertDialog.Builder(HomeActivity.this);
