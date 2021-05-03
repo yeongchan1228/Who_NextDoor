@@ -8,20 +8,18 @@ public class UserInfo{
     private String phoneNumber; // 핸드폰
     private String birthDay; // 생일
     private String address; // 이메일
-    private String uid; // 사용자 uid
 
     public UserInfo(){
 
     }
-    public UserInfo(String name, String phoneNumber, String birthDay, String Alias, String schoolNumber, String gender, String address, String uid){
+    public UserInfo(String name, String phoneNumber, String birthDay, String Alias, String schoolNumber, String gender, String address){
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.birthDay = birthDay;
         this.Alias = Alias;
-        this.shcoolNumber = shcoolNumber;
+        this.shcoolNumber = schoolNumber;
         this.gender = gender;
         this.address = address;
-        this.uid = uid;
     }
 
     public String getName(){

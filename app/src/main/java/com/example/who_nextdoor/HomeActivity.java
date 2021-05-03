@@ -16,6 +16,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -28,6 +32,26 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
+        }
+        else{
+            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+            DocumentReference documentReference = firebaseFirestore.collection("users").document(user.getUid());
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if(documentSnapshot != null){
+                            if(documentSnapshot.exists()){
+                            }
+                            else{
+                                Intent intent = new Intent(HomeActivity.this, getUserInfo.class);
+                                startActivity(intent);
+                            }
+                        }
+                    }
+                }
+            });
         }
     }
     public void Withdraw(View v){ // 회원 탈퇴 클릭 시
@@ -62,6 +86,12 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
     public void goProfile(View v){
+        Intent intent = new Intent(this, getUserInfo.class);
+        startActivity(intent);
+        finish();
+    }
+    public void Logout(View v){
+       FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, getUserInfo.class);
         startActivity(intent);
         finish();

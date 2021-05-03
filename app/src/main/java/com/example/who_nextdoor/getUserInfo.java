@@ -1,8 +1,10 @@
 package com.example.who_nextdoor;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,38 +32,43 @@ public class getUserInfo extends AppCompatActivity {
 
     }
         public void profileUpdate(View v) {
-        final String name = ((EditText) findViewById(R.id.UserName)).getText().toString();
-        final String phoneNumber = ((EditText) findViewById(R.id.UserPhonenumber)).getText().toString();
-        final String birthDay = ((EditText) findViewById(R.id.Userbirth)).getText().toString();
-        final String alias = ((EditText) findViewById(R.id.UserAlias)).getText().toString();
-        final String schoolnumber = ((EditText) findViewById(R.id.Usershcoolnumber)).getText().toString();
-        final String gender = ((EditText) findViewById(R.id.Usergneder)).getText().toString();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, alias, schoolnumber, gender, user.getEmail(), user.getUid());
-        if (user != null) {
-            db.collection("users").document(user.getUid()).set(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    AlertDialog.Builder oh=new AlertDialog.Builder(getUserInfo.this);
-                    oh.setMessage("정보 입력 성공");
-                    oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            final String name = ((EditText) findViewById(R.id.UserName)).getText().toString();
+            final String phoneNumber = ((EditText) findViewById(R.id.UserPhonenumber)).getText().toString();
+            final String birthDay = ((EditText) findViewById(R.id.Userbirth)).getText().toString();
+            final String alias = ((EditText) findViewById(R.id.UserAlias)).getText().toString();
+            final String schoolnumber = ((EditText) findViewById(R.id.Usershcoolnumber)).getText().toString();
+            final String gender = ((EditText) findViewById(R.id.Usergneder)).getText().toString();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            if(!(TextUtils.isEmpty(name)) && !(TextUtils.isEmpty(phoneNumber)) && !(TextUtils.isEmpty(birthDay))
+                    && !(TextUtils.isEmpty(alias)) && !(TextUtils.isEmpty(schoolnumber)) && !(TextUtils.isEmpty(gender))) {
+                UserInfo userInfo = new UserInfo(name, phoneNumber, birthDay, alias, schoolnumber, gender, user.getEmail());
+                if (user != null) {
+                    db.collection("users").document(user.getUid()).set(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(getUserInfo.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                        public void onSuccess(Void aVoid) {
+                            AlertDialog.Builder oh = new AlertDialog.Builder(getUserInfo.this);
+                            oh.setMessage("정보 입력 성공");
+                            oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(getUserInfo.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            oh.setCancelable(false);
+                            oh.show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getUserInfo.this, "오류 발생", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    oh.setCancelable(false);
-                    oh.show();
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getUserInfo.this, "정보 입력을 다시 확인해주세요.",Toast.LENGTH_SHORT).show();
-                }
-            });
+            } else {
+                Toast.makeText(getUserInfo.this, "회원 정보를 다 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
         }
-    }
 }
