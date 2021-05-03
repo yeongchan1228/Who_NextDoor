@@ -23,6 +23,12 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
     public void Withdraw(View v){ // 회원 탈퇴 클릭 시
         AlertDialog.Builder alert_confirm = new AlertDialog.Builder(HomeActivity.this);
@@ -52,6 +58,11 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void GoMain(View v){
         Intent intent = new Intent(this, com.example.who_nextdoor.MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    public void goProfile(View v){
+        Intent intent = new Intent(this, getUserInfo.class);
         startActivity(intent);
         finish();
     }
