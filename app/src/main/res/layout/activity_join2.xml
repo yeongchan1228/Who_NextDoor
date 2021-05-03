@@ -6,6 +6,7 @@
     tools:context=".Join1"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="261dp"
@@ -14,56 +15,14 @@
         android:gravity="center"
         android:text="회원가입"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/student_number"
-        android:fontFamily="@font/maru"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginRight="101dp"
-        android:layout_marginBottom="310dp"
-        android:ems="10"
-        android:hint="학번"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
-
-    <EditText
-        android:id="@+id/name"
-        android:fontFamily="@font/maru"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginRight="101dp"
-        android:layout_marginBottom="310dp"
-        android:ems="10"
-        android:hint="이름"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518" />
+        app:layout_constraintVertical_bias="0.088" />
 
     <EditText
         android:id="@+id/Identity"
-        android:fontFamily="@font/maru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -73,6 +32,7 @@
         android:layout_marginRight="101dp"
         android:layout_marginBottom="310dp"
         android:ems="10"
+        android:fontFamily="@font/maru"
         android:hint="아이디"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,32 +40,10 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/PasswordCheck"
-        android:fontFamily="@font/maru"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="160dp"
-        android:ems="10"
-        android:hint="비밀번호 확인"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.509" />
 
     <EditText
         android:id="@+id/Password"
-        android:fontFamily="@font/maru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -113,8 +51,9 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
-        android:layout_marginBottom="228dp"
+        android:layout_marginBottom="360dp"
         android:ems="10"
+        android:fontFamily="@font/maru"
         android:hint="비밀번호"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -124,28 +63,35 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/button3"
-        android:fontFamily="@font/maru"
+    <EditText
+        android:id="@+id/PasswordCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginBottom="50dp"
-        android:onClick="GoJoin1"
-        android:text="이전"
-        app:backgroundTint="#B5D4F1"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="292dp"
+        android:ems="10"
+        android:fontFamily="@font/maru"
+        android:hint="비밀번호 확인"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button4"
-        android:fontFamily="@font/maru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="164dp"
+        android:fontFamily="@font/maru"
         android:onClick="Finish"
         android:text="다음"
         app:backgroundTint="#B5D4F1"
@@ -153,5 +99,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginBottom="164dp"
+        android:fontFamily="@font/maru"
+        android:onClick="GoMain"
+        android:text="이전"
+        app:backgroundTint="#B5D4F1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

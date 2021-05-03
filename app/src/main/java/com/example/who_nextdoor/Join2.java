@@ -43,39 +43,17 @@ public class Join2 extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    public void GoJoin1(View v){
-        Intent intent = new Intent(this, Join1.class);
+    public void GoMain(View v){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
-    }
-
-
-    public void GoSingupDone(View v){
-        sld = userId.getText().toString();
-        sPw = userPw.getText().toString();
-        sPw_chk = userPwcheck.getText().toString();
-
-        if(sPw.equals(sPw_chk)){
-            AlertDialog.Builder oh=new AlertDialog.Builder(this);
-            oh.setTitle("회원가입 성공");
-            oh.setMessage("성공");
-            oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //홈으로 가게하고 싶은데.......... 어케가지...
-                }
-            });
-            oh.setCancelable(false);
-            oh.show();
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
-        }
     }
 
     public void Finish(View v){
         final String email = userId.getText().toString().trim(); // trim = 공백 제거
         final String password = userPwcheck.getText().toString().trim();
+        sPw = userPw.getText().toString();
+        sPw_chk = userPwcheck.getText().toString();
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this, "email을 입력해 주세요.", Toast.LENGTH_SHORT).show();
             return;
@@ -84,21 +62,35 @@ public class Join2 extends AppCompatActivity {
             Toast.makeText(this, "password를 입력해 주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(Join2.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Join2.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(Join2.this, "등록 에러", Toast.LENGTH_SHORT).show();
-                            return;
+        if(sPw.equals(sPw_chk)){
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                AlertDialog.Builder oh=new AlertDialog.Builder(Join2.this);
+                                oh.setTitle("회원가입 성공");
+                                oh.setMessage("성공");
+                                oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(Join2.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
+                                oh.setCancelable(false);
+                                oh.show();
+                            } else {
+                                Toast.makeText(Join2.this, "등록 에러", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
+        }
 
     }
 }

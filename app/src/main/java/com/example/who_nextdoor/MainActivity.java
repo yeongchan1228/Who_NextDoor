@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity{
         finish();
     }
 
-    public void GoJoin1(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.Join1.class);
+    public void GoJoin2(View v){
+        Intent intent = new Intent(this, com.example.who_nextdoor.Join2.class);
         startActivity(intent);
         finish();
     }

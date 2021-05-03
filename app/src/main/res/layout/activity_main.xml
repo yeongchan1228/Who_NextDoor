@@ -104,7 +104,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="GoJoin1"
+        android:onClick="GoJoin2"
         android:text="회원가입"
         android:fontFamily="@font/maru"
         android:textColor="#B5D4F1"
