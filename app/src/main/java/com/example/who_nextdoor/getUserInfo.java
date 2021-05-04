@@ -64,8 +64,9 @@ public class getUserInfo extends AppCompatActivity {
                                     Intent intent = new Intent(getUserInfo.this, HomeActivity.class);
                                     startActivity(intent);
                                     finish();
+                                    }
                                 }
-                            });
+                            );
                             oh.setCancelable(false);
                             oh.show();
                         }

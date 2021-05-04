@@ -81,11 +81,7 @@ public class HomeActivity extends AppCompatActivity {
         alert_confirm.show();
 
     }
-    public void GoMain(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
     public void goProfile(View v){
         Intent intent = new Intent(this, getUserInfo.class);
         startActivity(intent);

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity{
                             } else { // 이메일 인증 안할 시 계정 삭제 다시 회원 가입
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 user.delete();
-                                Toast.makeText(getApplicationContext(), "이메일 인증이 완료 오류 다시 회원가입을 하십시오.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "이메일 인증 오류 다시 회원가입을 하십시오.", Toast.LENGTH_LONG).show();
                             }
                         } else {
                             Toast.makeText(getApplicationContext(), "로그인 실패!", Toast.LENGTH_LONG).show();
