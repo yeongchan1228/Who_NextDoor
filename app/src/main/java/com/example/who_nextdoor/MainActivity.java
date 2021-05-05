@@ -35,11 +35,6 @@ public class MainActivity extends AppCompatActivity{
         userId = (EditText) findViewById(R.id.Email);
         userPwcheck = (EditText) findViewById(R.id.Pwd);
     }
-    public void justHome(View v){
-        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
-    }
     public void GoHome(View v){
         String email = userId.getText().toString().trim();
         String password = userPwcheck.getText().toString().trim();
@@ -86,9 +81,4 @@ public class MainActivity extends AppCompatActivity{
         finish();
     }
 
-    public void GoStart(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.StartActivity.class);
-        startActivity(intent);
-        finish();
-    }
 }

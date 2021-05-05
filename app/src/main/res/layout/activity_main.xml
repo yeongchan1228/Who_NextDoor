@@ -87,20 +87,6 @@
         app:layout_constraintVertical_bias="0.668" />
 
     <TextView
-        android:id="@+id/before"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="28dp"
-        android:onClick="justHome"
-        android:fontFamily="@font/maru"
-        android:text="이전"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

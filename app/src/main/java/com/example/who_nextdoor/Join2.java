@@ -39,11 +39,6 @@ public class Join2 extends AppCompatActivity {
         userPwcheck = (EditText) findViewById(R.id.PasswordCheck);
         firebaseAuth = FirebaseAuth.getInstance();
     }
-    public void GoStart(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.StartActivity.class);
-        startActivity(intent);
-        finish();
-    }
     public void GoMain(View v){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
