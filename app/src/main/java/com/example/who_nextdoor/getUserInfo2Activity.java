@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -45,7 +46,6 @@ public class getUserInfo2Activity extends AppCompatActivity {
     private Button btChoose;
     private Button btUpload;
     private ImageView ivPreview;
-    UserInfo userInfo = new UserInfo();
     private Uri filePath;
     private Toast toast;
     public void onCreate(Bundle savedInstanceState) {
@@ -152,7 +152,26 @@ public class getUserInfo2Activity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                                 progressDialog.dismiss();
+                                                UserInfo userinfo = new UserInfo();
+                                                userinfo.setAccess("W");
+                                                userinfo.setName(meminfo.getName());
+                                                userinfo.setPhoneNumber(meminfo.getPhoneNumber());
+                                                userinfo.setBirthDay(meminfo.getBirthDay());
+                                                userinfo.setAlias(meminfo.getAlias());
+                                                userinfo.setShcoolNumber(meminfo.getShcoolNumber());
+                                                userinfo.setGender(meminfo.getGender());
+                                                userinfo.setAddress(user.getEmail());
+                                                userinfo.setFirst("T");
+                                                firebaseFirestore.collection("users").document(user.getUid()).set(userinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Intent intent = new Intent(getUserInfo2Activity.this, NoAccessWaitActivity.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                });
                                                 Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
+
                                             }
                                         })
                                         //실패시

@@ -158,6 +158,7 @@ public class getUserInfoActivity extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             Intent intent = new Intent(getUserInfoActivity.this, getUserInfo2Activity.class);
                                                             startActivity(intent);
+                                                            finish();
                                                         }
                                                     }
                                             );
