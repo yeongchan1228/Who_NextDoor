@@ -48,11 +48,13 @@ public class HomeActivity extends AppCompatActivity {
                                 UserInfo userinfo = documentSnapshot.toObject(UserInfo.class); // 정보 받아와서 class에 저장
                                 if(userinfo.getAccess().equals("F")){
                                     Intent intent = new Intent(HomeActivity.this, getUserInfo2Activity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
                                 }
                                 else if(userinfo.getAccess().equals("W")){
                                     Intent intent = new Intent(HomeActivity.this, NoAccessWaitActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -110,7 +112,6 @@ public class HomeActivity extends AppCompatActivity {
     public void writePost(View v) {
         Intent intent = new Intent(this, WritePostActivity.class);
         startActivity(intent);
-        finish();
     }
 
 }
