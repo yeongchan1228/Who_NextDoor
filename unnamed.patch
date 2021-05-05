@@ -1,0 +1,146 @@
+Index: app/src/main/res/layout/activity_signupdone.xml
+===================================================================
+--- app/src/main/res/layout/activity_signupdone.xml	(revision 7d7e2af4c421def2d872611e518ec994a4a3df64)
++++ app/src/main/res/layout/activity_signupdone.xml	(revision 7d7e2af4c421def2d872611e518ec994a4a3df64)
+@@ -1,38 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".SignupdoneActivity">
+-
+-    <Button
+-        android:id="@+id/button9"
+-        android:fontFamily="@font/maru"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginEnd="50dp"
+-        android:layout_marginRight="50dp"
+-        android:onClick="GoJoin2
+-        android:text="확인"
+-        app:backgroundTint="#B5D4F1"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.644"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.705" />
+-
+-    <TextView
+-        android:id="@+id/Singupdone"
+-        android:fontFamily="@font/maru"
+-        android:layout_width="267dp"
+-        android:layout_height="175dp"
+-        android:gravity="center"
+-        android:text="회원 가입이 \n 완료되었습니다. "
+-        android:textSize="36sp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/who_nextdoor/SignupdoneActivity.java
+===================================================================
+--- app/src/main/java/com/example/who_nextdoor/SignupdoneActivity.java	(revision 7d7e2af4c421def2d872611e518ec994a4a3df64)
++++ app/src/main/java/com/example/who_nextdoor/SignupdoneActivity.java	(revision 7d7e2af4c421def2d872611e518ec994a4a3df64)
+@@ -1,21 +0,0 @@
+-package com.example.who_nextdoor;
+-
+-import androidx.appcompat.app.AppCompatActivity;
+-
+-import android.content.Intent;
+-import android.os.Bundle;
+-import android.view.View;
+-
+-public class SignupdoneActivity extends AppCompatActivity {
+-
+-    @Override
+-    protected void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.activity_signupdone);
+-    }
+-    public void GoMain(View v){
+-        Intent intent = new Intent(this, com.example.who_nextdoor.MainActivity.class);
+-        startActivity(intent);
+-        finish();
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/java/com/example/who_nextdoor/Join2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/who_nextdoor/Join2.java	(revision 7d7e2af4c421def2d872611e518ec994a4a3df64)
++++ app/src/main/java/com/example/who_nextdoor/Join2.java	(date 1618798232564)
+@@ -1,5 +1,6 @@
+ package com.example.who_nextdoor;
+ 
++import android.content.DialogInterface;
+ import android.content.Intent;
+ import android.os.Bundle;
+ import android.text.TextUtils;
+@@ -9,6 +10,7 @@
+ import android.widget.Toast;
+ 
+ import androidx.annotation.NonNull;
++import androidx.appcompat.app.AlertDialog;
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import com.google.android.gms.tasks.OnCompleteListener;
+@@ -54,9 +56,17 @@
+         sPw_chk = userPwcheck.getText().toString();
+ 
+         if(sPw.equals(sPw_chk)){
+-            Intent intent = new Intent(this, SignupdoneActivity.class);
+-            startActivity(intent);
+-            finish();
++            AlertDialog.Builder oh=new AlertDialog.Builder(this);
++            oh.setTitle("회원가입 성공");
++            oh.setMessage("성공");
++            oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
++                @Override
++                public void onClick(DialogInterface dialog, int which) {
++                    //홈으로 가게하고 싶은데.......... 어케가지...
++                }
++            });
++            oh.setCancelable(false);
++            oh.show();
+         }
+         else{
+             Toast.makeText(getApplicationContext(), "비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 7d7e2af4c421def2d872611e518ec994a4a3df64)
++++ app/src/main/AndroidManifest.xml	(date 1618797325086)
+@@ -12,7 +12,6 @@
+         android:supportsRtl="true"
+         android:theme="@style/Theme.Who_NextDoor">
+         <activity android:name=".ShowpasswdActivity"></activity>
+-        <activity android:name=".SignupdoneActivity" />
+         <activity android:name=".StartActivity" />
+         <activity android:name=".GofindpwdActivity" />
+         <activity android:name=".MainActivity">
+Index: app/src/main/java/com/example/who_nextdoor/Join1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/who_nextdoor/Join1.java	(revision 7d7e2af4c421def2d872611e518ec994a4a3df64)
++++ app/src/main/java/com/example/who_nextdoor/Join1.java	(date 1618797686556)
+@@ -29,9 +29,4 @@
+         startActivity(intent);
+         finish();
+     }
+-    public void GoSingupDone(View v){
+-        Intent intent = new Intent(this, com.example.who_nextdoor.SignupdoneActivity.class);
+-        startActivity(intent);
+-        finish();
+-    }
+ }

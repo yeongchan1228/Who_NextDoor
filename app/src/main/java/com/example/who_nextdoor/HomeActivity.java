@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                                 if(userinfo.getAccess().equals("F")){
                                     Intent intent = new Intent(HomeActivity.this, getUserInfo2Activity.class);
                                     startActivity(intent);
-                                    finish();
+
                                 }
                             }
                             else{
