@@ -8,9 +8,19 @@ public class UserInfo{
     private String phoneNumber; // 핸드폰
     private String birthDay; // 생일
     private String address; // 이메일
+    private String access; // 인증 여부
+    private String first; // 첫 번째 회원 정보 입력을 했는지 판단
 
     public UserInfo(){
-
+        this.name = null;
+        this.phoneNumber = null;
+        this.birthDay = null;
+        this.Alias = null;
+        this.shcoolNumber = null;
+        this.gender = null;
+        this.address = null;
+        this.access = "F";
+        this.first = "F";
     }
     public UserInfo(String name, String phoneNumber, String birthDay, String Alias, String schoolNumber, String gender, String address){
         this.name = name;
@@ -20,6 +30,8 @@ public class UserInfo{
         this.shcoolNumber = schoolNumber;
         this.gender = gender;
         this.address = address;
+        this.access = "F";
+        this.first = "T";
     }
 
     public String getName(){
@@ -27,6 +39,18 @@ public class UserInfo{
     }
     public void setName(String name){
         this.name = name;
+    }
+    public String getAccess(){
+        return this.access;
+    }
+    public void setAccess(String access){
+        this.access = access;
+    }
+    public String getFirst(){
+        return this.first;
+    }
+    public void setFirst(String first){
+        this.first = first;
     }
     public String getPhoneNumber(){
         return this.phoneNumber;

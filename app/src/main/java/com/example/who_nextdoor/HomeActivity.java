@@ -4,19 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.who_nextdoor.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 화면 회전 막긴
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){
             Intent intent = new Intent(this, MainActivity.class);
@@ -36,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         else{
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             DocumentReference documentReference = firebaseFirestore.collection("users").document(user.getUid());
+            //FirebaseAuth auth = FirebaseAuth.getInstance();
             documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -43,9 +45,15 @@ public class HomeActivity extends AppCompatActivity {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         if(documentSnapshot != null){
                             if(documentSnapshot.exists()){
+                                UserInfo userinfo = documentSnapshot.toObject(UserInfo.class); // 정보 받아와서 class에 저장
+                                if(userinfo.getAccess().equals("F")){
+                                    Intent intent = new Intent(HomeActivity.this, getUserInfo2Activity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
                             }
                             else{
-                                Intent intent = new Intent(HomeActivity.this, getUserInfo.class);
+                                Intent intent = new Intent(HomeActivity.this, getUserInfoActivity.class);
                                 startActivity(intent);
                             }
                         }
@@ -83,13 +91,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void goProfile(View v){
-        Intent intent = new Intent(this, getUserInfo.class);
+        Intent intent = new Intent(this, getUserInfoActivity.class);
         startActivity(intent);
         finish();
     }
     public void Logout(View v){
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, getUserInfo.class);
+        Intent intent = new Intent(this, getUserInfoActivity.class);
         startActivity(intent);
         finish();
     }
