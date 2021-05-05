@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
@@ -42,14 +43,13 @@
         android:ems="10"
         android:fontFamily="@font/maru"
         android:hint="학번"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.437" />
 
     <EditText
         android:id="@+id/UserAlias"
@@ -73,14 +73,14 @@
         android:ems="10"
         android:fontFamily="@font/maru"
         android:hint="전화번호"
-        android:inputType="number"
+        android:inputType="number|phone"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534" />
+        app:layout_constraintVertical_bias="0.533" />
+
 
     <EditText
         android:id="@+id/Userbirth"
@@ -88,32 +88,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/maru"
-        android:hint="생일"
+        android:hint="생년월일"
         android:inputType="date"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636" />
-
-    <EditText
-        android:id="@+id/Usergneder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/maru"
-        android:hint="성별"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
-
+        app:layout_constraintVertical_bias="0.626" />
 
     <Button
         android:id="@+id/btn11"
@@ -129,4 +111,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.884" />
+
+    <RadioGroup
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGender"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.678"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.74"
+        >
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/maru"
+            android:text="남자"
+            android:id="@+id/radioMan"
+            android:layout_weight="1"
+            />
+
+        <RadioButton
+            android:id="@+id/radioWoman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/maru"
+            android:layout_weight="1"
+            android:text="여자" />
+    </RadioGroup>
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="41dp"
+        android:layout_height="24dp"
+        android:fontFamily="@font/maru"
+        android:text="성별"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
