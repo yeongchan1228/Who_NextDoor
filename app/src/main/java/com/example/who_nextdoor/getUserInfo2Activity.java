@@ -62,11 +62,9 @@ public class getUserInfo2Activity extends AppCompatActivity {
         btUpload = (Button) findViewById(R.id.bt_upload);
         ivPreview = (ImageView) findViewById(R.id.iv_preview);
 
-        //버튼 클릭 이벤트
         btChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //이미지를 선택
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -77,7 +75,6 @@ public class getUserInfo2Activity extends AppCompatActivity {
         btUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //업로드
                 uploadFile();
             }
         });
@@ -116,12 +113,10 @@ public class getUserInfo2Activity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //request코드가 0이고 OK를 선택했고 data에 뭔가가 들어 있다면
         if(requestCode == 0 && resultCode == RESULT_OK){
             filePath = data.getData();
             Log.d(TAG, "uri:" + String.valueOf(filePath));
             try {
-                //Uri 파일을 Bitmap으로 만들어서 ImageView에 집어 넣는다.
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 ivPreview.setImageBitmap(bitmap);
             } catch (IOException e) {

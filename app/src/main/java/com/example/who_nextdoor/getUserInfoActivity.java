@@ -111,7 +111,6 @@ public class getUserInfoActivity extends AppCompatActivity {
                             userinfo.setAddress(meminfo.getAddress());
                             userinfo.setFirst(meminfo.getFirst());
                             if(userinfo.getFirst().equals("T")) {
-                                Toast.makeText(getUserInfoActivity.this,"실행 두번쨰",Toast.LENGTH_SHORT).show();
                                 if(!(TextUtils.isEmpty(name))){
                                     userinfo.setName(name);
                                 }
@@ -153,6 +152,7 @@ public class getUserInfoActivity extends AppCompatActivity {
                                                 Toast.makeText(getUserInfoActivity.this, "기숙사 인증을 완료해주세요.", Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(getUserInfoActivity.this, getUserInfo2Activity.class);
                                                 startActivity(intent);
+                                                finish();
                                             }
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
@@ -165,7 +165,6 @@ public class getUserInfoActivity extends AppCompatActivity {
                             }
                         }
                         else{
-                            Toast.makeText(getUserInfoActivity.this,"실행 첫번쨰",Toast.LENGTH_SHORT).show();
                             if (!(TextUtils.isEmpty(name)) && !(TextUtils.isEmpty(phoneNumber)) && !(TextUtils.isEmpty(birthDay))
                                     && !(TextUtils.isEmpty(alias)) && !(TextUtils.isEmpty(schoolnumber)) && !(TextUtils.isEmpty(gender))) {
                                 userinfo.setName(name);

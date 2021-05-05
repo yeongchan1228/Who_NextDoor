@@ -79,8 +79,8 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(HomeActivity.this, "계정이 삭제 되었습니다.", Toast.LENGTH_LONG).show();
-                        finish();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
                     }
                 });
             }
