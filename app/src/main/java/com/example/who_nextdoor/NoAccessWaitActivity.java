@@ -37,7 +37,7 @@ public class NoAccessWaitActivity extends AppCompatActivity {
     Toast toast;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.getuserinfo2);
+        setContentView(R.layout.waitaccess);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){

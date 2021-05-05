@@ -107,15 +107,21 @@ public class getUserInfo2Activity extends AppCompatActivity {
         }
     }
 
+
+
+
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        //request코드가 0이고 OK를 선택했고 data에 뭔가가 들어 있다면
         if(requestCode == 0 && resultCode == RESULT_OK){
             filePath = data.getData();
             Log.d(TAG, "uri:" + String.valueOf(filePath));
             try {
-
+                //Uri 파일을 Bitmap으로 만들어서 ImageView에 집어 넣는다.
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 ivPreview.setImageBitmap(bitmap);
             } catch (IOException e) {
@@ -123,6 +129,8 @@ public class getUserInfo2Activity extends AppCompatActivity {
             }
         }
     }
+
+
 
     //upload the file
     private void uploadFile() {
