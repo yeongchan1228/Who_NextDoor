@@ -80,4 +80,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.209" />
 
+    <Button
+        android:id="@+id/writingbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글쓰기"
+        android:onClick="Board"
+        tools:layout_editor_absoluteX="70dp"
+        tools:layout_editor_absoluteY="578dp" />//게시판 추가하는 버튼 나중에 옮겨야함
+
 </androidx.constraintlayout.widget.ConstraintLayout>

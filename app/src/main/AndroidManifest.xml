@@ -23,6 +23,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Join2" />
         <activity android:name=".getUserInfo" />
+        <activity android:name=".Board" />
     </application>
 
 </manifest>

@@ -93,4 +93,10 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void Board(View v) {
+        Intent intent = new Intent(this, com.example.who_nextdoor.Board.class);
+        startActivity(intent);
+        finish();
+    }
 }
