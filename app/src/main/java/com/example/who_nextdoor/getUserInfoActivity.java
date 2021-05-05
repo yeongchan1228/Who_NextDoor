@@ -11,6 +11,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TableRow;
 import android.widget.Toast;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -35,11 +41,14 @@ public class getUserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.getuser);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        /* 테스트를 위해 임시로 주석처리
         if(user == null){
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
+
+         -----------------------------------*/
 
     }
 
@@ -52,12 +61,34 @@ public class getUserInfoActivity extends AppCompatActivity {
     }
 
     public void profileUpdate(View v) {
+            RadioButton radioMan, radioWoman;
+            RadioGroup radioGender;
+            radioMan = findViewById(R.id.radioMan);
+            radioWoman = findViewById(R.id.radioWoman);
+            radioGender = findViewById(R.id.radioGender);
+
             final String name = ((EditText) findViewById(R.id.UserName)).getText().toString();
             final String phoneNumber = ((EditText) findViewById(R.id.UserPhonenumber)).getText().toString();
             final String birthDay = ((EditText) findViewById(R.id.Userbirth)).getText().toString();
             final String alias = ((EditText) findViewById(R.id.UserAlias)).getText().toString();
             final String schoolnumber = ((EditText) findViewById(R.id.Usershcoolnumber)).getText().toString();
-            final String gender = ((EditText) findViewById(R.id.Usergneder)).getText().toString();
+            final String gender = radioMan.getText().toString();
+
+            radioGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int i) {
+                    if(i == R.id.radioMan){
+                        final String gender = radioMan.getText().toString();
+                        Toast.makeText(getUserInfoActivity.this, "남자", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(i == R.id.radioWoman){
+                       final String gender = radioWoman.getText().toString();
+                       Toast.makeText(getUserInfoActivity.this, "여자", Toast.LENGTH_SHORT).show();
+                    }
+               }
+            });
+
+            //final String gender = ((EditText) findViewById(R.id.Usergneder)).getText().toString();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             UserInfo userinfo = new UserInfo();

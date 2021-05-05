@@ -85,6 +85,11 @@ public class Join2 extends AppCompatActivity {
                                 });
                             } else {
                                 Toast.makeText(Join2.this, "등록 에러", Toast.LENGTH_SHORT).show();
+                                /* 임시로 회원가입 후 화면 볼 수 있게 함. 나중에 삭제 */
+                                Intent intent = new Intent(Join2.this, getUserInfoActivity.class);
+                                startActivity(intent);
+                                finish();
+                                /* ------------------------------------------------*/
                                 return;
                             }
                         }
