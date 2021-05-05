@@ -41,14 +41,12 @@ public class getUserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.getuser);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        /* 테스트를 위해 임시로 주석처리
         if(user == null){
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         }
 
-         -----------------------------------*/
 
     }
 

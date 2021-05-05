@@ -11,6 +11,7 @@ public class UserInfo{
     private String access; // 인증 여부
     private String first; // 첫 번째 회원 정보 입력을 했는지 판단
 
+
     public UserInfo(){
         this.name = null;
         this.phoneNumber = null;

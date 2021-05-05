@@ -209,10 +209,6 @@ public class getUserInfo2Activity extends AppCompatActivity {
                 }
             });
 
-            /*SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMHH_mmss");
-            Date now = new Date();
-            String filename = formatter.format(now) + ".png";*/
-
         } else {
             Toast.makeText(getApplicationContext(), "파일을 먼저 선택하세요.", Toast.LENGTH_SHORT).show();
         }

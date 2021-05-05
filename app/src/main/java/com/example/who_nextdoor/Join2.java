@@ -27,6 +27,7 @@ public class Join2 extends AppCompatActivity {
     private EditText userPwcheck, userPw;
     String sld, sPw, sPw_chk;
     FirebaseAuth firebaseAuth;
+
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     @Override

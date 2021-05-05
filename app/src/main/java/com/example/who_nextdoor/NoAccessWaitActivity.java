@@ -90,7 +90,8 @@ public class NoAccessWaitActivity extends AppCompatActivity {
                                finish();
                            }
                            else{
-                               finish();
+                               Toast.makeText(NoAccessWaitActivity.this,"인증이 아직 완료되지 않았습니다. " +
+                                       "잠시 후 다시 눌러주세요.(앱을 종료하려면 뒤로가기 2번을 해주세요.",Toast.LENGTH_SHORT).show();
                            }
                        }
                        else{

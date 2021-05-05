@@ -25,6 +25,7 @@ public class GofindpwdActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
