@@ -47,6 +47,7 @@ public class getUserInfoActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
          -----------------------------------*/
 
     }
