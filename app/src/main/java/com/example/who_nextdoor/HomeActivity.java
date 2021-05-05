@@ -106,4 +106,11 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void writePost(View v) {
+        Intent intent = new Intent(this, WritePostActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
