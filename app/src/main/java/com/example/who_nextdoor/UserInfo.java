@@ -23,17 +23,6 @@ public class UserInfo{
         this.access = "F";
         this.first = "F";
     }
-    public UserInfo(String name, String phoneNumber, String birthDay, String Alias, String schoolNumber, String gender, String address){
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.birthDay = birthDay;
-        this.Alias = Alias;
-        this.shcoolNumber = schoolNumber;
-        this.gender = gender;
-        this.address = address;
-        this.access = "F";
-        this.first = "T";
-    }
 
     public String getName(){
         return this.name;
