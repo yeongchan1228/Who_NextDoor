@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
+
+
+    <ImageView
+        android:layout_width="238dp"
+        android:layout_height="144dp"
+        android:src="@drawable/main_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078"></ImageView>
 
     <EditText
         android:id="@+id/Email"
@@ -12,10 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
         android:ems="10"
+        android:backgroundTint="#acdffa"
         android:hint="아이디"
         android:fontFamily="@font/maru"
         android:inputType="textPersonName"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Pwd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -29,9 +43,10 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/maru"
+        android:backgroundTint="#acdffa"
         android:hint="비밀번호"
         android:inputType="textPassword"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -45,7 +60,7 @@
         android:onClick="GoFindPwd"
         android:fontFamily="@font/maru"
         android:text="비밀번호 재설정"
-        android:textColor="#B5D4F1"
+        android:textColor="#acdffa"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +78,7 @@
         android:onClick="GoHome"
         android:fontFamily="@font/maru"
         android:text="확인"
-        app:backgroundTint="#B5D4F1"
+        app:backgroundTint="#acdffa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.82"
@@ -75,16 +90,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
         android:fontFamily="@font/maru"
-        android:text="아이디 비밀번호 입력"
-        android:textColor="@color/black"
+        android:text="옆집엔 누가 사나?"
+        android:textColor="#acdffa"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.668" />
+        app:layout_constraintVertical_bias="0.237" />
 
     <TextView
         android:id="@+id/button2"
@@ -93,7 +107,7 @@
         android:onClick="GoJoin2"
         android:text="회원가입"
         android:fontFamily="@font/maru"
-        android:textColor="#B5D4F1"
+        android:textColor="#acdffa"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
