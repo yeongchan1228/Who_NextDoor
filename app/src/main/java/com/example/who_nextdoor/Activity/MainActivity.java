@@ -1,14 +1,14 @@
-package com.example.who_nextdoor;
+package com.example.who_nextdoor.Activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,6 +35,17 @@ public class MainActivity extends AppCompatActivity{
         firebaseAuth = FirebaseAuth.getInstance();
         userId = (EditText) findViewById(R.id.Email);
         userPwcheck = (EditText) findViewById(R.id.Pwd);
+        Button button1 = (Button) findViewById(R.id.button);
+        userPwcheck.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if((event.getAction() == KeyEvent.ACTION_DOWN) && keyCode == KeyEvent.KEYCODE_ENTER){
+                    button1.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
     public void GoHome(View v){
         String email = userId.getText().toString().trim();
@@ -71,13 +82,13 @@ public class MainActivity extends AppCompatActivity{
 
     }
     public void GoFindPwd(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.GofindpwdActivity.class);
+        Intent intent = new Intent(this, GofindpwdActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void GoJoin2(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.Join2.class);
+        Intent intent = new Intent(this, JoinActivity.class);
         startActivity(intent);
         finish();
     }

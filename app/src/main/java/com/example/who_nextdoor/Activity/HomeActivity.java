@@ -1,4 +1,4 @@
-package com.example.who_nextdoor;
+package com.example.who_nextdoor.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -13,6 +13,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.who_nextdoor.HomeRecycler.Data;
+import com.example.who_nextdoor.HomeRecycler.HomeRecyclerAdapter;
+import com.example.who_nextdoor.R;
+import com.example.who_nextdoor.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,14 +25,18 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class HomeActivity extends AppCompatActivity {
+import java.util.Arrays;
+import java.util.List;
 
+public class HomeActivity extends AppCompatActivity {
+    private HomeRecyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 화면 회전 막기
-
+        init();
+        getData();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){
             Intent intent = new Intent(this, MainActivity.class);
@@ -114,5 +122,37 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, WritePostActivity.class);
         startActivity(intent);
     }
+    private void init() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        adapter = new HomeRecyclerAdapter();
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void getData() {
+        List<String> listTitle = Arrays.asList("정보 게시판", "거래 게시판", "**", "**");
+        List<String> listContent = Arrays.asList(
+                "정보 게시판입니다.",
+                "거래 게시판입니다.",
+                "**게시판입니다.",
+                "**게시판입니다."
+        );
+        List<Integer> listResId = Arrays.asList(
+                R.drawable.icon1,
+                R.drawable.icon1,
+                R.drawable.icon1,
+                R.drawable.icon1
+        );
+        for (int i = 0; i < listTitle.size(); i++) {
+            Data data = new Data();
+            data.setTitle(listTitle.get(i));
+            data.setContent(listContent.get(i));
+            data.setResId(listResId.get(i));
+            adapter.addItem(data);
+        }
+        adapter.notifyDataSetChanged();
+    }
 }

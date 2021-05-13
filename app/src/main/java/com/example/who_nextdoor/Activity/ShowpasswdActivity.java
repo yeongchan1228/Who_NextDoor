@@ -1,10 +1,13 @@
-package com.example.who_nextdoor;
+package com.example.who_nextdoor.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.who_nextdoor.Activity.MainActivity;
+import com.example.who_nextdoor.R;
 
 public class ShowpasswdActivity extends AppCompatActivity {
 
@@ -15,7 +18,7 @@ public class ShowpasswdActivity extends AppCompatActivity {
     }
 
     public void GoMain(View v){
-        Intent intent = new Intent(this, com.example.who_nextdoor.MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
