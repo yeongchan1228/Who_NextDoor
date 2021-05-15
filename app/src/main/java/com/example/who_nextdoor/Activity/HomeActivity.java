@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -37,6 +38,22 @@ public class HomeActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 화면 회전 막기
         init();
         getData();
+        adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+                Data data = adapter.getItem(pos);
+                if(data.getTitle().equals("정보 게시판")){
+                    Intent intent = new Intent(HomeActivity.this, Information_BoardActivity.class);
+                    startActivity(intent);
+                }
+                /*else if(data.getTitle().equals("거래 게시판")){
+                    Intent intent = new Intent(HomeActivity.this, Information_BoardActivity.class);
+                    startActivity(intent);
+                }*/
+                
+
+            }
+        });
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){
             Intent intent = new Intent(this, MainActivity.class);
