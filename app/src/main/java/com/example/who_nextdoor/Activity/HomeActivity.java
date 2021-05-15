@@ -121,6 +121,7 @@ public class HomeActivity extends AppCompatActivity {
     public void writePost(View v) {
         Intent intent = new Intent(this, WritePostActivity.class);
         startActivity(intent);
+        finish();
     }
     private void init() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);

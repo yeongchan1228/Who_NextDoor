@@ -36,7 +36,6 @@ import java.io.IOException;
 
 public class getUserInfo2Activity extends AppCompatActivity {
     private long backKeyPressedTime = 0;
-    private static final String TAG = "MainActivity";
     String filename;
     private Button btChoose;
     private Button btUpload;
@@ -107,7 +106,6 @@ public class getUserInfo2Activity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 0 && resultCode == RESULT_OK){
             filePath = data.getData();
-            Log.d(TAG, "uri:" + String.valueOf(filePath));
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 ivPreview.setImageBitmap(bitmap);

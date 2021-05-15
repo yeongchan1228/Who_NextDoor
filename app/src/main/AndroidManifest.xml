@@ -27,6 +27,7 @@
         <activity android:name=".Activity.getUserInfo2Activity" />
         <activity android:name=".Activity.NoAccessWaitActivity" />
         <activity android:name=".Activity.WritePostActivity" />
+        <activity android:name=".Activity.Information_BoardActivity"/>
     </application>
 
 </manifest>
