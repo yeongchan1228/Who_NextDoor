@@ -85,4 +85,9 @@ public class Information_BoardActivity extends AppCompatActivity {
             }
         });
     }
+    public void writePost(View v) {
+        Intent intent = new Intent(this, i_board_InputActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

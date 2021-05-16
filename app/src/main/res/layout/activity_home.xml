@@ -58,18 +58,6 @@
         app:layout_constraintVertical_bias="0.209" />
 
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/AddPostButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="writePost"
-        app:backgroundTint="#B5D4F1"
-        app:srcCompat="@drawable/ic_baseline_add_24"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="618dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
