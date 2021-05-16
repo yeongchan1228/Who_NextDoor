@@ -3,7 +3,6 @@ package com.example.who_nextdoor.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,11 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.who_nextdoor.BoardRecycler.BoardAdapter;
 import com.example.who_nextdoor.R;
 import com.example.who_nextdoor.TradeInfo;
-import com.example.who_nextdoor.TradeRecycler.TradeAdapter;
-import com.example.who_nextdoor.WriteInfo;
+import com.example.who_nextdoor.BoardRecycler.TradeAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;

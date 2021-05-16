@@ -1,9 +1,8 @@
 package com.example.who_nextdoor.Activity;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,37 +11,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.who_nextdoor.BoardRecycler.BoardAdapter;
-import com.example.who_nextdoor.HomeRecycler.Data;
-import com.example.who_nextdoor.HomeRecycler.HomeRecyclerAdapter;
+import com.example.who_nextdoor.BoardRecycler.InformationAdapter;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.UserInfo;
-import com.example.who_nextdoor.WriteInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
 public class Information_BoardActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private BoardAdapter adapter;
+    private InformationAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<WriteInfo> arrayList;
+    private ArrayList<informationInfo> arrayList;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = firebaseFirestore.collection("i_board");
 
@@ -61,8 +46,8 @@ public class Information_BoardActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 arrayList.clear();
                 for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
-                    WriteInfo writeInfo = documentSnapshot.toObject(WriteInfo.class);
-                    arrayList.add(writeInfo);
+                    informationInfo informationInfo = documentSnapshot.toObject(informationInfo.class);
+                    arrayList.add(informationInfo);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -72,21 +57,22 @@ public class Information_BoardActivity extends AppCompatActivity {
                 Toast.makeText(Information_BoardActivity.this,"게시글이 아무것도 없습니다.",Toast.LENGTH_SHORT).show();
             }
         });
-            adapter = new BoardAdapter(arrayList,this);
+            adapter = new InformationAdapter(arrayList,this);
             recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BoardAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new InformationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                WriteInfo getwriteinfo = adapter.getwriteinfo(pos);
+                informationInfo getwriteinfo = adapter.getwriteinfo(pos);
                 Intent intent = new Intent(Information_BoardActivity.this,PostActivity.class);
                 intent.putExtra("Title", getwriteinfo.getTitle());
                 intent.putExtra("Contents", getwriteinfo.getContents());
+                intent.putExtra("Date", getwriteinfo.getDate());
                 startActivity(intent);
             }
         });
     }
     public void writePost(View v) {
-        Intent intent = new Intent(this, i_board_InputActivity.class);
+        Intent intent = new Intent(this, Information_InputActivity.class);
         startActivity(intent);
         finish();
     }

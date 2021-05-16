@@ -1,22 +1,26 @@
 package com.example.who_nextdoor;
 
 
-public class WriteInfo {
+import java.util.Date;
+
+public class informationInfo {
     private String title;
     private String contents;
     private String board_image;
+    private String uid;
+    private String date;
 
-    public WriteInfo(){
+    public informationInfo(){
         this.title = null;
         this.contents = null;
         this.board_image = "F";
     }
-    public WriteInfo(String title, String contents){
+    public informationInfo(String title, String contents){
         this.title = title;
         this.contents = contents;
         this.board_image = "F";
     }
-    public WriteInfo(String Board_image, String title, String contents){
+    public informationInfo(String Board_image, String title, String contents){
         this.title = title;
         this.contents = contents;
         this.board_image = Board_image;
@@ -41,6 +45,9 @@ public class WriteInfo {
     public void setboard_image(String board_image){
         this.board_image = board_image;
     }
-
+    public String getUid(){return this.uid;}
+    public void setUid(String uid){this.uid = uid;}
+    public String getDate(){return this.date;}
+    public void setDate(String date){this.date = date;}
 
 }

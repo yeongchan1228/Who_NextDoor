@@ -13,13 +13,15 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="350dp"
-            android:layout_height="50dp"
+            android:layout_width="316dp"
+            android:layout_height="wrap_content"
             android:text="정보 게시판입니다."
-            android:textSize="40dp">
-        </TextView>
+            android:textSize="35dp"></TextView>
+
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/AddPostButton"
+            android:layout_marginLeft="10dp"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:clickable="true"

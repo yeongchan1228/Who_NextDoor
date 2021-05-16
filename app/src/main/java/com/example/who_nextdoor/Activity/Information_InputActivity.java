@@ -18,7 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.WriteInfo;
+import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +30,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class i_board_InputActivity extends AppCompatActivity {
+public class Information_InputActivity extends AppCompatActivity {
     String filename;
     private Button ibimage;
     private ImageView ibPreview;
@@ -103,7 +105,7 @@ public class i_board_InputActivity extends AppCompatActivity {
                             Upload_iboard_T(title, contents);
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(i_board_InputActivity.this, Information_BoardActivity.class);
+                            Intent intent = new Intent(Information_InputActivity.this, Information_BoardActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -125,12 +127,12 @@ public class i_board_InputActivity extends AppCompatActivity {
         }
         else{
             Upload_iboard(title, contents);
-            AlertDialog.Builder oh = new AlertDialog.Builder(i_board_InputActivity.this);
+            AlertDialog.Builder oh = new AlertDialog.Builder(Information_InputActivity.this);
             oh.setMessage("글 등록 성공");
             oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(i_board_InputActivity.this, Information_BoardActivity.class);
+                            Intent intent = new Intent(Information_InputActivity.this, Information_BoardActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -144,44 +146,56 @@ public class i_board_InputActivity extends AppCompatActivity {
     }
     public void Upload_iboard_T(String title, String contents){ // 사진을 업로드 했을 때
         if(!(TextUtils.isEmpty(title)) && !(TextUtils.isEmpty(contents))) {
-            WriteInfo writeInfo = new WriteInfo(title, contents);
-            writeInfo.setboard_image("T");
+            informationInfo informationInfo = new informationInfo(title, contents);
+            informationInfo.setUid(user.getUid());
+            informationInfo.setDate(getTime());
+            informationInfo.setboard_image("T");
             if (user != null) {
-                db.collection("i_board").document(title).set(writeInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("i_board").document(title).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(i_board_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Information_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
             }
         } else {
-            Toast.makeText(i_board_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Information_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void Upload_iboard(String title, String contents){ // 사진을 업로드 했을 때
+    public void Upload_iboard(String title, String contents){
         if(!(TextUtils.isEmpty(title)) && !(TextUtils.isEmpty(contents))) {
-            WriteInfo writeInfo = new WriteInfo(title, contents);
+            informationInfo informationInfo = new informationInfo(title, contents);
+            informationInfo.setUid(user.getUid());
+            informationInfo.setDate(getTime());
             if (user != null) {
-                db.collection("i_board").document(title).set(writeInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("i_board").document(title).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(i_board_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Information_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
             }
         } else {
-            Toast.makeText(i_board_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Information_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
         }
+    }
+    public String getTime(){ // 시간 구하기
+        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd k:mm:ss");
+        long mNow;
+        Date mDate;
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        return mFormat.format(mDate);
     }
 }

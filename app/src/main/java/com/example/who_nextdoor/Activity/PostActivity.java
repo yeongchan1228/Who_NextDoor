@@ -20,7 +20,7 @@ import com.google.firebase.storage.StorageReference;
 
 public class PostActivity extends AppCompatActivity {
     ImageView imageView;
-    TextView textTitle, textContents;
+    TextView textTitle, textContents, textdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +28,15 @@ public class PostActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String Title = intent.getStringExtra("Title");
         String Contents = intent.getStringExtra("Contents");
+        String date = intent.getStringExtra("Date");
 
         imageView = findViewById(R.id.post_imageview);
         textTitle = findViewById(R.id.post_title);
         textContents = findViewById(R.id.post_contents);
+        textdate = findViewById(R.id.post_date);
         textTitle.setText(Title);
         textContents.setText(Contents);
+        textdate.setText(date);
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
         StorageReference pathReference = storageReference.child("i_board");
