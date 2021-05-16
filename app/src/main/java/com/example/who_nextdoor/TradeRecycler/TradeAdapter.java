@@ -1,4 +1,4 @@
-package com.example.who_nextdoor.BoardRecycler;
+package com.example.who_nextdoor.TradeRecycler;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.WriteInfo;
+import com.example.who_nextdoor.TradeInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
@@ -21,21 +21,21 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHolder> {
-    private ArrayList<WriteInfo> arrayList;
+public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHolder> {
+    private ArrayList<TradeInfo> arrayList;
     private Context context;
     public interface OnItemClickListener{
         void onItemClick(View v, int pos);
     }
-    private BoardAdapter.OnItemClickListener mListener = null;
-    public void setOnItemClickListener(BoardAdapter.OnItemClickListener listener){
+    private TradeAdapter.OnItemClickListener mListener = null;
+    public void setOnItemClickListener(TradeAdapter.OnItemClickListener listener){
         this.mListener = listener;
     }
-    public BoardAdapter(ArrayList<WriteInfo> arrayList, Context context) {
+    public TradeAdapter(ArrayList<TradeInfo> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
-    public WriteInfo getwriteinfo(int pos){
+    public TradeInfo gettradeinfo(int pos){
         return arrayList.get(pos);
     }
     @NonNull
@@ -54,9 +54,9 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         else {
                 FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
                 StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
-                StorageReference pathReference = storageReference.child("i_board");
+                StorageReference pathReference = storageReference.child("t_board");
                 if(pathReference != null){
-                    StorageReference submitimage = storageReference.child("i_board/"+arrayList.get(position).getTitle()+".png");
+                    StorageReference submitimage = storageReference.child("t_board/"+arrayList.get(position).getTitle()+".png");
                     submitimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
@@ -82,9 +82,9 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
 
         public BoardViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.imageView = itemView.findViewById(R.id.bi_imageView);
-            this.tv_title = itemView.findViewById(R.id.bi_title);
-            this.tv_content = itemView.findViewById(R.id.bi_content);
+            this.imageView = itemView.findViewById(R.id.tb_imageView);
+            this.tv_title = itemView.findViewById(R.id.tb_title);
+            this.tv_content = itemView.findViewById(R.id.tb_content);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

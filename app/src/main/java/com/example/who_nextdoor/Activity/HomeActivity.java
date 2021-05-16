@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -46,10 +45,10 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, Information_BoardActivity.class);
                     startActivity(intent);
                 }
-                /*else if(data.getTitle().equals("거래 게시판")){
-                    Intent intent = new Intent(HomeActivity.this, Information_BoardActivity.class);
+                else if(data.getTitle().equals("거래 게시판")){
+                    Intent intent = new Intent(HomeActivity.this, Trade_BoardActivity.class);
                     startActivity(intent);
-                }*/
+                }
                 
 
             }
@@ -136,7 +135,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void writePost(View v) {
-        Intent intent = new Intent(this, WritePostActivity.class);
+        Intent intent = new Intent(this, i_board_InputActivity.class);
         startActivity(intent);
         finish();
     }

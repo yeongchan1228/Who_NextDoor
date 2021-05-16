@@ -26,8 +26,10 @@
         <activity android:name=".Activity.getUserInfoActivity" />
         <activity android:name=".Activity.getUserInfo2Activity" />
         <activity android:name=".Activity.NoAccessWaitActivity" />
-        <activity android:name=".Activity.WritePostActivity" />
+        <activity android:name=".Activity.i_board_InputActivity" />
         <activity android:name=".Activity.Information_BoardActivity"/>
+        <activity android:name=".Activity.PostActivity"/>
+        <activity android:name=".Activity.Trade_BoardActivity"/>
     </application>
 
 </manifest>

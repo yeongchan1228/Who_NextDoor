@@ -18,17 +18,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.UserInfo;
 import com.example.who_nextdoor.WriteInfo;
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -37,7 +31,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
-public class WritePostActivity extends AppCompatActivity {
+public class i_board_InputActivity extends AppCompatActivity {
     String filename;
     private Button ibimage;
     private ImageView ibPreview;
@@ -51,7 +45,7 @@ public class WritePostActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_post);
+        setContentView(R.layout.activity_i_board_input);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user == null){
@@ -109,7 +103,7 @@ public class WritePostActivity extends AppCompatActivity {
                             Upload_iboard_T(title, contents);
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(WritePostActivity.this, Information_BoardActivity.class);
+                            Intent intent = new Intent(i_board_InputActivity.this, Information_BoardActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -131,12 +125,12 @@ public class WritePostActivity extends AppCompatActivity {
         }
         else{
             Upload_iboard(title, contents);
-            AlertDialog.Builder oh = new AlertDialog.Builder(WritePostActivity.this);
+            AlertDialog.Builder oh = new AlertDialog.Builder(i_board_InputActivity.this);
             oh.setMessage("글 등록 성공");
             oh.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(WritePostActivity.this, Information_BoardActivity.class);
+                            Intent intent = new Intent(i_board_InputActivity.this, Information_BoardActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -160,13 +154,13 @@ public class WritePostActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(WritePostActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(i_board_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
             }
         } else {
-            Toast.makeText(WritePostActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(i_board_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -181,13 +175,13 @@ public class WritePostActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(WritePostActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(i_board_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
             }
         } else {
-            Toast.makeText(WritePostActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(i_board_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 }

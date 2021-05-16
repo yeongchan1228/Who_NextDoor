@@ -1,10 +1,9 @@
 package com.example.who_nextdoor.Activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,43 +12,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.who_nextdoor.BoardRecycler.BoardAdapter;
-import com.example.who_nextdoor.HomeRecycler.Data;
-import com.example.who_nextdoor.HomeRecycler.HomeRecyclerAdapter;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.UserInfo;
+import com.example.who_nextdoor.TradeInfo;
+import com.example.who_nextdoor.TradeRecycler.TradeAdapter;
 import com.example.who_nextdoor.WriteInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class Information_BoardActivity extends AppCompatActivity {
+public class Trade_BoardActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private BoardAdapter adapter;
+    private TradeAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<WriteInfo> arrayList;
+    private ArrayList<TradeInfo> arrayList;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private CollectionReference collectionReference = firebaseFirestore.collection("i_board");
+    private CollectionReference collectionReference = firebaseFirestore.collection("t_board");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_informationboard);
+        setContentView(R.layout.activity_tradeboard);
 
         recyclerView = findViewById(R.id.ib_recyclerView);
         recyclerView.setHasFixedSize(true); // 성능 강화
@@ -61,26 +48,26 @@ public class Information_BoardActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 arrayList.clear();
                 for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
-                    WriteInfo writeInfo = documentSnapshot.toObject(WriteInfo.class);
-                    arrayList.add(writeInfo);
+                    TradeInfo tradeInfo = documentSnapshot.toObject(TradeInfo.class);
+                    arrayList.add(tradeInfo);
                 }
                 adapter.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Information_BoardActivity.this,"게시글이 아무것도 없습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Trade_BoardActivity.this,"게시글이 아무것도 없습니다.",Toast.LENGTH_SHORT).show();
             }
         });
-            adapter = new BoardAdapter(arrayList,this);
+            adapter = new TradeAdapter(arrayList,this);
             recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BoardAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new TradeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                WriteInfo getwriteinfo = adapter.getwriteinfo(pos);
-                Intent intent = new Intent(Information_BoardActivity.this,PostActivity.class);
-                intent.putExtra("Title", getwriteinfo.getTitle());
-                intent.putExtra("Contents", getwriteinfo.getContents());
+                TradeInfo tradeInfo = adapter.gettradeinfo(pos);
+                Intent intent = new Intent(Trade_BoardActivity.this,PostActivity.class);
+                intent.putExtra("Title", tradeInfo.getTitle());
+                intent.putExtra("Contents", tradeInfo.getContents());
                 startActivity(intent);
             }
         });

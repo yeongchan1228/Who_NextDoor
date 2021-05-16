@@ -1,6 +1,7 @@
 package com.example.who_nextdoor.HomeRecycler;
 
 import android.preference.PreferenceScreen;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
