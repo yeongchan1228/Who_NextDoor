@@ -158,9 +158,12 @@ public class getUserInfo2Activity extends AppCompatActivity {
                                                 firebaseFirestore.collection("users").document(user.getUid()).set(userinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
+                                                        /* 네비게이션 드로어 테스트를 위해 임시로 주석처리 (0517)
                                                         Intent intent = new Intent(getUserInfo2Activity.this, NoAccessWaitActivity.class);
                                                         startActivity(intent);
                                                         finish();
+
+                                                         */
                                                     }
                                                 });
                                                 Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();

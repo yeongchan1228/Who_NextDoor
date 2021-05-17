@@ -3,15 +3,23 @@ package com.example.who_nextdoor.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import android.view.MenuItem;
+import androidx.core.view.GravityCompat;
+
 
 import com.example.who_nextdoor.HomeRecycler.Data;
 import com.example.who_nextdoor.HomeRecycler.HomeRecyclerAdapter;
@@ -20,6 +28,7 @@ import com.example.who_nextdoor.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -33,6 +42,9 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     private HomeRecyclerAdapter adapter;
+    private DrawerLayout mDrawerLayout;
+    private Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +52,18 @@ public class HomeActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 화면 회전 막기
         init();
         getData();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.profilebutton);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
         adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
@@ -81,10 +105,13 @@ public class HomeActivity extends AppCompatActivity {
                                     finish();
                                 }
                                 else if(userinfo.getAccess().equals("W")){
+                                    /* 네비게이션 드로어 테스트를 위해 임시로 주석처리 (0517)
                                     Intent intent = new Intent(HomeActivity.this, NoAccessWaitActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
+
+                                     */
                                 }
                             }
                             else{
@@ -180,5 +207,18 @@ public class HomeActivity extends AppCompatActivity {
             adapter.addItem(data);
         }
         adapter.notifyDataSetChanged();
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ // 왼쪽 상단 버튼 눌렀을 때
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

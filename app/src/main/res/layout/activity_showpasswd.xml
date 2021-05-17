@@ -30,13 +30,13 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="226dp"
-        android:layout_height="91dp"
         android:fontFamily="@font/maru"
+        android:layout_height="91dp"
         android:text="회원님의 비밀번호는 다음과 같습니다."
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.29" />

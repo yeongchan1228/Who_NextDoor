@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerView"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="#AAFBFD"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#acdffa"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:text="소프트웨어 학부"
+            android:textColor="#ffffff"
+            android:textSize="14dp"></TextView>
+
+        <ImageView
+            android:id="@+id/genter_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="80dp"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="84dp"
+            android:layout_marginTop="80dp"
+            android:text="ㅇㅇㅇ(이름)"
+            android:textColor="#ffffff"
+            android:textSize="26dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="140dp"
+            android:text="000호 A"
+            android:textColor="#ffffff"
+            android:textSize="14dp"></TextView>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="180dp"
+            android:text="어쩌구저쩌구 아무튼 정보"
+            android:textColor="#ffffff"
+            android:textSize="14dp"></TextView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="298dp"></ImageView>
+
+    </RelativeLayout>
+
+</LinearLayout>
