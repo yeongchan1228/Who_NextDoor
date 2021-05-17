@@ -54,7 +54,9 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user == null){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        if(user == null || !(firebaseAuth.getCurrentUser().isEmailVerified())){
+            Toast.makeText(HomeActivity.this,"메일 인증이 완료되지 않았습니다.",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
