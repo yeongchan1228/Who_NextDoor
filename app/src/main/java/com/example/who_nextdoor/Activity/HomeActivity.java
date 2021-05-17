@@ -18,12 +18,15 @@ import com.example.who_nextdoor.HomeRecycler.HomeRecyclerAdapter;
 import com.example.who_nextdoor.R;
 import com.example.who_nextdoor.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +59,6 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if(user == null || !(firebaseAuth.getCurrentUser().isEmailVerified())){
-            Toast.makeText(HomeActivity.this,"메일 인증이 완료되지 않았습니다.",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -103,10 +105,20 @@ public class HomeActivity extends AppCompatActivity {
         alert_confirm.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        firebaseFirestore.collection("users").document(user.getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                String filename = user.getUid() + "/" + user.getEmail() + ".png";
+                                FirebaseStorage storage = FirebaseStorage.getInstance();
+                                Task<Void> storageRef = storage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com").child("images/" + filename)
+                                        .delete();
+                            }
+                        });
                         Toast.makeText(HomeActivity.this, "계정이 삭제 되었습니다.", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
@@ -117,7 +129,7 @@ public class HomeActivity extends AppCompatActivity {
         alert_confirm.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                
+
             }
         });
         alert_confirm.show();

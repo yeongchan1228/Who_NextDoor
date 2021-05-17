@@ -136,7 +136,7 @@ public class getUserInfo2Activity extends AppCompatActivity {
                         if(documentSnapshot != null){
                             if(documentSnapshot.exists()){
                                 UserInfo meminfo = documentSnapshot.toObject(UserInfo.class); // 정보 받아와서 class에 저장
-                                filename =  user.getUid()+"/"+meminfo.getShcoolNumber() + ".png";
+                                filename =  user.getUid()+"/"+ user.getEmail() + ".png";
                                 StorageReference storageRef = storage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com").child("images/" + filename);
 
                                 storageRef.putFile(filePath)
