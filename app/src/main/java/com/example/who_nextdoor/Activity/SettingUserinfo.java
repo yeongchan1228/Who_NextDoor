@@ -28,14 +28,23 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class SettingUserinfo extends AppCompatActivity {
     private final String Tag = "SettingUserinfo";
+    private EditText Alias, number, depart;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        Alias = findViewById(R.id.UserAlias);
+        number = findViewById(R.id.UserPhonenumber);
+        depart = findViewById(R.id.UserPhonenumber);
+        String a = Alias.getText().toString();
+        String n = number.getText().toString();
+        String d = depart.getText().toString();
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if(user == null){
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

@@ -1,9 +1,10 @@
 package com.example.who_nextdoor;
 
-public class ChatDataInfo {
+public class ChatDataInfo implements Comparable<ChatDataInfo>{
     private String msg; // 메시지
     private String nickname; // 닉네임
     private String uid;
+    private String date;
 
     public String getMsg(){
         return this.msg;
@@ -19,4 +20,11 @@ public class ChatDataInfo {
 
     public String getUid(){return this.uid;}
     public void setUid(String uid){this.uid = uid;}
+    public String getDate(){return this.date;}
+    public void setDate(String date){this.date = date;}
+
+    @Override
+    public int compareTo(ChatDataInfo o) {
+        return this.date.compareTo(o.date);
+    }
 }

@@ -23,16 +23,17 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.type.DateTime;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Information_BoardActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private EditText search;
-    private Button okbutton;
     private InformationAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<informationInfo> arrayList;
+    private ArrayList arrayList;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = firebaseFirestore.collection("i_board");
 
@@ -40,8 +41,7 @@ public class Information_BoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informationboard);
-        search = findViewById(R.id.ib_search);
-        String Search = search.getText().toString();
+
         recyclerView = findViewById(R.id.ib_recyclerView);
         recyclerView.setHasFixedSize(true); // 성능 강화
         layoutManager = new LinearLayoutManager(this);
@@ -55,7 +55,8 @@ public class Information_BoardActivity extends AppCompatActivity {
                     informationInfo informationInfo = documentSnapshot.toObject(informationInfo.class);
                     arrayList.add(informationInfo);
                 }
-
+                Collections.sort(arrayList);
+                Collections.reverse(arrayList);
                 adapter.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -101,6 +102,8 @@ public class Information_BoardActivity extends AppCompatActivity {
                             arrayList.add(informationInfo);
                         }
                 }
+                Collections.sort(arrayList);
+                Collections.reverse(arrayList);
                 adapter.notifyDataSetChanged();
 
             }
