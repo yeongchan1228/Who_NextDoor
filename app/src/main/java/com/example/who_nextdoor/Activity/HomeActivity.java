@@ -175,6 +175,12 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
+    public void Letter(View v){
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
+    }
+
+
     private void init() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
