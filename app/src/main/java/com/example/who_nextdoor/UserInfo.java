@@ -9,6 +9,7 @@ public class UserInfo{
     private String birthDay; // 생일
     private String address; // 이메일
     private String access; // 인증 여부
+    private String department;
     private String first; // 첫 번째 회원 정보 입력을 했는지 판단
 
 
@@ -77,5 +78,11 @@ public class UserInfo{
     }
     public void setGender(String gender){
         this.gender = gender;
+    }
+    public String getDepartment(){
+        return this.department;
+    }
+    public void setDepartment(String department){
+        this.department = department;
     }
 }

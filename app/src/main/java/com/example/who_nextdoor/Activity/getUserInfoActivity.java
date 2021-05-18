@@ -59,7 +59,7 @@ public class getUserInfoActivity extends AppCompatActivity {
             radioMan = findViewById(R.id.radioMan);
             radioWoman = findViewById(R.id.radioWoman);
             radioGender = findViewById(R.id.radioGender);
-
+            final String department = ((EditText) findViewById(R.id.Usershcoolmajor)).getText().toString();
             final String name = ((EditText) findViewById(R.id.UserName)).getText().toString();
             final String phoneNumber = ((EditText) findViewById(R.id.UserPhonenumber)).getText().toString();
             final String birthDay = ((EditText) findViewById(R.id.Userbirth)).getText().toString();
@@ -105,6 +105,7 @@ public class getUserInfoActivity extends AppCompatActivity {
                             userinfo.setGender(meminfo.getGender());
                             userinfo.setAddress(meminfo.getAddress());
                             userinfo.setFirst(meminfo.getFirst());
+                            userinfo.setDepartment(meminfo.getDepartment());
                             if(userinfo.getFirst().equals("T")) {
                                 if(!(TextUtils.isEmpty(name))){
                                     userinfo.setName(name);
@@ -123,6 +124,9 @@ public class getUserInfoActivity extends AppCompatActivity {
                                 }
                                 if(!(TextUtils.isEmpty(gender))){
                                     userinfo.setGender(gender);
+                                }
+                                if(!(TextUtils.isEmpty(department))){
+                                    userinfo.setDepartment(department);
                                 }
                                 userinfo.setAddress(user.getEmail());
                                 if (user != null) {
@@ -161,7 +165,7 @@ public class getUserInfoActivity extends AppCompatActivity {
                         }
                         else{
                             if (!(TextUtils.isEmpty(name)) && !(TextUtils.isEmpty(phoneNumber)) && !(TextUtils.isEmpty(birthDay))
-                                    && !(TextUtils.isEmpty(alias)) && !(TextUtils.isEmpty(schoolnumber)) && !(TextUtils.isEmpty(gender))) {
+                                    && !(TextUtils.isEmpty(alias)) && !(TextUtils.isEmpty(schoolnumber)) && !(TextUtils.isEmpty(gender)) && !(TextUtils.isEmpty(department)) ) {
                                 userinfo.setName(name);
                                 userinfo.setPhoneNumber(phoneNumber);
                                 userinfo.setBirthDay(birthDay);
@@ -169,6 +173,7 @@ public class getUserInfoActivity extends AppCompatActivity {
                                 userinfo.setShcoolNumber(schoolnumber);
                                 userinfo.setGender(gender);
                                 userinfo.setAddress(user.getEmail());
+                                userinfo.setDepartment(department);
                                 userinfo.setFirst("T");
                                 if (user != null) {
                                     db.collection("users").document(user.getUid()).set(userinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
