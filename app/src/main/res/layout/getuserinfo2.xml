@@ -9,11 +9,12 @@
 
 
     <TextView
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/nanumsquarel"
+        android:gravity="center"
         android:text="기숙사 인증서를 업로드 해주세요." />
 
     <LinearLayout
@@ -25,15 +26,17 @@
             android:id="@+id/bt_choose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
             android:text="Choose"
             app:backgroundTint="#B5D4F1" />
 
         <Button
             android:id="@+id/bt_upload"
-            android:text="Upload"
             android:layout_width="wrap_content"
-            app:backgroundTint="#B5D4F1"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
+            android:text="Upload"
+            app:backgroundTint="#B5D4F1" />
 
     </LinearLayout>
 
