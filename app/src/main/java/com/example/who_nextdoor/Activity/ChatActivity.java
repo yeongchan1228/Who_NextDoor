@@ -47,7 +47,7 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private String nick = "익명";
-
+    private String id = user.getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         chatList = new ArrayList<>();
-        adapter = new ChatAdapter(chatList, ChatActivity.this, nick);
+        adapter = new ChatAdapter(chatList, ChatActivity.this, nick, id);
         recyclerView.setAdapter(adapter);
 
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

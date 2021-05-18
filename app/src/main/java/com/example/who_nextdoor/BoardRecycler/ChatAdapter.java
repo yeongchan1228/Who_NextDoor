@@ -29,10 +29,12 @@ import java.util.List;
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BoardViewHolder> {
     private List<ChatDataInfo> mDataset;
     private String myNickName;
+    private String myId;
 
-    public ChatAdapter(List<ChatDataInfo> myDataset, Context context, String myNickName) {
+    public ChatAdapter(List<ChatDataInfo> myDataset, Context context, String myNickName, String myId) {
         mDataset = myDataset;
         this.myNickName = myNickName;
+        this.myId = myId;
     }
 
     public ChatDataInfo getChatDataInfo(int pos) {return mDataset.get(pos);}
@@ -51,8 +53,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BoardViewHolde
         holder.TextView_nickname.setText(chat.getNickname());
         holder.TextView_msg.setText(chat.getMsg());
 
-        // 닉네임을 비교해서 내가 말한 메시지면 오른쪽으로, 상대가 보낸 거면 왼쪽으로
-        if(chat.getNickname().equals(this.myNickName)) {
+
+        if(chat.getUid().equals(this.myId)) {
             holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
             holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
         }
