@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.who_nextdoor.BoardRecycler.ChatAdapter;
 import com.example.who_nextdoor.ChatDataInfo;
 import com.example.who_nextdoor.R;
+import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,10 +70,12 @@ public class ChatActivity extends AppCompatActivity {
                     ChatDataInfo chat = new ChatDataInfo();
                     Intent intent = new Intent(ChatActivity.this, ChatActivity.class);
 
-                    chat.setUid(user.getUid());
+                    chat.setUid1(user.getUid());
                     chat.setNickname(nick);
                     chat.setMsg(msg);
                     collectionReference.add(chat);
+
+
                     startActivity(intent);
                     finish();
                 }
