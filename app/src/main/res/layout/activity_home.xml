@@ -40,54 +40,6 @@
 
 
         <Button
-            android:id="@+id/button13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="goProfile"
-            android:text="Profile"
-            tools:layout_editor_absoluteX="309dp"
-            tools:layout_editor_absoluteY="29dp" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="회원 탈퇴"
-            android:onClick="Withdraw"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.941"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.128" />
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="goProfile"
-            android:text="회원 정보 등록"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.42"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.128" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그아웃"
-            android:onClick="Logout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.941"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.209" />
-
-        <Button
             android:id="@+id/letter"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
