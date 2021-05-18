@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     private HomeRecyclerAdapter adapter;
     private DrawerLayout mDrawerLayout;
     private Context context = this;
+    private ImageView nh_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 화면 회전 막기
         init();
         getData();
+        nh_image = findViewById(R.id.nh_image);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -105,13 +108,10 @@ public class HomeActivity extends AppCompatActivity {
                                     finish();
                                 }
                                 else if(userinfo.getAccess().equals("W")){
-                                    /* 네비게이션 드로어 테스트를 위해 임시로 주석처리 (0517)
                                     Intent intent = new Intent(HomeActivity.this, NoAccessWaitActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
-
-                                     */
                                 }
                             }
                             else{
