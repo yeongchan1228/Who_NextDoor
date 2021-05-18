@@ -23,21 +23,25 @@
                 android:layout_height="wrap_content"
                 android:background="#B5D4F1"
                 android:ems="10"
+                android:fontFamily="@font/nanumsquareb"
                 android:text="글 쓰기"
+                android:textColor="#52616A"
                 android:textSize="30dp" />
 
             <Button
                 android:id="@+id/ib_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="이미지 첨부"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:fontFamily="@font/nanumsquareb"
                 android:onClick="GoImage"
+                android:text="이미지 첨부"
                 app:backgroundTint="#B5D4F1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintHorizontal_bias="0.989"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -46,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/nanumsquarer"
             android:hint="제목"
             android:inputType="textPersonName" />
 
@@ -54,21 +59,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/nanumsquarel"
             android:gravity="start|top"
             android:hint="내용을 입력하세요."
             android:inputType="textMultiLine"
-            android:lines="20" />
+            android:lines="20"
+            android:textColor="#52616A" />
+
         <ImageView
             android:id="@+id/ib_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/writeBotton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquareeb"
             android:onClick="uploadPost"
-            android:text="올리기"
 
+            android:text="올리기"
             app:backgroundTint="#B5D4F1" />
 
 

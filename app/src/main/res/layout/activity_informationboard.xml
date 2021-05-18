@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Activity.HomeActivity"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.HomeActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="316dp"
-            android:layout_height="wrap_content"
-            android:text="정보 게시판입니다."
-            android:textSize="35dp"></TextView>
 
+        <TextView
+            android:layout_width="319dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/nanumsquareb"
+            android:freezesText="false"
+            android:text="정보 게시판"
+            android:textSize="36sp"
+            android:textStyle="bold"></TextView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/AddPostButton"
-            android:layout_marginLeft="10dp"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:clickable="true"
             android:onClick="writePost"
             app:backgroundTint="#B5D4F1"
@@ -37,6 +40,6 @@
         android:id="@+id/ib_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F0F0F0"/>
+        android:background="#F0F0F0" />
 
 </LinearLayout>

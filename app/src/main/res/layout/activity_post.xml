@@ -36,13 +36,16 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/nanumsquareb"
                 android:text="익명"
                 android:textSize="12pt" />
+
             <TextView
                 android:id="@+id/post_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/nanumsquareb"
                 android:gravity="start|top"
                 android:text="익명"
                 android:textSize="8pt" />

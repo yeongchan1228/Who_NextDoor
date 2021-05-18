@@ -8,53 +8,55 @@
 
     <EditText
         android:id="@+id/password"
-        android:fontFamily="@font/maru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="252dp"
         android:ems="10"
+        android:fontFamily="@font/nanumsquareb"
         android:hint="비밀번호"
         android:inputType="textPassword"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="226dp"
-        android:fontFamily="@font/maru"
-        android:layout_height="91dp"
+        android:layout_width="412dp"
+        android:layout_height="271dp"
+        android:fontFamily="@font/nanumsquarer"
+        android:gravity="center"
         android:text="회원님의 비밀번호는 다음과 같습니다."
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
+        app:layout_constraintVertical_bias="0.178" />
 
     <Button
         android:id="@+id/go_login"
-        android:fontFamily="@font/maru"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
+        android:fontFamily="@font/nanumsquarel"
         android:onClick="GoMain"
         android:text="로그인하기"
+        android:textSize="24sp"
         app:backgroundTint="#B5D4F1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintVertical_bias="0.633" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,6 @@
     tools:context=".Activity.GofindpwdActivity">
 
 
-
     <TextView
         android:id="@+id/findpwd"
         android:layout_width="300dp"
@@ -18,27 +17,28 @@
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.12" />
 
+
     <EditText
         android:id="@+id/email"
-        android:fontFamily="@font/maru"
         android:layout_width="335dp"
         android:layout_height="69dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="373dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
+        android:fontFamily="@font/maru"
         android:hint="이메일 주소를 입력해 주세요."
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintVertical_bias="0.746" />
 
     <Button
         android:id="@+id/requestEmail"

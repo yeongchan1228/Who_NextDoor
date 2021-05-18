@@ -4,4 +4,22 @@
         android:fontStyle = "normal"
         android:fontWeight = "400"
         android:font = "@font/maru"/>
+
+    <font
+        android:fontStyle = "normal"
+        android:fontWeight = "400"
+        android:font = "@font/nanumsquareb"/>
+    <font
+        android:fontStyle = "normal"
+        android:fontWeight = "400"
+        android:font = "@font/nanumsquareeb"/>
+
+    <font
+        android:fontStyle = "normal"
+        android:fontWeight = "400"
+        android:font = "@font/nanumsquarel"/>
+    <font
+        android:fontStyle = "normal"
+        android:fontWeight = "400"
+        android:font = "@font/nanumsquarer"/>
 </font-family>

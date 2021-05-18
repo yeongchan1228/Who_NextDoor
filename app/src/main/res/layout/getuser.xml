@@ -14,6 +14,7 @@
         android:fontFamily="@font/maru"
         android:gravity="center"
         android:text="회원 정보 입력"
+        android:textColorLink="#03DAC5"
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
