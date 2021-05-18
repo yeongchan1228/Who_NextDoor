@@ -16,11 +16,10 @@
         <TextView
             android:layout_width="319dp"
             android:layout_height="match_parent"
-            android:fontFamily="@font/nanumsquareb"
+            android:fontFamily="@font/nanumsquarel"
             android:freezesText="false"
             android:text="정보 게시판"
-            android:textSize="36sp"
-            android:textStyle="bold"></TextView>
+            android:textSize="36sp"></TextView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/AddPostButton"
