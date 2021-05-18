@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -63,6 +64,71 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
+
+                int id = menuItem.getItemId();
+
+                if(id == R.id.setting){
+                    Intent intent = new Intent(HomeActivity.this, SettingUserinfo.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+                else if(id == R.id.logout){
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(HomeActivity.this, getUserInfoActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else if(id == R.id.getout){
+
+                    /* 회원 탈퇴 - 아래서 코드 긁어왔습니다 */
+                    AlertDialog.Builder alert_confirm = new AlertDialog.Builder(HomeActivity.this);
+                    alert_confirm.setMessage("정말로 계정을 삭제할까요?");
+                    alert_confirm.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    firebaseFirestore.collection("users").document(user.getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            String filename = user.getUid() + "/" + user.getEmail() + ".png";
+                                            FirebaseStorage storage = FirebaseStorage.getInstance();
+                                            Task<Void> storageRef = storage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com").child("images/" + filename)
+                                                    .delete();
+                                        }
+                                    });
+                                    Toast.makeText(HomeActivity.this, "계정이 삭제 되었습니다.", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    finish();
+                                }
+                            });
+                        }
+                    });
+                    alert_confirm.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alert_confirm.show();
+                    /* 회원 탈퇴 끝- 아래서 코드 긁어왔습니다 */
+
+                }
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+
 
         adapter.setOnItemClickListener(new HomeRecyclerAdapter.OnItemClickListener() {
             @Override
@@ -105,13 +171,13 @@ public class HomeActivity extends AppCompatActivity {
                                     finish();
                                 }
                                 else if(userinfo.getAccess().equals("W")){
-                                    /* 네비게이션 드로어 테스트를 위해 임시로 주석처리 (0517)
+
                                     Intent intent = new Intent(HomeActivity.this, NoAccessWaitActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
 
-                                     */
+
                                 }
                             }
                             else{

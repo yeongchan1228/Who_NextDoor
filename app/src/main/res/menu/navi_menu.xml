@@ -10,5 +10,8 @@
         <item
             android:id="@+id/logout"
             android:title="로그아웃" />
+        <item
+            android:id="@+id/getout"
+            android:title="회원 탈퇴" />
     </group>
 </menu>
