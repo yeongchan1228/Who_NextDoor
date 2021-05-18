@@ -72,15 +72,40 @@ public class ChatActivity extends AppCompatActivity {
 
                 if(msg != null) {
                     ChatDataInfo chat = new ChatDataInfo();
-                    Intent intent = new Intent(ChatActivity.this, ChatActivity.class);
 
                     chat.setUid(user.getUid());
                     chat.setNickname(nick);
                     chat.setMsg(msg);
                     chat.setDate(getTime());
                     collectionReference.add(chat);
-                    startActivity(intent);
-                    finish();
+                    recyclerView = findViewById(R.id.my_recyclerView);
+                    recyclerView.setHasFixedSize(true); // 성능 강화
+                    layoutManager = new LinearLayoutManager(ChatActivity.this);
+                    recyclerView.setLayoutManager(layoutManager);
+
+                    chatList = new ArrayList<>();
+                    adapter = new ChatAdapter(chatList, ChatActivity.this, nick, id);
+                    recyclerView.setAdapter(adapter);
+
+                    collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            chatList.clear();
+                            for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
+                                ChatDataInfo chatDataInfo = documentSnapshot.toObject(ChatDataInfo.class);
+                                chatList.add(chatDataInfo);
+                            }
+                            Collections.sort(chatList);
+                            adapter.notifyDataSetChanged();
+                            EditText_chat.setText(null);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(ChatActivity.this,"채팅 내용이 없습니다.",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });
