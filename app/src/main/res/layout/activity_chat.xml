@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="1"
     >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
+        android:id="@+id/my_recyclerView"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="655dp"
-        android:scrollbars="vertical" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F0F0F0"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:orientation="horizontal">
         <EditText
             android:id="@+id/EditText_chat"
             android:layout_width="0dp"
@@ -24,8 +28,12 @@
             android:layout_weight="1"/>
         <Button
             android:id="@+id/Button_send"
-            android:text="SEND"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"/>
+            android:text="전송"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            app:backgroundTint="#B5D4F1"/>
+
     </LinearLayout>
+
+
 </LinearLayout>

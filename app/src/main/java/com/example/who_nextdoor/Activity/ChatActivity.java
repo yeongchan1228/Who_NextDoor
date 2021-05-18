@@ -1,98 +1,110 @@
 package com.example.who_nextdoor.Activity;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.who_nextdoor.BoardRecycler.ChatAdapter;
+import com.example.who_nextdoor.ChatDataInfo;
 import com.example.who_nextdoor.R;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    public RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private List<ChatData> chatList;
-    private String nick = "nick1";//아이디 받아오기로 수정
+    private RecyclerView recyclerView;
+    private ChatAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
+    private List<ChatDataInfo> chatList;
     private EditText EditText_chat;
     private Button Button_send;
-    private DatabaseReference myRef;
+
+    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private CollectionReference collectionReference = firebaseFirestore.collection("c_board");
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+    private String nick = "익명";
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         Button_send = findViewById(R.id.Button_send);
         EditText_chat = findViewById(R.id.EditText_chat);
+
 
         Button_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String msg = EditText_chat.getText().toString();
 
-                    if(msg != null) {
-                        ChatData chat = new ChatData();
-                        chat.setNickname(nick);
-                        chat.setMsg(msg);
-                        myRef.push().setValue(chat);
-                    }
+                if(msg != null) {
+                    ChatDataInfo chat = new ChatDataInfo();
+                    Intent intent = new Intent(ChatActivity.this, ChatActivity.class);
+
+                    chat.setUid(user.getUid());
+                    chat.setNickname(nick);
+                    chat.setMsg(msg);
+                    collectionReference.add(chat);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
-        mRecyclerView = findViewById(R.id.my_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        recyclerView = findViewById(R.id.my_recyclerView);
+        recyclerView.setHasFixedSize(true); // 성능 강화
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         chatList = new ArrayList<>();
-        mAdapter = new ChatAdapter(chatList, ChatActivity.this, nick);
-        mRecyclerView.setAdapter(mAdapter);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("message");
+        adapter = new ChatAdapter(chatList, ChatActivity.this, nick);
+        recyclerView.setAdapter(adapter);
 
-
-
-
-        myRef.addChildEventListener(new ChildEventListener() {
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                ChatData chat = snapshot.getValue(ChatData.class);
-                ((ChatAdapter)mAdapter).addChat(chat);
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                chatList.clear();
+                for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
+                    ChatDataInfo chatDataInfo = documentSnapshot.toObject(ChatDataInfo.class);
+                    chatList.add(chatDataInfo);
+                }
+                adapter.notifyDataSetChanged();
             }
+        }).addOnFailureListener(new OnFailureListener() {
 
             @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ChatActivity.this,"채팅 내용이 없습니다.",Toast.LENGTH_SHORT).show();
             }
         });
+
     }
+
 }
