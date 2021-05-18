@@ -1,9 +1,10 @@
 package com.example.who_nextdoor;
 
 
+import java.util.Comparator;
 import java.util.Date;
 
-public class informationInfo {
+public class informationInfo implements Comparable<informationInfo> {
     private String title;
     private String contents;
     private String board_image;
@@ -50,4 +51,9 @@ public class informationInfo {
     public String getDate(){return this.date;}
     public void setDate(String date){this.date = date;}
 
+
+    @Override
+    public int compareTo(informationInfo o) {
+        return this.date.compareTo(o.date);
+    }
 }

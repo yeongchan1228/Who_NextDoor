@@ -27,7 +27,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
@@ -44,7 +47,7 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private String nick = "익명";
-
+    private String id = user.getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class ChatActivity extends AppCompatActivity {
                     chat.setUid(user.getUid());
                     chat.setNickname(nick);
                     chat.setMsg(msg);
+                    chat.setDate(getTime());
                     collectionReference.add(chat);
                     startActivity(intent);
                     finish();
@@ -87,7 +91,7 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         chatList = new ArrayList<>();
-        adapter = new ChatAdapter(chatList, ChatActivity.this, nick);
+        adapter = new ChatAdapter(chatList, ChatActivity.this, nick, id);
         recyclerView.setAdapter(adapter);
 
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -98,6 +102,7 @@ public class ChatActivity extends AppCompatActivity {
                     ChatDataInfo chatDataInfo = documentSnapshot.toObject(ChatDataInfo.class);
                     chatList.add(chatDataInfo);
                 }
+                Collections.sort(chatList);
                 adapter.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -108,6 +113,14 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public String getTime(){ // 시간 구하기
+        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd k:mm:ss");
+        long mNow;
+        Date mDate;
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        return mFormat.format(mDate);
     }
 
 }
