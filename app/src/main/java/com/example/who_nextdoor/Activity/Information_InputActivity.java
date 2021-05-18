@@ -21,6 +21,7 @@ import com.example.who_nextdoor.R;
 import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,7 +36,8 @@ import java.util.Date;
 
 public class Information_InputActivity extends AppCompatActivity {
     String filename;
-    private Button ibimage;
+    //private Button ibimage;
+    private FloatingActionButton photoadd;
     private ImageView ibPreview;
     private Uri filePath;
     private Toast toast;
@@ -55,9 +57,9 @@ public class Information_InputActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        ibimage = findViewById(R.id.ib_image);
+        photoadd=findViewById(R.id.photo_add);
         ibPreview = findViewById(R.id.ib_preview);
-        ibimage.setOnClickListener(new View.OnClickListener() {
+        photoadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();

@@ -20,28 +20,37 @@
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="610dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:background="#B5D4F1"
                 android:ems="10"
-                android:fontFamily="@font/nanumsquareb"
+                android:fontFamily="@font/nanumsquarel"
                 android:text="글 쓰기"
                 android:textColor="#52616A"
-                android:textSize="30dp" />
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
-            <Button
-                android:id="@+id/ib_image"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:fontFamily="@font/nanumsquareb"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/photo_add"
+                android:layout_width="41dp"
+                android:layout_height="42dp"
+                android:adjustViewBounds="true"
+                android:clickable="true"
                 android:onClick="GoImage"
-                android:text="이미지 첨부"
-                app:backgroundTint="#B5D4F1"
+                app:backgroundTint="@color/white"
+                app:fabSize="mini"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.989"
+                app:layout_constraintHorizontal_bias="0.957"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_action_name" />
+            tools:layout_editor_absoluteX="260dp"
+            tools:layout_editor_absoluteY="2dp" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,7 +73,8 @@
             android:hint="내용을 입력하세요."
             android:inputType="textMultiLine"
             android:lines="20"
-            android:textColor="#52616A" />
+            android:textColor="#52616A"
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/ib_preview"
@@ -75,13 +85,11 @@
             android:id="@+id/writeBotton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanumsquareeb"
+            android:fontFamily="@font/nanumsquarel"
             android:onClick="uploadPost"
 
             android:text="올리기"
             app:backgroundTint="#B5D4F1" />
-
-
 
 
     </LinearLayout>

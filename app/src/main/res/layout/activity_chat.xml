@@ -28,7 +28,7 @@
             android:layout_weight="1"/>
         <Button
             android:id="@+id/Button_send"
-            android:text="SEND"
+            android:text="전송"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             app:backgroundTint="#B5D4F1"/>

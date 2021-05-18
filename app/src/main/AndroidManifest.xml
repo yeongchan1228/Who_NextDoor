@@ -31,7 +31,7 @@
         <activity android:name=".Activity.PostActivity"/>
         <activity android:name=".Activity.Trade_BoardActivity"/>
         <activity android:name=".Activity.ChatActivity"/>
-
+        <activity android:name=".Activity.SettingUserinfo"/>
     </application>
 
 </manifest>

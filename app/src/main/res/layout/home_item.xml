@@ -18,20 +18,22 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
             android:includeFontPadding="false"
             android:text="TITLE"
-            android:textSize="15sp"
             android:textColor="@android:color/black"
-            android:textStyle="bold"/>
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
             android:includeFontPadding="false"
             android:text="content"
-            android:textSize="13sp"
-            android:textColor="@android:color/darker_gray"/>
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <ImageView
