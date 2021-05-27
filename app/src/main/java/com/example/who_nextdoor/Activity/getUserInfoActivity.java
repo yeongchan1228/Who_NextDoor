@@ -67,6 +67,34 @@ public class getUserInfoActivity extends AppCompatActivity {
             final String schoolnumber = ((EditText) findViewById(R.id.Usershcoolnumber)).getText().toString();
             final String gender = radioMan.getText().toString();
 
+            boolean is_validity = true;
+            if (name.length() < 2 || name.length() > 10) {
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else if(department.length()>20) {// 임시. 나중에 바꾸기
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 학과를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else if(phoneNumber.length()<10 || phoneNumber.length()>11){
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else if(birthDay.length()!=8){
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else if(alias.length()>8){
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "닉네임의 길이가 너무 깁니다. 8글자 미만으로 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else if(schoolnumber.length()!=8){
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 학번을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+
+            if(is_validity == false) return;
+
             radioGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int i) {
