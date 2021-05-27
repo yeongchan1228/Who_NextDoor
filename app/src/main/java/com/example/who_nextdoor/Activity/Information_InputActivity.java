@@ -94,6 +94,7 @@ public class Information_InputActivity extends AppCompatActivity {
         final String title = ((EditText) findViewById(R.id.titleEditText)).getText().toString();
         final String contents = ((EditText) findViewById(R.id.contentsEditText)).getText().toString();
 
+
         if(filePath != null){
             progressDialog.setTitle("업로드중...");
             progressDialog.show();
@@ -128,6 +129,17 @@ public class Information_InputActivity extends AppCompatActivity {
                     });
         }
         else{
+            String[] filter_list = {"시발", "씨발", "ㅅㅂ", "슈발", "씨바" ,"병신", "ㅄ", "ㅂㅅ", "븅신", "개새끼", "지랄", "ㅈㄹ", "염병", "좆", "미친놈", "미친년", "미친 놈", "미친 년"};
+            for(int i=0; i<filter_list.length; i++) {
+                if (contents.contains(filter_list[i])) {
+                    Toast.makeText(getApplicationContext(), "바르고 고운 말을 사용합시다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (title.contains(filter_list[i])) {
+                    Toast.makeText(getApplicationContext(), "바르고 고운 말을 사용합시다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
             Upload_iboard(title, contents);
             AlertDialog.Builder oh = new AlertDialog.Builder(Information_InputActivity.this);
             oh.setMessage("글 등록 성공");
