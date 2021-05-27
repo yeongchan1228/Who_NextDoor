@@ -18,10 +18,10 @@
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.089" />
 
     <EditText
         android:id="@+id/UserName"
@@ -38,6 +38,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.234" />
 
+
     <EditText
         android:id="@+id/Usershcoolnumber"
         android:layout_width="wrap_content"
@@ -50,9 +51,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.392" />
-
+        app:layout_constraintTop_toBottomOf="@+id/UserAlias"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <EditText
         android:id="@+id/Usershcoolmajor"
@@ -66,8 +66,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
+        app:layout_constraintTop_toBottomOf="@+id/Usershcoolnumber"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <RadioGroup
         android:id="@+id/radioGender"
@@ -77,17 +77,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.68"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.759">
-
-        <RadioButton
-            android:id="@+id/radioMan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/maru"
-            android:text="남자" />
+        app:layout_constraintStart_toEndOf="@+id/gender"
+        app:layout_constraintTop_toBottomOf="@+id/Userbirth"
+        app:layout_constraintVertical_bias="0.050000012">
 
         <RadioButton
             android:id="@+id/radioWoman"
@@ -96,6 +88,14 @@
             android:layout_weight="1"
             android:fontFamily="@font/maru"
             android:text="여자" />
+
+        <RadioButton
+            android:id="@+id/radioMan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/maru"
+            android:text="남자" />
     </RadioGroup>
 
     <EditText
@@ -110,8 +110,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.646" />
+        app:layout_constraintTop_toBottomOf="@+id/UserPhonenumber"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <EditText
         android:id="@+id/UserPhonenumber"
@@ -125,24 +125,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintTop_toBottomOf="@+id/Usershcoolmajor"
+        app:layout_constraintVertical_bias="0.050000012" />
+
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/gender"
         android:layout_width="41dp"
         android:layout_height="24dp"
         android:fontFamily="@font/maru"
+        android:gravity="center|right"
         android:text="성별"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintHorizontal_bias="0.256"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.749" />
-
+        app:layout_constraintTop_toBottomOf="@+id/Userbirth"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <EditText
         android:id="@+id/UserAlias"
@@ -156,8 +157,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.315" />
+        app:layout_constraintTop_toBottomOf="@+id/UserName"
+        app:layout_constraintVertical_bias="0.04000002" />
 
     <Button
         android:id="@+id/btn11"

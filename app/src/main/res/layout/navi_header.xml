@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#acdffa"
+        android:background="#B5D4F1"
         android:orientation="horizontal">
 
         <ImageView
@@ -28,43 +28,49 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"
+            android:gravity="center_horizontal"
             android:fontFamily="@font/nanumsquarel"
             android:text="00000000 (학번)"
             android:textColor="#ffffff"
-            android:textSize="14dp"></TextView>
+            android:textSize="16dp"></TextView>
 
         <TextView
             android:id="@+id/house_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/name"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/nanumsquarel"
             android:text="000호 A"
             android:textColor="#ffffff"
-            android:textSize="14dp"></TextView>
+            android:textSize="16dp"></TextView>
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/house_id"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/nanumsquarel"
             android:text="어쩌구저쩌구 아무튼 정보"
             android:textColor="#ffffff"
-            android:textSize="14dp"></TextView>
+            android:textSize="16dp"></TextView>
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/student_id"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/nanumsquarel"
             android:text="000 (이름)"
             android:textColor="#ffffff"
-            android:textSize="14dp" />
+            android:textSize="16dp" />
 
 
     </RelativeLayout>

@@ -36,7 +36,7 @@
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/nanumsquareb"
+                android:fontFamily="@font/nanumsquarer"
                 android:text="익명"
                 android:textSize="12pt" />
 
@@ -45,26 +45,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:fontFamily="@font/nanumsquareb"
+                android:fontFamily="@font/nanumsquarel"
                 android:gravity="start|top"
                 android:text="익명"
                 android:textSize="8pt" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/send_letter"
                 android:layout_width="93dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/nanumsquarer"
+                android:onClick="Letter"
                 android:text="쪽지 보내기"
-                android:onClick="Letter"/>
+                app:backgroundTint="#B5D4F1" />
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20pt"
-            android:ems="10" />
+            android:ems="10"
+            android:fontFamily="@font/nanumsquarel"
+            android:textSize="20pt" />
         <ImageView
             android:id="@+id/post_imageview"
             android:layout_width="match_parent"
@@ -77,8 +81,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:textSize="10pt"
-            android:gravity="start|top" />
+            android:fontFamily="@font/nanumsquarel"
+            android:gravity="start|top"
+            android:textSize="10pt" />
 
 
     </LinearLayout>

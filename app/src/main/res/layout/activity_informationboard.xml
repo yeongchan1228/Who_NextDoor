@@ -14,9 +14,9 @@
 
 
         <TextView
-            android:layout_width="319dp"
+            android:layout_width="336dp"
             android:layout_height="match_parent"
-            android:fontFamily="@font/nanumsquarel"
+            android:fontFamily="@font/nanumsquarer"
             android:freezesText="false"
             android:text="정보 게시판"
             android:textSize="36sp"></TextView>
@@ -29,7 +29,7 @@
             android:clickable="true"
             android:onClick="writePost"
             app:backgroundTint="#B5D4F1"
-            app:srcCompat="@drawable/ic_baseline_add_24"
+            app:srcCompat="@drawable/ic_action_name"
             tools:layout_editor_absoluteX="299dp"
             tools:layout_editor_absoluteY="618dp" />
 
@@ -38,21 +38,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <EditText
             android:id="@+id/ib_search"
-            android:layout_width="wrap_content"
+            android:layout_width="329dp"
             android:layout_height="wrap_content"
-            android:textSize="8pt"
-            android:inputType="text"
+            android:fontFamily="@font/nanumsquarel"
             android:hint="검색어를 입력하세요."
-            ></EditText>
+            android:inputType="text"
+            android:textSize="8pt"></EditText>
+
         <Button
             android:id="@+id/ib_ok"
-            android:text="확인"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
             android:onClick="Search_check"
-            >
+            android:text="확인"
+            app:backgroundTint="#B5D4F1">
 
         </Button>
     </LinearLayout>

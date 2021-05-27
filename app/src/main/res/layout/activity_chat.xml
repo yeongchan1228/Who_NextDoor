@@ -21,17 +21,21 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal">
+
         <EditText
             android:id="@+id/EditText_chat"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:fontFamily="@font/nanumsquarel" />
+
         <Button
             android:id="@+id/Button_send"
-            android:text="전송"
             android:layout_width="80dp"
             android:layout_height="match_parent"
-            app:backgroundTint="#B5D4F1"/>
+            android:fontFamily="@font/nanumsquarel"
+            android:text="전송"
+            app:backgroundTint="#B5D4F1" />
 
     </LinearLayout>
 
