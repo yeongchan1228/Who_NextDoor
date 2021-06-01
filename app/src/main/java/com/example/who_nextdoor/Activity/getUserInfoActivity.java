@@ -3,17 +3,24 @@ package com.example.who_nextdoor.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,6 +38,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class getUserInfoActivity extends AppCompatActivity {
     private final String Tag = "getUserInfoActivity";
+    Spinner spinner_u, spinner_m;
+    ArrayAdapter majorAdapter;
+    String m;
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.getuser);
@@ -41,9 +53,106 @@ public class getUserInfoActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        // 스피너 설정
+        spinner_u = findViewById(R.id.Usershcooluniver);
+        spinner_m = findViewById(R.id.Usershcoolmajor);
 
+        ArrayAdapter univerAdapter = ArrayAdapter.createFromResource(
+               this, R.array.univer_array, android.R.layout.simple_spinner_dropdown_item);
+
+        univerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_u.setAdapter(univerAdapter);
+        spinnerUpdate_u(spinner_u);
 
     }
+
+
+    public void spinnerUpdate_u(Spinner spinner){
+        spinner_u.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SpinnerOnSelected spinnerOnSelected = new SpinnerOnSelected();
+                switch (position){
+                    case 0:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array1, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 1:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array2, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 2:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array3, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 3:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array4, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 4:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array5, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 5:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array6, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 6:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array7, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 7:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array8, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 8:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array9, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                    case 9:
+                        majorAdapter = ArrayAdapter.createFromResource(getUserInfoActivity.this, R.array.major_array10, android.R.layout.simple_spinner_dropdown_item);
+                        majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_m.setAdapter(majorAdapter);
+                        spinner_m.setOnItemSelectedListener(spinnerOnSelected);
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+
+    class SpinnerOnSelected implements  AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            m = parent.getItemAtPosition(position).toString();
+        }
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -59,7 +168,7 @@ public class getUserInfoActivity extends AppCompatActivity {
             radioMan = findViewById(R.id.radioMan);
             radioWoman = findViewById(R.id.radioWoman);
             radioGender = findViewById(R.id.radioGender);
-            final String department = ((EditText) findViewById(R.id.Usershcoolmajor)).getText().toString();
+            final String department = m;
             final String name = ((EditText) findViewById(R.id.UserName)).getText().toString();
             final String phoneNumber = ((EditText) findViewById(R.id.UserPhonenumber)).getText().toString();
             final String birthDay = ((EditText) findViewById(R.id.Userbirth)).getText().toString();
@@ -67,16 +176,15 @@ public class getUserInfoActivity extends AppCompatActivity {
             final String schoolnumber = ((EditText) findViewById(R.id.Usershcoolnumber)).getText().toString();
             final String gender = radioMan.getText().toString();
 
+            Toast.makeText(getUserInfoActivity.this, department, Toast.LENGTH_SHORT).show();
+
             boolean is_validity = true;
             if (name.length() < 2 || name.length() > 10) {
                 is_validity = false;
                 Toast.makeText(getUserInfoActivity.this, "올바른 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
-            else if(department.length()>20) {// 임시. 나중에 바꾸기
-                is_validity = false;
-                Toast.makeText(getUserInfoActivity.this, "올바른 학과를 입력해주세요.", Toast.LENGTH_SHORT).show();
-            }
-            else if(phoneNumber.length()<10 || phoneNumber.length()>11){
+            else if(phoneNumber.length()<10 || phoneNumber.length()>11||
+                    !( phoneNumber.substring(0,2).equals("010")||phoneNumber.substring(0,2).equals("011")||phoneNumber.substring(0,2).equals("016")||phoneNumber.substring(0,2).equals("017")||phoneNumber.substring(0,2).equals("019") ) ){
                 is_validity = false;
                 Toast.makeText(getUserInfoActivity.this, "올바른 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
