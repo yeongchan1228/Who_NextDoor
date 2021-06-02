@@ -52,9 +52,10 @@ public class getUserInfo2Activity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        btChoose = (Button) findViewById(R.id.bt_choose);
+
         btUpload = (Button) findViewById(R.id.bt_upload);
         ivPreview = (ImageView) findViewById(R.id.iv_preview);
+        btChoose = (Button) findViewById(R.id.bt_choose);
 
         btChoose.setOnClickListener(new View.OnClickListener() {
             @Override

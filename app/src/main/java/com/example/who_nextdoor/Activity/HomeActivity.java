@@ -12,8 +12,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,11 +26,13 @@ import android.view.MenuItem;
 import androidx.core.view.GravityCompat;
 
 
+import com.bumptech.glide.Glide;
 import com.example.who_nextdoor.HomeRecycler.Data;
 import com.example.who_nextdoor.HomeRecycler.HomeRecyclerAdapter;
 import com.example.who_nextdoor.R;
 import com.example.who_nextdoor.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -45,12 +51,60 @@ public class HomeActivity extends AppCompatActivity {
     private HomeRecyclerAdapter adapter;
     private DrawerLayout mDrawerLayout;
     private Context context = this;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 화면 회전 막기
+
+        if(user == null || !(firebaseAuth.getCurrentUser().isEmailVerified())){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+            DocumentReference documentReference = firebaseFirestore.collection("users").document(user.getUid());
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if(documentSnapshot != null){
+                            if(documentSnapshot.exists()){
+                                UserInfo userinfo = documentSnapshot.toObject(UserInfo.class); // 정보 받아와서 class에 저장
+                                if(userinfo.getAccess().equals("F")){
+                                    Intent intent = new Intent(HomeActivity.this, getUserInfo2Activity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                                else if(userinfo.getAccess().equals("W")){
+
+                                    Intent intent = new Intent(HomeActivity.this, NoAccessWaitActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                            else{
+
+                                Intent intent = new Intent(HomeActivity.this, getUserInfoActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
         init();
         getData();
 
@@ -61,8 +115,67 @@ public class HomeActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.profilebutton);
 
+
+
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        //View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        View nav_header_view = navigationView.getHeaderView(0);
+        ImageView nv_profile = (ImageView) nav_header_view.findViewById(R.id.nh_image);
+        TextView nv_school = (TextView) nav_header_view.findViewById(R.id.student_id);
+        TextView nv_name = (TextView) nav_header_view.findViewById(R.id.nv_name);
+        TextView nv_email = (TextView) nav_header_view.findViewById(R.id.nv_email);
+
+        DocumentReference documentReference2 = firebaseFirestore.collection("users").document(user.getUid());
+        documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserInfo userInfo = documentSnapshot.toObject(UserInfo.class);
+                nv_school.setText(userInfo.getShcoolNumber());
+                nv_name.setText(userInfo.getName());
+                nv_email.setText(userInfo.getAddress());
+
+                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+                StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
+                StorageReference pathReference = storageReference.child("users/"+user.getEmail()+"profile"+".png");
+                if(pathReference != null){
+                    pathReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if(task.isSuccessful()){
+                                Glide.with(nv_profile).load(task.getResult()).into(nv_profile);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            nv_profile.setImageResource(R.drawable.anonymous);
+                        }
+                    });
+                }
+                else{
+                    nv_profile.setImageResource(R.drawable.anonymous);
+                }
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                nv_school.setText("미정");
+                nv_name.setText("미정");
+                nv_email.setText("미정");
+            }
+        });
+
+
+
+
+
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -146,51 +259,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        if(user == null || !(firebaseAuth.getCurrentUser().isEmailVerified())){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        else{
-            FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-            DocumentReference documentReference = firebaseFirestore.collection("users").document(user.getUid());
-            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if(task.isSuccessful()){
-                        DocumentSnapshot documentSnapshot = task.getResult();
-                        if(documentSnapshot != null){
-                            if(documentSnapshot.exists()){
-                                UserInfo userinfo = documentSnapshot.toObject(UserInfo.class); // 정보 받아와서 class에 저장
-                                if(userinfo.getAccess().equals("F")){
-                                    Intent intent = new Intent(HomeActivity.this, getUserInfo2Activity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                                else if(userinfo.getAccess().equals("W")){
 
-                                    Intent intent = new Intent(HomeActivity.this, NoAccessWaitActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    finish();
-
-
-                                }
-                            }
-                            else{
-
-                                Intent intent = new Intent(HomeActivity.this, getUserInfoActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        }
-                    }
-                }
-            });
-        }
       
     }
     public void Withdraw(View v){ // 회원 탈퇴 클릭 시

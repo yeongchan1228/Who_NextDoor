@@ -92,10 +92,10 @@ public class Information_InputActivity extends AppCompatActivity {
 
 
     public void uploadPost(View v) {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
+
         final String title = ((EditText) findViewById(R.id.titleEditText)).getText().toString();
         final String contents = ((EditText) findViewById(R.id.contentsEditText)).getText().toString();
-
+        final ProgressDialog progressDialog = new ProgressDialog(this);
 
         if(filePath != null){
             progressDialog.setTitle("업로드중...");
