@@ -69,4 +69,9 @@ public class Trade_BoardActivity extends AppCompatActivity {
             }
         });
     }
+    public void writePost(View v) {
+        Intent intent = new Intent(this, Information_InputActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
