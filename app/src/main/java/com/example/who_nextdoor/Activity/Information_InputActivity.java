@@ -41,6 +41,7 @@ public class Information_InputActivity extends AppCompatActivity {
     private ImageView ibPreview;
     private Uri filePath;
     private Toast toast;
+    String a, getDate;
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -98,14 +99,14 @@ public class Information_InputActivity extends AppCompatActivity {
         if(filePath != null){
             progressDialog.setTitle("업로드중...");
             progressDialog.show();
-            filename =  title + ".png";
+            Upload_iboard_T(title, contents);
+            filename =  title + getDate + ".png";
             StorageReference storageRef = storage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com").child("i_board/" + filename);
             storageRef.putFile(filePath)
 
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Upload_iboard_T(title, contents);
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Information_InputActivity.this, Information_BoardActivity.class);
@@ -115,6 +116,7 @@ public class Information_InputActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    db.collection("i_board").document(title+getDate).delete();
                     progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "업로드 실패!", Toast.LENGTH_SHORT).show();
                 }
@@ -164,9 +166,11 @@ public class Information_InputActivity extends AppCompatActivity {
             informationInfo informationInfo = new informationInfo(title, contents);
             informationInfo.setUid(user.getUid());
             informationInfo.setDate(getTime());
+            getDate = informationInfo.getDate();
             informationInfo.setboard_image("T");
+            a=informationInfo.getDate();
             if (user != null) {
-                db.collection("i_board").document(title).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("i_board").document(title+informationInfo.getDate()).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                     }
@@ -189,7 +193,7 @@ public class Information_InputActivity extends AppCompatActivity {
             informationInfo.setUid(user.getUid());
             informationInfo.setDate(getTime());
             if (user != null) {
-                db.collection("i_board").document(title).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("i_board").document(title + informationInfo.getDate()).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                     }

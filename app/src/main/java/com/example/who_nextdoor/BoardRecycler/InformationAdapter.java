@@ -17,6 +17,8 @@ import com.example.who_nextdoor.R;
 import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -49,6 +51,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(arrayList.get(position).getboard_image().equals("F")){
             holder.imageView.setImageResource(R.drawable.icon1);
         }
@@ -57,7 +60,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
                 StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
                 StorageReference pathReference = storageReference.child("i_board");
                 if(pathReference != null){
-                    StorageReference submitimage = storageReference.child("i_board/"+arrayList.get(position).getTitle()+".png");
+                    StorageReference submitimage = storageReference.child("i_board/"+arrayList.get(position).getTitle() + arrayList.get(position).getDate() +".png");
                     submitimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
