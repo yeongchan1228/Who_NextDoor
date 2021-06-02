@@ -53,7 +53,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(arrayList.get(position).getboard_image().equals("F")){
-            holder.imageView.setImageResource(R.drawable.icon1);
+            holder.imageView.setImageResource(0);
         }
         else {
                 FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();

@@ -183,8 +183,7 @@ public class getUserInfoActivity extends AppCompatActivity {
                 is_validity = false;
                 Toast.makeText(getUserInfoActivity.this, "올바른 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
-            else if(phoneNumber.length()<10 || phoneNumber.length()>11||
-                    !( phoneNumber.substring(0,2).equals("010")||phoneNumber.substring(0,2).equals("011")||phoneNumber.substring(0,2).equals("016")||phoneNumber.substring(0,2).equals("017")||phoneNumber.substring(0,2).equals("019") ) ){
+            else if(phoneNumber.length()<10 || phoneNumber.length()>11){
                 is_validity = false;
                 Toast.makeText(getUserInfoActivity.this, "올바른 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
