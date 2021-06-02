@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -184,6 +185,9 @@ public class Information_InputActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(Information_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Information_InputActivity.this, Information_InputActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -207,6 +211,9 @@ public class Information_InputActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(Information_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Information_InputActivity.this, Information_InputActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
     public String getTime(){ // 시간 구하기
