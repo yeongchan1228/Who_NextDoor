@@ -34,6 +34,7 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/nanumsquarel"
+            android:onClick="Chat_Button"
             android:text="전송"
             app:backgroundTint="#B5D4F1" />
 
