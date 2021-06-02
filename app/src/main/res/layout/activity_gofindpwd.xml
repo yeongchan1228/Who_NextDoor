@@ -14,7 +14,7 @@
         android:fontFamily="@font/nanumsquarer"
         android:gravity="center"
         android:text="비밀번호 찾기"
-        android:textColor="#90B6DA"
+        android:textColor="#B5D4F1"
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

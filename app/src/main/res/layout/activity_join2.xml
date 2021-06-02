@@ -14,7 +14,7 @@
         android:fontFamily="@font/nanumsquarer"
         android:gravity="center"
         android:text="회원가입"
-        android:textColor="#90B6DA"
+        android:textColor="#B5D4F1"
         android:textColorLink="#03DAC5"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
