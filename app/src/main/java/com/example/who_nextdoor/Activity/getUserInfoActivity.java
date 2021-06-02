@@ -163,66 +163,66 @@ public class getUserInfoActivity extends AppCompatActivity {
     }
 
     public void profileUpdate(View v) {
-        RadioButton radioMan, radioWoman;
-        RadioGroup radioGender;
-        radioMan = findViewById(R.id.radioMan);
-        radioWoman = findViewById(R.id.radioWoman);
-        radioGender = findViewById(R.id.radioGender);
-        final String department = m;
-        final String name = ((EditText) findViewById(R.id.UserName)).getText().toString();
-        final String phoneNumber = ((EditText) findViewById(R.id.UserPhonenumber)).getText().toString();
-        final String birthDay = ((EditText) findViewById(R.id.Userbirth)).getText().toString();
-        final String alias = ((EditText) findViewById(R.id.UserAlias)).getText().toString();
-        final String schoolnumber = ((EditText) findViewById(R.id.Usershcoolnumber)).getText().toString();
-        final String gender = radioMan.getText().toString();
+            RadioButton radioMan, radioWoman;
+            RadioGroup radioGender;
+            radioMan = findViewById(R.id.radioMan);
+            radioWoman = findViewById(R.id.radioWoman);
+            radioGender = findViewById(R.id.radioGender);
+            final String department = m;
+            final String name = ((EditText) findViewById(R.id.UserName)).getText().toString();
+            final String phoneNumber = ((EditText) findViewById(R.id.UserPhonenumber)).getText().toString();
+            final String birthDay = ((EditText) findViewById(R.id.Userbirth)).getText().toString();
+            final String alias = ((EditText) findViewById(R.id.UserAlias)).getText().toString();
+            final String schoolnumber = ((EditText) findViewById(R.id.Usershcoolnumber)).getText().toString();
+            final String gender = radioMan.getText().toString();
 
-        Toast.makeText(getUserInfoActivity.this, department, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getUserInfoActivity.this, department, Toast.LENGTH_SHORT).show();
 
-        boolean is_validity = true;
-        if (name.length() < 2 || name.length() > 10) {
-            is_validity = false;
-            Toast.makeText(getUserInfoActivity.this, "올바른 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
-        }
-        else if(phoneNumber.length()<10 || phoneNumber.length()>11){
-            is_validity = false;
-            Toast.makeText(getUserInfoActivity.this, "올바른 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-        }
-        else if(birthDay.length()!=8){
-            is_validity = false;
-            Toast.makeText(getUserInfoActivity.this, "올바른 생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
-        }
-        else if(alias.length()>8){
-            is_validity = false;
-            Toast.makeText(getUserInfoActivity.this, "닉네임의 길이가 너무 깁니다. 8글자 미만으로 입력해주세요.", Toast.LENGTH_SHORT).show();
-        }
-        else if(schoolnumber.length()!=8){
-            is_validity = false;
-            Toast.makeText(getUserInfoActivity.this, "올바른 학번을 입력해주세요.", Toast.LENGTH_SHORT).show();
-        }
-
-        if(is_validity == false) return;
-
-        radioGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int i) {
-                if(i == R.id.radioMan){
-                    final String gender = radioMan.getText().toString();
-                    Toast.makeText(getUserInfoActivity.this, "남자", Toast.LENGTH_SHORT).show();
-                }
-                else if(i == R.id.radioWoman){
-                    final String gender = radioWoman.getText().toString();
-                    Toast.makeText(getUserInfoActivity.this, "여자", Toast.LENGTH_SHORT).show();
-                }
+            boolean is_validity = true;
+            if (name.length() < 2 || name.length() > 10) {
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
-        });
+            else if(phoneNumber.length()<10 || phoneNumber.length()>11){
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else if(birthDay.length()!=8){
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else if(alias.length()>8){
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "닉네임의 길이가 너무 깁니다. 8글자 미만으로 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else if(schoolnumber.length()!=8){
+                is_validity = false;
+                Toast.makeText(getUserInfoActivity.this, "올바른 학번을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
 
-        //final String gender = ((EditText) findViewById(R.id.Usergneder)).getText().toString();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        UserInfo userinfo = new UserInfo();
+            if(is_validity == false) return;
 
-        DocumentReference documentReference = db.collection("users").document(user.getUid());
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            radioGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int i) {
+                    if(i == R.id.radioMan){
+                        final String gender = radioMan.getText().toString();
+                        Toast.makeText(getUserInfoActivity.this, "남자", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(i == R.id.radioWoman){
+                       final String gender = radioWoman.getText().toString();
+                       Toast.makeText(getUserInfoActivity.this, "여자", Toast.LENGTH_SHORT).show();
+                    }
+               }
+            });
+
+            //final String gender = ((EditText) findViewById(R.id.Usergneder)).getText().toString();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            UserInfo userinfo = new UserInfo();
+
+            DocumentReference documentReference = db.collection("users").document(user.getUid());
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){

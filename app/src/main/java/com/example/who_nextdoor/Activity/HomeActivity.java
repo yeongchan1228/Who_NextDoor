@@ -336,10 +336,7 @@ public class HomeActivity extends AppCompatActivity {
                 "**게시판입니다."
         );
         List<Integer> listResId = Arrays.asList(
-                R.drawable.icon1,
-                R.drawable.icon1,
-                R.drawable.icon1,
-                R.drawable.icon1
+                0,0,0,0//게시판 기존 화살표 일단 없앰
         );
         for (int i = 0; i < listTitle.size(); i++) {
             Data data = new Data();
