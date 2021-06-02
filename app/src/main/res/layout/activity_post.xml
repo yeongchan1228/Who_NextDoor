@@ -94,20 +94,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
-        <EditText
-            android:id="@+id/post_comentsinput"
-            android:layout_width="330dp"
-            android:layout_height="50dp"
-            android:hint="댓글을 입력하세요."
-            android:textSize="10pt"
-            ></EditText>
+
+            <EditText
+                android:id="@+id/post_comentsinput"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/nanumsquarel"
+                android:hint="댓글을 입력하세요."
+                android:textSize="10pt"></EditText>
 
             <Button
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/nanumsquarel"
                 android:onClick="postcoments_inputkey"
                 android:text="확인"
-                android:textSize="10pt"></Button>
+                android:textSize="10pt"
+                app:backgroundTint="#B5D4F1"></Button>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
