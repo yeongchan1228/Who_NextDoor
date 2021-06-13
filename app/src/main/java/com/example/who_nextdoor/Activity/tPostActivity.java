@@ -32,7 +32,7 @@ public class tPostActivity extends AppCompatActivity {
         String Contents = intent.getStringExtra("Contents");
         String date = intent.getStringExtra("Date");
         String Uid = intent.getStringExtra("Uid");
-
+        String profile = intent.getStringExtra("Profile");
 
         imageView = findViewById(R.id.post_imageview);
         textTitle = findViewById(R.id.post_title);
@@ -46,15 +46,19 @@ public class tPostActivity extends AppCompatActivity {
         textdate.setText(date);
         textuid.setText(Uid);
         imageuser.setImageResource(R.drawable.userbasic);
+
+
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseStorage firebaseStorage2 = FirebaseStorage.getInstance();
         StorageReference storageReference2 = firebaseStorage2.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
-        StorageReference pathReference2 = storageReference2.child("users/"+user.getEmail()+"profile"+".png");
+        StorageReference pathReference2 = storageReference2.child("users/"+profile+"profile"+".png");
         if(pathReference2 != null){
             pathReference2.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if(task.isSuccessful()){
+
                         Glide.with(imageView2).load(task.getResult()).circleCrop().into(imageView2);
                     }
                 }

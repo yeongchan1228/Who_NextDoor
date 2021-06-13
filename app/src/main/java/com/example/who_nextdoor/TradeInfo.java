@@ -1,6 +1,8 @@
 package com.example.who_nextdoor;
 
 
+import android.net.Uri;
+
 public class TradeInfo implements Comparable<TradeInfo>{
     private String title;
     private String contents;
@@ -8,6 +10,7 @@ public class TradeInfo implements Comparable<TradeInfo>{
     private String uid;
     private String date;
     private String Alias;
+    private String inputuserEmail;
 
     public TradeInfo(){
         this.title = null;
@@ -50,6 +53,8 @@ public class TradeInfo implements Comparable<TradeInfo>{
     public void setDate(String date){this.date = date;}
     public String getAlias(){return this.Alias;}
     public void setAlias(String Alias){this.Alias = Alias;}
+    public String getInputuserEmail(){return this.inputuserEmail;}
+    public void setInputuserEmail(String informationInfo){this.inputuserEmail = informationInfo;}
 
     @Override
     public int compareTo(com.example.who_nextdoor.TradeInfo o) {
