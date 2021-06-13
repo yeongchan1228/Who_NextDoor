@@ -108,12 +108,12 @@ public class HomeActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            nv_profile.setImageResource(R.drawable.anonymous);
+                            nv_profile.setImageResource(R.drawable.human);
                         }
                     });
                 }
                 else{
-                    nv_profile.setImageResource(R.drawable.anonymous);
+                    nv_profile.setImageResource(R.drawable.human);
                 }
 
 

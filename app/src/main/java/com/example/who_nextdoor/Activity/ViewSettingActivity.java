@@ -112,14 +112,14 @@ public class ViewSettingActivity extends AppCompatActivity {
                         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            stimage.setImageResource(R.drawable.anonymous);
+                            stimage.setImageResource(R.drawable.human);
                             stimage.setBackground(new ShapeDrawable(new OvalShape()));
                             stimage.setClipToOutline(true);
                         }
                     });
                 }
                 else{
-                    stimage.setImageResource(R.drawable.anonymous);
+                    stimage.setImageResource(R.drawable.human);
                     stimage.setBackground(new ShapeDrawable(new OvalShape()));
                     stimage.setClipToOutline(true);
                 }

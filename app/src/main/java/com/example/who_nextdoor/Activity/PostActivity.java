@@ -198,5 +198,12 @@ public class PostActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goback(View v) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
 
 }
