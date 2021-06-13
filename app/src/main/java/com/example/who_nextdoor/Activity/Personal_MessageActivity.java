@@ -146,12 +146,12 @@ public class Personal_MessageActivity extends AppCompatActivity {
         finish();
     }
 
-    /*
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, Information_BoardActivity.class);
+        super.onBackPressed();
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        //super.onBackPressed();
+        finish();
     }
-    */
+
 }

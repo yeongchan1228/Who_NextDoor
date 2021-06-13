@@ -19,6 +19,7 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
     private Context context = this;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private MenuItem item;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -148,6 +150,14 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+
+                if(id == R.id.chat){
+                    Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+
                 else if(id == R.id.logout){
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(HomeActivity.this, getUserInfoActivity.class);
@@ -264,6 +274,15 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.chatting, menu) ;
+
+        return true ;
+    }
+
+
+
     public void goProfile(View v){
         Intent intent = new Intent(this, getUserInfoActivity.class);
         startActivity(intent);
@@ -274,11 +293,6 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, getUserInfoActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    public void Letter(View v){
-        Intent intent = new Intent(this, ChatActivity.class);
-        startActivity(intent);
     }
 
     public void showMyMessage(View v) {
@@ -329,6 +343,10 @@ public class HomeActivity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             }
+            case R.id.menu_chat :{
+                Intent intent = new Intent(this, ChatActivity.class);
+                startActivity(intent);
+                return true;}
 
 
         }

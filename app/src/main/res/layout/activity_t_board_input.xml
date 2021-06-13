@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:context=".Activity.ShowpasswdActivity">
+
+            <TextView
+                android:id="@+id/TtextView5"
+                android:layout_width="610dp"
+                android:layout_height="0dp"
+                android:background="#B5D4F1"
+                android:ems="10"
+                android:fontFamily="@font/nanumsquarer"
+                android:text="거래 글쓰기"
+                android:textColor="#52616A"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/Tphoto_add"
+                android:layout_width="45dp"
+                android:layout_height="39dp"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:onClick="GoImage"
+                app:backgroundTint="@color/white"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+            tools:layout_editor_absoluteX="260dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/TtitleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/nanumsquarer"
+            android:hint="제목"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/TcontentsEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/nanumsquarel"
+            android:gravity="start|top"
+            android:hint="내용을 입력하세요."
+            android:inputType="textMultiLine"
+            android:lines="20"
+            android:textColor="#52616A"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/tb_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/TwriteBotton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
+            android:onClick="uploadPost"
+
+            android:text="올리기"
+            app:backgroundTint="#B5D4F1" />
+
+
+    </LinearLayout>
+
+</ScrollView>

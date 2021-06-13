@@ -27,9 +27,11 @@
         <activity android:name=".Activity.getUserInfoActivity" />
         <activity android:name=".Activity.getUserInfo2Activity" />
         <activity android:name=".Activity.NoAccessWaitActivity" />
+        <activity android:name=".Activity.Trade_InputActivity" />
         <activity android:name=".Activity.Information_InputActivity" />
         <activity android:name=".Activity.Information_BoardActivity"/>
         <activity android:name=".Activity.PostActivity"/>
+        <activity android:name=".Activity.tPostActivity"/>
         <activity android:name=".Activity.Trade_BoardActivity"/>
         <activity android:name=".Activity.ChatActivity"/>
         <activity android:name=".Activity.SettingUserinfo"/>

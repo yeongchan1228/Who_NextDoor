@@ -35,8 +35,34 @@
             tools:layout_editor_absoluteY="618dp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/tb_search"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
+            android:hint="검색어를 입력하세요."
+            android:inputType="text"
+            android:textSize="8pt"></EditText>
+
+        <Button
+            android:id="@+id/tb_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
+            android:onClick="Search_check"
+            android:text="확인"
+            app:backgroundTint="#B5D4F1">
+
+        </Button>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ib_recyclerView"
+        android:id="@+id/tb_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F0F0F0"/>
