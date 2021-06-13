@@ -151,12 +151,12 @@ public class HomeActivity extends AppCompatActivity {
                     finish();
                 }
 
-                if(id == R.id.chat){
-                    Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                if(id == R.id.godorm){
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ssudorm.ssu.ac.kr:444/SShostel/mall_main.php?viewform=B0001_foodboard_list&board_no=1"));
                     startActivity(intent);
                     finish();
                 }
+
 
                 else if(id == R.id.logout){
                     FirebaseAuth.getInstance().signOut();
@@ -283,26 +283,12 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-    public void goProfile(View v){
-        Intent intent = new Intent(this, getUserInfoActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    public void Logout(View v){
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, getUserInfoActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     public void showMyMessage(View v) {
         Intent intent = new Intent(this, MessageActivity.class);
         startActivity(intent);
     }
 
-    public void foodMenu(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ssudorm.ssu.ac.kr:444/SShostel/mall_main.php?viewform=B0001_foodboard_list&board_no=1")); startActivity(intent);
-    }
 
     private void init() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);

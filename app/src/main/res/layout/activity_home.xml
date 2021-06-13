@@ -42,16 +42,6 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/foodmenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquarel"
-                android:onClick="foodMenu"
-                android:text="식단 바로가기"
-                app:backgroundTint="#B2CDD1"
-                app:icon="@android:drawable/ic_menu_info_details" />
-
-            <Button
                 android:id="@+id/myMessage"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
@@ -61,15 +51,6 @@
                 app:backgroundTint="#B2CDD1"
                 app:icon="@android:drawable/stat_notify_chat" />
 
-            <Button
-                android:id="@+id/letter"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquarel"
-                android:onClick="Letter"
-                android:text="채팅방"
-                app:backgroundTint="#C0EEF4"
-                app:icon="@android:drawable/sym_action_chat" />
 
         </LinearLayout>
 

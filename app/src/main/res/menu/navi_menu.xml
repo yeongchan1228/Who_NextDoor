@@ -13,9 +13,9 @@
             android:fontFamily="@font/nanumsquarel"
             android:title="회원정보 수정" />
         <item
-            android:id="@+id/chat"
+            android:id="@+id/godorm"
             android:fontFamily="@font/nanumsquarel"
-            android:title="단체 채팅방💬" />
+            android:title="레지던스홀 홈페이지💨" />
         <item
             android:id="@+id/logout"
             android:fontFamily="@font/nanumsquarel"
