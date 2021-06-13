@@ -50,7 +50,7 @@
                 android:text="쪽지함"
 
                 android:textStyle="bold"
-                app:backgroundTint="#B5AED0E3"
+                app:backgroundTint="#B5B1D3E6"
                 app:icon="@android:drawable/stat_notify_chat" />
 
             <ImageView
