@@ -41,7 +41,7 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHol
     @NonNull
     @Override
     public BoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.i_boarditems,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.t_boarditems,parent,false);
         BoardViewHolder holder = new BoardViewHolder(view);
         return holder;
     }
@@ -49,7 +49,7 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHol
     @Override
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
         if(arrayList.get(position).getboard_image().equals("F")){
-            holder.imageView.setImageResource(R.drawable.icon1);
+            holder.imageView.setImageResource(R.drawable.basic);
         }
         else {
             FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
@@ -68,7 +68,7 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHol
             }
         }
         holder.tv_title.setText(arrayList.get(position).getTitle());
-        holder.tv_content.setText(arrayList.get(position).getContents());
+        //holder.tv_content.setText(arrayList.get(position).getContents());
     }
 
     @Override
@@ -84,7 +84,6 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHol
             super(itemView);
             this.imageView = itemView.findViewById(R.id.tb_imageView);
             this.tv_title = itemView.findViewById(R.id.tb_title);
-            this.tv_content = itemView.findViewById(R.id.tb_content);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

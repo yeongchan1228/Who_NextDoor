@@ -45,12 +45,6 @@
             android:text="내 쪽지 확인"
             android:onClick="showMyMessage" />
 
-        <Button
-            android:id="@+id/letter"
-            android:layout_width="115dp"
-            android:layout_height="wrap_content"
-            android:text="채팅방"
-            android:onClick="Letter" />
 
         <Button
             android:id="@+id/foodmenu"
