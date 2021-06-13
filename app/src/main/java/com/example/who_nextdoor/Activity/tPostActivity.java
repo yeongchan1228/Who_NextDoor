@@ -55,7 +55,7 @@ public class tPostActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if(task.isSuccessful()){
-                        Glide.with(imageView2).load(task.getResult()).into(imageView2);
+                        Glide.with(imageView2).load(task.getResult()).circleCrop().into(imageView2);
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
