@@ -254,11 +254,12 @@ public class Message_WritingActivity extends AppCompatActivity {
         return mFormat.format(mDate);
     }
 
-    /*
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, Information_BoardActivity.class);
+        super.onBackPressed();
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+        finish();
     }
-    */
+
 }

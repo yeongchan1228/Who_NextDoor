@@ -148,6 +148,14 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+
+                if(id == R.id.chat){
+                    Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+
                 else if(id == R.id.logout){
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(HomeActivity.this, getUserInfoActivity.class);
