@@ -8,7 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import android.net.Uri;
 import android.app.Person;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -302,12 +302,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        List<String> listTitle = Arrays.asList("정보 게시판", "거래 게시판", "**", "**");
+        List<String> listTitle = Arrays.asList("정보 게시판", "거래 게시판", "자유 게시판", "기타 게시판");
         List<String> listContent = Arrays.asList(
-                "정보 게시판입니다.",
-                "거래 게시판입니다.",
-                "**게시판입니다.",
-                "**게시판입니다."
+                "기숙사 정보 공유는 여기서.",
+                "필요한거 거래해요!",
+                "자유롭게 이야기하는 자유 게시판",
+                "기타 이야기"
         );
         List<Integer> listResId = Arrays.asList(
                 0,0,0,0//게시판 기존 화살표 일단 없앰
@@ -321,8 +321,6 @@ public class HomeActivity extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged();
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
