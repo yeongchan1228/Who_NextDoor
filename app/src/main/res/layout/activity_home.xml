@@ -68,7 +68,7 @@
                 android:fontFamily="@font/nanumsquarel"
                 android:onClick="Letter"
                 android:text="채팅방"
-                app:backgroundTint="#3F5D61"
+                app:backgroundTint="#C0EEF4"
                 app:icon="@android:drawable/sym_action_chat" />
 
         </LinearLayout>
