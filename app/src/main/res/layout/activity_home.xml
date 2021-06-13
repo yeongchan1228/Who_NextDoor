@@ -48,7 +48,7 @@
                 android:fontFamily="@font/nanumsquarel"
                 android:onClick="showMyMessage"
                 android:text="쪽지함"
-                app:backgroundTint="#B2CDD1"
+                app:backgroundTint="#AED9DF"
                 app:icon="@android:drawable/stat_notify_chat" />
 
 
