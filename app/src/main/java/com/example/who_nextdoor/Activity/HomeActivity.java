@@ -301,8 +301,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void foodMenu(View v) {
-        Intent intent = new Intent(this, foodActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ssudorm.ssu.ac.kr:444/SShostel/mall_main.php?viewform=B0001_foodboard_list&board_no=1")); startActivity(intent);
     }
 
     private void init() {
