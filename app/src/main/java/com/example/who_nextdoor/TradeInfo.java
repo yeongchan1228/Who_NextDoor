@@ -4,6 +4,7 @@ package com.example.who_nextdoor;
 public class TradeInfo implements Comparable<TradeInfo>{
     private String title;
     private String contents;
+    private String price;
     private String board_image;
     private String uid;
     private String date;
@@ -12,16 +13,19 @@ public class TradeInfo implements Comparable<TradeInfo>{
     public TradeInfo(){
         this.title = null;
         this.contents = null;
+        this.price = null;
         this.board_image = "F";
     }
-    public TradeInfo(String title, String contents){
+    public TradeInfo(String title, String contents, String price){
         this.title = title;
         this.contents = contents;
+        this.price = price;
         this.board_image = "F";
     }
-    public TradeInfo(String Board_image, String title, String contents){
+    public TradeInfo(String Board_image, String title, String contents, String price){
         this.title = title;
         this.contents = contents;
+        this.price = price;
         this.board_image = Board_image;
     }
 
@@ -37,6 +41,12 @@ public class TradeInfo implements Comparable<TradeInfo>{
     }
     public void setContents(String contents){
         this.contents = contents;
+    }
+    public String getPrice(){
+        return this.price;
+    }
+    public void setPrice(String price){
+        this.price = price;
     }
     public String getUid(){return this.uid;}
     public void setUid(String uid){this.uid = uid;}
