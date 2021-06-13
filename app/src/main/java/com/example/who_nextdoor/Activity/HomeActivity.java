@@ -263,42 +263,6 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
-    public void Withdraw(View v){ // 회원 탈퇴 클릭 시
-        AlertDialog.Builder alert_confirm = new AlertDialog.Builder(HomeActivity.this);
-        alert_confirm.setMessage("정말로 계정을 삭제할까요?");
-        alert_confirm.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        firebaseFirestore.collection("users").document(user.getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                String filename = user.getUid() + "/" + user.getEmail() + ".png";
-                                FirebaseStorage storage = FirebaseStorage.getInstance();
-                                Task<Void> storageRef = storage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com").child("images/" + filename)
-                                        .delete();
-                            }
-                        });
-                        Toast.makeText(HomeActivity.this, "계정이 삭제 되었습니다.", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
-                    }
-                });
-            }
-        });
-        alert_confirm.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        alert_confirm.show();
-
-    }
 
     public void goProfile(View v){
         Intent intent = new Intent(this, getUserInfoActivity.class);

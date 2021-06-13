@@ -55,6 +55,7 @@ public class PostActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     ImageView imageView;
+    ImageView imageView2;
     TextView textTitle, textContents, textdate;
     String Title, Contents, date, uid;
 
@@ -81,7 +82,7 @@ public class PostActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
 
-
+        imageView2 = findViewById(R.id.iuser);
         imageView = findViewById(R.id.post_imageview);
         textTitle = findViewById(R.id.post_title);
         textContents = findViewById(R.id.post_contents);
@@ -89,7 +90,6 @@ public class PostActivity extends AppCompatActivity {
         textTitle.setText(Title);
         textContents.setText(Contents);
         textdate.setText(date);
-
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
         StorageReference pathReference = storageReference.child("i_board");

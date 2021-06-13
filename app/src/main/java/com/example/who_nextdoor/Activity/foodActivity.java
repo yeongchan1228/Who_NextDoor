@@ -55,8 +55,4 @@ public class foodActivity extends AppCompatActivity {
             textView.setText(bundle.getString("numbers"));                      //이런식으로 View를 메인 쓰레드에서 뿌려줘야한다.
         }
     };
-
-
-
 }
-
