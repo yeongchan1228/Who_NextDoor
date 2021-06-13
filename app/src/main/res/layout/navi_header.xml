@@ -2,77 +2,88 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerView"
     android:layout_width="280dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="#AAFBFD"
+    android:background="#B5D4F1"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B5D4F1"
-        android:orientation="horizontal">
+        tools:context=".Activity.GofindpwdActivity">
 
         <ImageView
             android:id="@+id/nh_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.439"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.052"></ImageView>
+
+        <TextView
+            android:id="@+id/nv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="30dp"></ImageView>
+            android:layout_alignTop="@+id/nh_image"
+            android:fontFamily="@font/nanumsquarel"
+            android:gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nh_image"
+            app:layout_constraintVertical_bias="0.027"></TextView>
+
+        <TextView
+            android:id="@+id/nv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/student_id"
+            android:fontFamily="@font/nanumsquarel"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nv_email"
+            app:layout_constraintVertical_bias="0.05" />
 
         <TextView
             android:id="@+id/student_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
+            android:fontFamily="@font/nanumsquarel"
             android:gravity="center_horizontal"
-            android:fontFamily="@font/nanumsquarel"
-            android:text="00000000 (학번)"
             android:textColor="#ffffff"
-            android:textSize="16dp"></TextView>
-
-        <TextView
-            android:id="@+id/house_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_below="@+id/name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
-            android:fontFamily="@font/nanumsquarel"
-            android:text="000호 A"
-            android:textColor="#ffffff"
-            android:textSize="16dp"></TextView>
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_below="@+id/house_id"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
-            android:fontFamily="@font/nanumsquarel"
-            android:text="어쩌구저쩌구 아무튼 정보"
-            android:textColor="#ffffff"
-            android:textSize="16dp"></TextView>
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/student_id"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
-            android:fontFamily="@font/nanumsquarel"
-            android:text="000 (이름)"
-            android:textColor="#ffffff"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nv_name"
+            app:layout_constraintVertical_bias="0.05"></TextView>
 
 
-    </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

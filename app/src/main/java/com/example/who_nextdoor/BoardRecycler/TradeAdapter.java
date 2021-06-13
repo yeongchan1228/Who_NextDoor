@@ -52,20 +52,20 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHol
             holder.imageView.setImageResource(R.drawable.icon1);
         }
         else {
-                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-                StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
-                StorageReference pathReference = storageReference.child("t_board");
-                if(pathReference != null){
-                    StorageReference submitimage = storageReference.child("t_board/"+arrayList.get(position).getTitle()+".png");
-                    submitimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            if(task.isSuccessful()){
-                                Glide.with(holder.itemView).load(task.getResult()).into(holder.imageView);
-                            }
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
+            StorageReference pathReference = storageReference.child("t_board");
+            if(pathReference != null){
+                StorageReference submitimage = storageReference.child("t_board/"+arrayList.get(position).getTitle()+".png");
+                submitimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if(task.isSuccessful()){
+                            Glide.with(holder.itemView).load(task.getResult()).into(holder.imageView);
                         }
-                    });
-                }
+                    }
+                });
+            }
         }
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_content.setText(arrayList.get(position).getContents());

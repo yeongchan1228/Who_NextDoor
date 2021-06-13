@@ -75,7 +75,7 @@ public class SubcomentAdapter extends RecyclerView.Adapter<SubcomentAdapter.Boar
         holder.post_coments.setText(arrayList.get(position).getComents());
         holder.coment_date.setText(arrayList.get(position).getDate());
 
-}
+    }
 
     @Override
     public int getItemCount() {

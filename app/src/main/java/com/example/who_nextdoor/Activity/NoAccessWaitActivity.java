@@ -58,34 +58,34 @@ public class NoAccessWaitActivity extends AppCompatActivity {
         }
     }
 
-   public void CheckAccess(View v){
-       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-       FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-       DocumentReference documentReference = firebaseFirestore.collection("users").document(user.getUid());
-       //FirebaseAuth auth = FirebaseAuth.getInstance();
-       documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-           @Override
-           public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-               if(task.isSuccessful()){
-                   DocumentSnapshot documentSnapshot = task.getResult();
-                   if(documentSnapshot != null){
-                       if(documentSnapshot.exists()){
-                           UserInfo userinfo = documentSnapshot.toObject(UserInfo.class); // 정보 받아와서 class에 저장
-                           if(userinfo.getAccess().equals("T")){
-                               Intent intent = new Intent(NoAccessWaitActivity.this, HomeActivity.class);
-                               startActivity(intent);
-                               finish();
-                           }
-                           else{
-                               Toast.makeText(NoAccessWaitActivity.this,"인증이 아직 완료되지 않았습니다. " +
-                                       "잠시 후 다시 눌러주세요.(앱을 종료하려면 뒤로가기 2번을 해주세요.",Toast.LENGTH_SHORT).show();
-                           }
-                       }
-                       else{
-                       }
-                   }
-               }
-           }
-       });
-   }
+    public void CheckAccess(View v){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = firebaseFirestore.collection("users").document(user.getUid());
+        //FirebaseAuth auth = FirebaseAuth.getInstance();
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if(documentSnapshot != null){
+                        if(documentSnapshot.exists()){
+                            UserInfo userinfo = documentSnapshot.toObject(UserInfo.class); // 정보 받아와서 class에 저장
+                            if(userinfo.getAccess().equals("T")){
+                                Intent intent = new Intent(NoAccessWaitActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                            else{
+                                Toast.makeText(NoAccessWaitActivity.this,"인증이 아직 완료되지 않았습니다. " +
+                                        "잠시 후 다시 눌러주세요.(앱을 종료하려면 뒤로가기 2번을 해주세요.",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                        }
+                    }
+                }
+            }
+        });
+    }
 }

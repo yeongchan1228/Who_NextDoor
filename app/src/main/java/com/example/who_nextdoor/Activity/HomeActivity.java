@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.app.Person;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,11 +26,13 @@ import android.view.MenuItem;
 import androidx.core.view.GravityCompat;
 
 
+import com.bumptech.glide.Glide;
 import com.example.who_nextdoor.HomeRecycler.Data;
 import com.example.who_nextdoor.HomeRecycler.HomeRecyclerAdapter;
 import com.example.who_nextdoor.R;
 import com.example.who_nextdoor.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -45,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
     private HomeRecyclerAdapter adapter;
     private DrawerLayout mDrawerLayout;
     private Context context = this;
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +71,54 @@ public class HomeActivity extends AppCompatActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        View nav_header_view = navigationView.getHeaderView(0);
+        ImageView nv_profile = (ImageView) nav_header_view.findViewById(R.id.nh_image);
+        TextView nv_school = (TextView) nav_header_view.findViewById(R.id.student_id);
+        TextView nv_name = (TextView) nav_header_view.findViewById(R.id.nv_name);
+        TextView nv_email = (TextView) nav_header_view.findViewById(R.id.nv_email);
+
+        DocumentReference documentReference2 = firebaseFirestore.collection("users").document(user.getUid());
+        documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserInfo userInfo = documentSnapshot.toObject(UserInfo.class);
+                nv_school.setText(userInfo.getShcoolNumber());
+                nv_name.setText(userInfo.getName());
+                nv_email.setText(userInfo.getAddress());
+
+                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+                StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
+                StorageReference pathReference = storageReference.child("users/"+user.getEmail()+"profile"+".png");
+                if(pathReference != null){
+                    pathReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if(task.isSuccessful()){
+                                Glide.with(nv_profile).load(task.getResult()).into(nv_profile);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            nv_profile.setImageResource(R.drawable.anonymous);
+                        }
+                    });
+                }
+                else{
+                    nv_profile.setImageResource(R.drawable.anonymous);
+                }
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                nv_school.setText("미정");
+                nv_name.setText("미정");
+                nv_email.setText("미정");
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -142,7 +198,7 @@ public class HomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomeActivity.this, Trade_BoardActivity.class);
                     startActivity(intent);
                 }
-                
+
 
             }
         });
@@ -191,7 +247,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
         }
-      
+
     }
     public void Withdraw(View v){ // 회원 탈퇴 클릭 시
         AlertDialog.Builder alert_confirm = new AlertDialog.Builder(HomeActivity.this);
@@ -247,6 +303,15 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void showMyMessage(View v) {
+        Intent intent = new Intent(this, MessageActivity.class);
+        startActivity(intent);
+    }
+
+    public void foodMenu(View v) {
+        Intent intent = new Intent(this, foodActivity.class);
+        startActivity(intent);
+    }
 
     private void init() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -288,6 +353,8 @@ public class HomeActivity extends AppCompatActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
             }
+
+
         }
         return super.onOptionsItemSelected(item);
     }

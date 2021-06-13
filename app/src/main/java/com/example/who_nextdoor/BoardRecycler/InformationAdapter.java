@@ -17,10 +17,10 @@ import com.example.who_nextdoor.R;
 import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -41,6 +41,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     public informationInfo getwriteinfo(int pos){
         return arrayList.get(pos);
     }
+
     @NonNull
     @Override
     public BoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,20 +57,21 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             holder.imageView.setImageResource(0);
         }
         else {
-                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-                StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
-                StorageReference pathReference = storageReference.child("i_board");
-                if(pathReference != null){
-                    StorageReference submitimage = storageReference.child("i_board/"+arrayList.get(position).getTitle() + arrayList.get(position).getDate() +".png");
-                    submitimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            if(task.isSuccessful()){
-                                Glide.with(holder.itemView).load(task.getResult()).into(holder.imageView);
-                            }
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
+            StorageReference pathReference = storageReference.child("i_board");
+            if(pathReference != null){
+                //StorageReference submitimage = storageReference.child("i_board/"+arrayList.get(position).getTitle() + arrayList.get(position).getDate() +".png");
+                StorageReference submitimage = storageReference.child("i_board/"+arrayList.get(position).getDate() +".png");
+                submitimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if(task.isSuccessful()){
+                            Glide.with(holder.itemView).load(task.getResult()).into(holder.imageView);
                         }
-                    });
-                }
+                    }
+                });
+            }
         }
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_content.setText(arrayList.get(position).getContents());

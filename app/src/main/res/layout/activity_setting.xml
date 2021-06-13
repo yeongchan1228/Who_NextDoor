@@ -23,21 +23,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.12" />
 
-    <TextView
-        android:id="@+id/SettingProfilePicture"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:fontFamily="@font/maru"
-        android:gravity="center"
-        android:text="프로필 사진 수정"
-        android:textColorHint="#000000"
-        android:textSize="15dp"
+
+    <ImageView
+        android:id="@+id/as_profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248" />
+        app:layout_constraintVertical_bias="0.261"></ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.442">
+
+        <Button
+            android:id="@+id/st_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarel"
+            android:text="프로필 선택"
+            app:backgroundTint="#B5D4F1" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/UserAlias"

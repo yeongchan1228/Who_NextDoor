@@ -47,6 +47,7 @@ public class Information_BoardActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
+
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -65,8 +66,10 @@ public class Information_BoardActivity extends AppCompatActivity {
                 Toast.makeText(Information_BoardActivity.this,"게시글이 아무것도 없습니다.",Toast.LENGTH_SHORT).show();
             }
         });
-            adapter = new InformationAdapter(arrayList,this);
-            recyclerView.setAdapter(adapter);
+
+
+        adapter = new InformationAdapter(arrayList,this);
+        recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new InformationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
@@ -75,6 +78,7 @@ public class Information_BoardActivity extends AppCompatActivity {
                 intent.putExtra("Title", getwriteinfo.getTitle());
                 intent.putExtra("Contents", getwriteinfo.getContents());
                 intent.putExtra("Date", getwriteinfo.getDate());
+                intent.putExtra("Uid", getwriteinfo.getUid());
                 startActivity(intent);
             }
         });
@@ -97,10 +101,10 @@ public class Information_BoardActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 arrayList.clear();
                 for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
-                        informationInfo informationInfo = documentSnapshot.toObject(informationInfo.class);
-                        if(informationInfo.getTitle().contains(Search) || informationInfo.getContents().contains(Search)){
-                            arrayList.add(informationInfo);
-                        }
+                    informationInfo informationInfo = documentSnapshot.toObject(informationInfo.class);
+                    if(informationInfo.getTitle().contains(Search) || informationInfo.getContents().contains(Search)){
+                        arrayList.add(informationInfo);
+                    }
                 }
                 Collections.sort(arrayList);
                 Collections.reverse(arrayList);
@@ -119,12 +123,24 @@ public class Information_BoardActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View v, int pos) {
                 informationInfo getwriteinfo = adapter.getwriteinfo(pos);
-                Intent intent = new Intent(Information_BoardActivity.this,PostActivity.class);
+                Intent intent = new Intent(Information_BoardActivity.this, PostActivity.class);
                 intent.putExtra("Title", getwriteinfo.getTitle());
                 intent.putExtra("Contents", getwriteinfo.getContents());
                 intent.putExtra("Date", getwriteinfo.getDate());
+                intent.putExtra("Uid", getwriteinfo.getUid());
                 startActivity(intent);
+
+
             }
         });
     }
+
+    /*
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        //super.onBackPressed();
+    }
+    */
 }

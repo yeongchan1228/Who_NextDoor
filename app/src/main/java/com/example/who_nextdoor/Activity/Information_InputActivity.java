@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,7 +42,6 @@ public class Information_InputActivity extends AppCompatActivity {
     private Uri filePath;
     private Toast toast;
     String a, getDate;
-
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -101,7 +99,7 @@ public class Information_InputActivity extends AppCompatActivity {
             progressDialog.setTitle("업로드중...");
             progressDialog.show();
             Upload_iboard_T(title, contents);
-            filename =  title + getDate + ".png";
+            filename = getDate + ".png";
             StorageReference storageRef = storage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com").child("i_board/" + filename);
             storageRef.putFile(filePath)
 
@@ -117,19 +115,19 @@ public class Information_InputActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    db.collection("i_board").document(title+getDate).delete();
+                    db.collection("i_board").document(getDate).delete();
                     progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "업로드 실패!", Toast.LENGTH_SHORT).show();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                            @SuppressWarnings("VisibleForTests")
-                            double progress = (100 * snapshot.getBytesTransferred()) /  snapshot.getTotalByteCount();
-                            //dialog에 진행률을 퍼센트로 출력해 준다
-                            progressDialog.setMessage("Uploaded " + /*((int) progress) +* "%*/"...");
-                        }
-                    });
+                @Override
+                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                    @SuppressWarnings("VisibleForTests")
+                    double progress = (100 * snapshot.getBytesTransferred()) /  snapshot.getTotalByteCount();
+                    //dialog에 진행률을 퍼센트로 출력해 준다
+                    progressDialog.setMessage("Uploaded " + /*((int) progress) +* "%*/"...");
+                }
+            });
         }
         else{
             String[] filter_list = {"시발", "씨발", "ㅅㅂ", "슈발", "씨바" , "ㅆㅃ", "ㅆㅂ", "병신", "ㅄ", "ㅂㅅ", "븅신", "개새끼",
@@ -167,11 +165,12 @@ public class Information_InputActivity extends AppCompatActivity {
             informationInfo informationInfo = new informationInfo(title, contents);
             informationInfo.setUid(user.getUid());
             informationInfo.setDate(getTime());
-            getDate = informationInfo.getDate();
             informationInfo.setboard_image("T");
-            a=informationInfo.getDate();
+            getDate = informationInfo.getDate();
+            String date = informationInfo.getDate();
             if (user != null) {
-                db.collection("i_board").document(title+informationInfo.getDate()).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                db.collection("i_board").document(date).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                     }
@@ -196,8 +195,9 @@ public class Information_InputActivity extends AppCompatActivity {
             informationInfo informationInfo = new informationInfo(title, contents);
             informationInfo.setUid(user.getUid());
             informationInfo.setDate(getTime());
+            String date = informationInfo.getDate();
             if (user != null) {
-                db.collection("i_board").document(title + informationInfo.getDate()).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("i_board").document(date).set(informationInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                     }

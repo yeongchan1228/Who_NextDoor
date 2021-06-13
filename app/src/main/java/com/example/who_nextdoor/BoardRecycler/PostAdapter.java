@@ -89,7 +89,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.BoardViewHolde
 
 
 
-}
+    }
 
     @Override
     public int getItemCount() {

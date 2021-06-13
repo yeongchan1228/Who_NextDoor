@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.who_nextdoor.Activity.MainActivity;
 import com.example.who_nextdoor.BoardRecycler.InformationAdapter;
 import com.example.who_nextdoor.BoardRecycler.PostAdapter;
 import com.example.who_nextdoor.BoardRecycler.SubcomentAdapter;
@@ -55,16 +56,21 @@ public class PostActivity extends AppCompatActivity {
 
     ImageView imageView;
     TextView textTitle, textContents, textdate;
+    String Title, Contents, date, uid;
+
     EditText comentsInput;
     String getTitle, getsubText, getDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
         Intent intent = getIntent();
-        String Title = intent.getStringExtra("Title");
-        String Contents = intent.getStringExtra("Contents");
-        String date = intent.getStringExtra("Date");
+        Title = intent.getStringExtra("Title");
+        Contents = intent.getStringExtra("Contents");
+        date = intent.getStringExtra("Date");
+        uid = intent.getStringExtra("Uid");
+
         getTitle = Title;
         getDate = date;
         comentsInput = findViewById(R.id.post_comentsinput);
@@ -74,6 +80,8 @@ public class PostActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
+
+
         imageView = findViewById(R.id.post_imageview);
         textTitle = findViewById(R.id.post_title);
         textContents = findViewById(R.id.post_contents);
@@ -81,33 +89,36 @@ public class PostActivity extends AppCompatActivity {
         textTitle.setText(Title);
         textContents.setText(Contents);
         textdate.setText(date);
+
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
         StorageReference pathReference = storageReference.child("i_board");
-        CollectionReference collectionReference = firebaseFirestore.collection("i_board").document(getTitle + getDate).collection("coments");
-                collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        arrayList.clear();
-                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
-                            ComentsInfo comentsInfo = documentSnapshot.toObject(ComentsInfo.class);
-                            arrayList.add(comentsInfo);
-                            Collections.sort(arrayList);
-                            //Collections.reverse(arrayList);
-                            adapter.notifyDataSetChanged();
-                        }
-                    }
-                    }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(PostActivity.this,"게시글이 아무것도 없습니다.",Toast.LENGTH_SHORT).show();
-                    }
-                });
+
+        CollectionReference collectionReference = firebaseFirestore.collection("i_board").document(getDate).collection("coments");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                arrayList.clear();
+                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                    ComentsInfo comentsInfo = documentSnapshot.toObject(ComentsInfo.class);
+                    arrayList.add(comentsInfo);
+                    Collections.sort(arrayList);
+                    //Collections.reverse(arrayList);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(PostActivity.this,"게시글이 아무것도 없습니다.",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         adapter = new PostAdapter(arrayList,this);
         recyclerView.setAdapter(adapter);
+
         if(pathReference != null){
-            StorageReference submitimage = storageReference.child("i_board/"+Title+getDate+".png");
+            StorageReference submitimage = storageReference.child("i_board/"+getDate+".png");
             submitimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
@@ -130,13 +141,13 @@ public class PostActivity extends AppCompatActivity {
             comentsInfo.setParentDate(getDate);
             comentsInfo.setUid_date(user.getUid()+getTime());
             if (user != null) {
-                db.collection("i_board").document(getTitle + getDate).collection("coments")
+                db.collection("i_board").document(getDate).collection("coments")
                         .document(user.getUid()+comentsInfo.getDate()).set(comentsInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         comentsInput.setText(null);
                         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-                        CollectionReference collectionReference = firebaseFirestore.collection("i_board").document(getTitle + getDate).collection("coments");
+                        CollectionReference collectionReference = firebaseFirestore.collection("i_board").document(getDate).collection("coments");
                         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -179,5 +190,13 @@ public class PostActivity extends AppCompatActivity {
         mDate = new Date(mNow);
         return mFormat.format(mDate);
     }
+
+    public void openMessage(View v){
+        Intent intent = new Intent(PostActivity.this, Message_WritingActivity.class);
+        intent.putExtra("Date", date);
+        intent.putExtra("Uid", uid);
+        startActivity(intent);
+    }
+
 
 }

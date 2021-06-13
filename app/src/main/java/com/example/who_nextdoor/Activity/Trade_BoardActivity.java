@@ -56,8 +56,8 @@ public class Trade_BoardActivity extends AppCompatActivity {
                 Toast.makeText(Trade_BoardActivity.this,"게시글이 아무것도 없습니다.",Toast.LENGTH_SHORT).show();
             }
         });
-            adapter = new TradeAdapter(arrayList,this);
-            recyclerView.setAdapter(adapter);
+        adapter = new TradeAdapter(arrayList,this);
+        recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new TradeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {

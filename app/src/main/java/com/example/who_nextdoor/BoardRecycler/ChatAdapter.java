@@ -1,42 +1,21 @@
 package com.example.who_nextdoor.BoardRecycler;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Build;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.who_nextdoor.Activity.Information_BoardActivity;
 import com.example.who_nextdoor.ChatDataInfo;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.UserInfo;
-import com.example.who_nextdoor.informationInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BoardViewHolder> {
@@ -63,18 +42,21 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BoardViewHolde
     @Override
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
         ChatDataInfo chat = mDataset.get(position);
-
         holder.TextView_nickname.setText(chat.getNickname());
         holder.TextView_msg.setText(chat.getMsg());
 
 
         if(chat.getUid().equals(this.myId)) {
-            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
             holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+            holder.TextView_msg.setBackgroundResource(R.drawable.bubble_a);
+            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+            holder.LinearLayout_main.setGravity(Gravity.RIGHT);
         }
         else {
-            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             holder.TextView_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            holder.TextView_msg.setBackgroundResource(R.drawable.bubble_b);
+            holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            holder.LinearLayout_main.setGravity(Gravity.LEFT);
         }
 
     }
@@ -95,12 +77,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.BoardViewHolde
     public class BoardViewHolder extends RecyclerView.ViewHolder {
         TextView TextView_nickname;
         TextView TextView_msg;
+        LinearLayout LinearLayout_main;
 
         public BoardViewHolder(@NonNull View itemView) {
             super(itemView);
             this.TextView_nickname = itemView.findViewById(R.id.TextView_nickname);
             this.TextView_msg= itemView.findViewById(R.id.TextView_msg);
-
+            this.LinearLayout_main = itemView.findViewById(R.id.linear_layout_main);
         }
     }
 }

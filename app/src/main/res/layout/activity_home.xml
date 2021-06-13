@@ -17,10 +17,11 @@
             android:layout_below="@+id/toolbar"/>
 
         <androidx.appcompat.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/toolbar"
+            android:background="#acdffa"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#B5D4F1">
+            android:layout_height="wrap_content">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -37,14 +38,26 @@
         android:layout_height="match_parent"
         android:paddingTop = "56dp">
 
+        <Button
+            android:id="@+id/myMessage"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:text="내 쪽지 확인"
+            android:onClick="showMyMessage" />
 
         <Button
             android:id="@+id/letter"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:text="쪽지"
+            android:text="채팅방"
             android:onClick="Letter" />
 
+        <Button
+            android:id="@+id/foodmenu"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:text="식단 확인"
+            android:onClick="foodMenu" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -65,4 +78,3 @@
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>
-

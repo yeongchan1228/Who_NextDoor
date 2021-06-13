@@ -24,7 +24,6 @@ public class GofindpwdActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,25 +45,24 @@ public class GofindpwdActivity extends AppCompatActivity {
         progressDialog.setMessage("처리 중입니다. 잠시 기다려 주세요...");
         progressDialog.show();
         firebaseAuth.sendPasswordResetEmail(emailAddress)
-        .addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(GofindpwdActivity.this, "이메일을 보냈습니다.", Toast.LENGTH_SHORT).show();
-                    finish();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                } else {
-                    Toast.makeText(GofindpwdActivity.this, "메일 보내기 실패!", Toast.LENGTH_SHORT).show();
-                }
-                progressDialog.dismiss();
-            }
-        });
-        }
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(GofindpwdActivity.this, "이메일을 보냈습니다.", Toast.LENGTH_SHORT).show();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        } else {
+                            Toast.makeText(GofindpwdActivity.this, "메일 보내기 실패!", Toast.LENGTH_SHORT).show();
+                        }
+                        progressDialog.dismiss();
+                    }
+                });
+    }
     public void GoMain(View v){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
-    }
-
+}
 

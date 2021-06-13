@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +16,6 @@ import com.example.who_nextdoor.BoardRecycler.ChatAdapter;
 import com.example.who_nextdoor.BoardRecycler.InformationAdapter;
 import com.example.who_nextdoor.ChatDataInfo;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.UserInfo;
 import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,6 +32,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import android.text.TextUtils;
+import android.util.Log;
+import com.example.who_nextdoor.UserInfo;
 
 public class ChatActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -89,6 +89,7 @@ public class ChatActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         }).addOnFailureListener(new OnFailureListener() {
+
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(ChatActivity.this,"채팅 내용이 없습니다.",Toast.LENGTH_SHORT).show();
@@ -171,5 +172,6 @@ public class ChatActivity extends AppCompatActivity {
 
         }
     }
+
 
 }

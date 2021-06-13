@@ -23,6 +23,7 @@
             android:text="정보 게시판"
             android:textSize="36sp"></TextView>
 
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/AddPostButton"
             android:layout_width="39dp"
@@ -37,7 +38,6 @@
             tools:layout_editor_absoluteY="618dp" />
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,6 +71,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F0F0F0" />
-
 
 </LinearLayout>

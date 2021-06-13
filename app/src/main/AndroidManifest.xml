@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Who_NextDoor">
+
         <activity android:name=".Activity.ShowpasswdActivity"></activity>
         <activity android:name=".Activity.GofindpwdActivity" />
         <activity android:name=".Activity.HomeActivity">
@@ -32,6 +33,11 @@
         <activity android:name=".Activity.Trade_BoardActivity"/>
         <activity android:name=".Activity.ChatActivity"/>
         <activity android:name=".Activity.SettingUserinfo"/>
+        <activity android:name=".Activity.MessageActivity"/>
+        <activity android:name=".Activity.Message_WritingActivity"/>
+        <activity android:name=".Activity.Personal_MessageActivity"/>
+        <activity android:name=".Activity.foodActivity"/>
+
     </application>
 
 </manifest>
