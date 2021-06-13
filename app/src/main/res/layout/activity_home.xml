@@ -44,7 +44,6 @@
                 android:id="@+id/myMessage"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape"
                 android:fontFamily="@font/nanumsquarel"
                 android:onClick="showMyMessage"
                 android:text="쪽지함"
@@ -55,7 +54,7 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="3dp"
+                android:layout_width="67dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
