@@ -135,6 +135,51 @@
                     android:fontFamily="@font/nanumsquarel"
                     android:gravity="center"
 
+                    android:text="08:00~09:30"
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+
+                    android:text="11:00~14:00"
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+                    android:text="17:00~18:30"
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+
+                    android:text=""
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="129dp"
+                android:gravity="center">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+
                     android:text="\n쌀밥\n
 미역국\n
 모듬튀김,칠리s\n
