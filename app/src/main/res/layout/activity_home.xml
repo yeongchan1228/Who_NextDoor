@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,15 +14,14 @@
             android:id="@+id/view_toolbar"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#acdffa"
-            android:layout_below="@+id/toolbar"/>
+            android:layout_below="@+id/toolbar"
+            android:background="#acdffa" />
 
-        <androidx.appcompat.widget.Toolbar
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/toolbar"
-            android:background="#acdffa"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#acdffa">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -29,17 +29,14 @@
 
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".Activity.HomeActivity"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop = "56dp">
+        android:orientation="vertical"
+        android:paddingTop="56dp"
+        tools:context=".Activity.HomeActivity">
 
         <LinearLayout
-            android:layout_width="381dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -47,11 +44,31 @@
                 android:id="@+id/myMessage"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/shape"
                 android:fontFamily="@font/nanumsquarel"
                 android:onClick="showMyMessage"
                 android:text="쪽지함"
-                app:backgroundTint="#AED9DF"
+
+                android:textStyle="bold"
+                app:backgroundTint="#B5B1D3E6"
                 app:icon="@android:drawable/stat_notify_chat" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="3dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/ic_menu_month" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="213dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanumsquarer"
+                android:gravity="center_horizontal"
+                android:text="2021년 6월 14일 3시 42분" />
 
 
         </LinearLayout>
@@ -59,18 +76,11 @@
         <TableLayout
             android:id="@+id/식단"
             android:layout_width="match_parent"
-            android:layout_height="107dp">
 
-            <TableRow>
+            android:layout_height="117dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:fontFamily="@font/nanumsquarel"
-                    android:gravity="center"
-                    android:text="날짜"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+
+            <TableRow android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,18 +113,22 @@
                     android:textColor="#000000"
                     android:textSize="15sp"
                     android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow android:layout_height="129dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="59dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumsquarel"
-                    android:gravity="center_vertical"
-                    android:text="2021-06-14 (월)"
+                    android:gravity="center"
+                    android:text="날씨"
                     android:textColor="#000000"
-                    android:textSize="10sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="129dp"
+                android:gravity="center">
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,7 +136,7 @@
                     android:fontFamily="@font/nanumsquarel"
                     android:gravity="center"
 
-                    android:text="쌀밥\n
+                    android:text="\n쌀밥\n
 미역국\n
 모듬튀김,칠리s\n
 무말랭이무침\n
@@ -138,7 +152,7 @@
                     android:fontFamily="@font/nanumsquarel"
                     android:gravity="center"
 
-                    android:text="쌀밥,잡곡밥\n
+                    android:text="\n쌀밥,잡곡밥\n
 떡만두국\n
 제육김치볶음\n
 깐풍블랙알리오\n
@@ -153,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumsquarel"
                     android:gravity="center"
-                    android:text="스팸마요덥밥\n
+                    android:text="\n스팸마요덥밥\n
 우동장국\n
 고기경단스테이크\n
 야채쫄면\n
@@ -162,7 +176,21 @@
 요구르트"
                     android:textColor="#000000"
                     android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+
+                    android:text="\n현재 온도20°\n
+어제보다 2° 낮아요\n구름많음\n
+
+강수 30% \n습도 80% \n서풍 1m/s \n체감 21°"
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
             </TableRow>
+
 
         </TableLayout>
 
@@ -170,7 +198,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F0F0F0"/>
+            android:background="#F0F0F0" />
 
     </LinearLayout>
 
@@ -181,7 +209,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navi_header"
-        app:menu="@menu/navi_menu"
-        />
+        app:menu="@menu/navi_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
