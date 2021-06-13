@@ -83,6 +83,13 @@ public class Information_BoardActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void goback(View v) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void writePost(View v) {
         Intent intent = new Intent(this, Information_InputActivity.class);
         startActivity(intent);

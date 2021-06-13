@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:fontFamily="@font/maru"
         android:gravity="center"
-        android:text="회원 정보 수정"
+        android:text="회원 정보"
         android:textColorLink="#03DAC5"
         android:textSize="40dp"
         android:textStyle="bold"
@@ -22,14 +22,14 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.042" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="5px"
         android:background="#D6D9DC"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="126dp" />
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="94dp" />
 
     <ImageView
         android:id="@+id/as_profile"
@@ -40,83 +40,132 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29"></ImageView>
+        app:layout_constraintVertical_bias="0.196"></ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_previe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442">
+        app:layout_constraintVertical_bias="0.38">
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/UserAlias"
+    <TextView
+        android:id="@+id/UserName"
+        android:textColor="#000000"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:textSize="20dp"
+        android:gravity="center"
         android:ems="10"
         android:fontFamily="@font/maru"
-        android:hint="닉네임"
-        android:inputType="textPersonName"
+        android:hint="이름(닉네임)"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintVertical_bias="0.42" />
 
-
-    <EditText
-        android:id="@+id/UserPhonenumber"
+    <TextView
+        android:id="@+id/UserMail"
+        android:textColor="#000000"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:ems="10"
+        android:fontFamily="@font/maru"
+        android:hint="아이디"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+
+    <TextView
+        android:id="@+id/UserPhonenumber"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:textSize="20dp"
+        android:gravity="center"
         android:ems="10"
         android:fontFamily="@font/maru"
         android:hint="전화번호"
-        android:inputType="number|phone"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637" />
+        app:layout_constraintVertical_bias="0.58" />
 
-    <EditText
+    <TextView
         android:id="@+id/UserDepartment"
+        android:textColor="#000000"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:textSize="20dp"
+        android:gravity="center"
         android:ems="10"
         android:fontFamily="@font/maru"
-        android:hint="학과 (1회만 가능합니다.)"
-        android:inputType="textPersonName"
+        android:hint="학과"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
+        app:layout_constraintVertical_bias="0.66" />
 
-    <ImageView
-        android:id="@+id/iv_previe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/UserNumber"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:ems="10"
+        android:fontFamily="@font/maru"
+        android:hint="학번"
+        android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.377" />
+        app:layout_constraintVertical_bias="0.74" />
+
+
+    <TextView
+        android:id="@+id/Userbirth"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:ems="10"
+        android:fontFamily="@font/maru"
+        android:hint="생일"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82" />
 
     <Button
         android:id="@+id/btn11"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:fontFamily="@font/maru"
-        android:onClick="profileUpdate"
+        android:onClick="Okay"
         android:text="확인"
         app:backgroundTint="#B5D4F1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -124,20 +173,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884" />
-
-    <ImageButton
-        android:id="@+id/st_choose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="428dp"
-        android:fontFamily="@font/nanumsquarel"
-        android:src="@drawable/ic_action_name"
-        app:backgroundTint="#B5D4F1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.639"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintVertical_bias="0.937" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

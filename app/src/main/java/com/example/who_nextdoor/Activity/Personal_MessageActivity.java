@@ -140,6 +140,12 @@ public class Personal_MessageActivity extends AppCompatActivity {
         //finish();
     }
 
+    public void goback(View v) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     /*
     @Override
     public void onBackPressed() {

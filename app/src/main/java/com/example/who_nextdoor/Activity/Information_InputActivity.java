@@ -125,7 +125,7 @@ public class Information_InputActivity extends AppCompatActivity {
                     @SuppressWarnings("VisibleForTests")
                     double progress = (100 * snapshot.getBytesTransferred()) /  snapshot.getTotalByteCount();
                     //dialog에 진행률을 퍼센트로 출력해 준다
-                    progressDialog.setMessage("Uploaded " + /*((int) progress) +* "%*/"...");
+                    progressDialog.setMessage("Uploaded " + ((int) progress) + "...");
                 }
             });
         }

@@ -5,7 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -13,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.RadioGroup;
@@ -20,9 +24,11 @@ import android.widget.RadioButton;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.who_nextdoor.R;
 import com.example.who_nextdoor.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,8 +68,31 @@ public class SettingUserinfo extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        Button stChoose = (Button) findViewById(R.id.st_choose);
+        ImageButton stChoose = (ImageButton) findViewById(R.id.st_choose);
         stimage = (ImageView) findViewById(R.id.as_profile);
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
+        StorageReference pathReference = storageReference.child("users/"+user.getEmail()+"profile"+".png");
+
+        if(pathReference != null){
+            pathReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if(task.isSuccessful()){
+                        Glide.with(stimage).load(task.getResult()).circleCrop().into(stimage);
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    stimage.setImageResource(R.drawable.human);
+                    stimage.setBackground(new ShapeDrawable(new OvalShape()));
+                    stimage.setClipToOutline(true);
+                }
+            });
+        }
 
         stChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +106,7 @@ public class SettingUserinfo extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -85,6 +115,8 @@ public class SettingUserinfo extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 stimage.setImageBitmap(bitmap);
+                stimage.setBackground(new ShapeDrawable(new OvalShape()));
+                stimage.setClipToOutline(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
