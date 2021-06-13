@@ -8,7 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.net.Uri;
+
 import android.app.Person;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -283,12 +283,27 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+    public void goProfile(View v){
+        Intent intent = new Intent(this, getUserInfoActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    public void Logout(View v){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(this, getUserInfoActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     public void showMyMessage(View v) {
         Intent intent = new Intent(this, MessageActivity.class);
         startActivity(intent);
     }
 
+    public void foodMenu(View v) {
+        Intent intent = new Intent(this, foodActivity.class);
+        startActivity(intent);
+    }
 
     private void init() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -320,6 +335,8 @@ public class HomeActivity extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged();
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
