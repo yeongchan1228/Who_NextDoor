@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="62dp">
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="610dp"
+                android:layout_height="0dp"
+                android:background="#B5D4F1"
+                android:ems="10"
+                android:fontFamily="@font/nanumsquarel"
+                android:gravity="center_vertical"
+                android:text="Send Message"
+                android:textColor="#52616A"
+                android:textSize="30sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/photo_add"
+                android:layout_width="41dp"
+                android:layout_height="42dp"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:onClick="GoImage"
+                app:backgroundTint="@color/white"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.701"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.538"
+                app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
+
+            <Button
+                android:id="@+id/send_message"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarel"
+                android:onClick="sendMessage"
+                android:text="SEND"
+                app:backgroundTint="#111111"
+                tools:layout_editor_absoluteX="315dp"
+                tools:layout_editor_absoluteY="7dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.538"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/mes_content2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/nanumsquarel"
+            android:gravity="start|top"
+            android:hint="내용을 입력하세요."
+            android:inputType="textMultiLine"
+            android:lines="20"
+            android:textColor="#52616A"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/mes_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+</ScrollView>
