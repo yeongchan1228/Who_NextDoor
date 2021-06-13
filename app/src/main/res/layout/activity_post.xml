@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,21 +9,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:orientation="vertical" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             tools:context=".Activity.ShowpasswdActivity">
 
             <TextView
                 android:id="@+id/post_text"
-                android:layout_width="420dp"
-                android:layout_height="wrap_content"
+                android:layout_width="410dp"
+                android:layout_height="50dp"
                 android:background="#B5D4F1"
-                android:ems="10"
-                android:textSize="30dp" />
+                android:ems="10" />
+
+            <ImageView
+                android:id="@+id/xicon"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="#B5D4F1"
+                android:onClick="goback"
+                android:src="@drawable/xicon"
+                tools:layout_editor_absoluteX="364dp"
+                tools:layout_editor_absoluteY="0dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -35,27 +44,50 @@
                 android:id="@+id/iuser"
                 android:layout_width="55dp"
                 android:layout_height="82dp"
-                android:layout_weight="1"
                 android:onClick="opponinfo"
-                tools:srcCompat="@tools:sample/avatars" />
-            <TextView
-                android:id="@+id/post_date"
+                android:src="@drawable/human" />
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/nanumsquarel"
-                android:gravity="start|top"
-                android:text="익명"
-                android:textSize="8pt" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/post_set"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="start|top"
+                    android:layout_marginBottom="1dp"
+                    android:text="익명"
+                    android:textStyle="bold"
+                    android:textSize="8pt" />
+
+                <TextView
+                    android:id="@+id/post_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="start|top"
+
+                    android:textSize="8pt" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/send_letter"
-                android:layout_width="93dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="80dp"
                 android:fontFamily="@font/nanumsquarer"
                 android:onClick="openMessage"
-                android:text="쪽지 보내기"
-                app:backgroundTint="#B5D4F1" />
+                android:text="💌"
+                android:textSize="20dp"
+                app:backgroundTint="#ffffff" />
+
             <ImageView
                 android:layout_marginLeft="135dp"
                 android:layout_width="30dp"
@@ -71,55 +103,58 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/nanumsquarel"
-            android:textSize="20pt" />
+            android:textStyle="bold"
+            android:textSize="10pt" />
 
         <ImageView
             android:id="@+id/post_imageview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginTop="5pt"/>
 
         <TextView
             android:id="@+id/post_contents"
             android:layout_width="match_parent"
+            android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/nanumsquarel"
             android:gravity="start|top"
-            android:textSize="10pt" />
-        android:textSize="10pt"
-        android:gravity="start|top" />
+            android:textSize="8pt" />
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            >
 
             <EditText
                 android:id="@+id/post_comentsinput"
-                android:layout_width="320dp"
+                android:layout_width="342dp"
                 android:layout_height="50dp"
+                android:backgroundTint="#B5D4F1"
                 android:fontFamily="@font/nanumsquarel"
                 android:hint="댓글을 입력하세요."
-                android:textSize="10pt"></EditText>
+                android:textSize="8pt"></EditText>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/nanumsquarel"
                 android:onClick="postcoments_inputkey"
-                android:text="확인"
-                android:textSize="10pt"
+                android:text="🦄"
+                android:textSize="8pt"
                 app:backgroundTint="#B5D4F1"></Button>
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/postrecycle_coments"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="420dp"
+            android:backgroundTint="@color/white"
             android:background="#F0F0F0" />
     </LinearLayout>
 

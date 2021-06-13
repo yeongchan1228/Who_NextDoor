@@ -97,19 +97,6 @@
             android:text="남자" />
     </RadioGroup>
 
-    <Spinner
-        android:id="@+id/Usershcoolmajor"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
-        android:spinnerMode="dialog"
-        android:theme="@style/SpinnerTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.749"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Usershcoolnumber"
-        app:layout_constraintVertical_bias="0.028" />
-
     <EditText
         android:id="@+id/UserName"
         android:layout_width="wrap_content"
@@ -124,6 +111,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.305" />
+
+    <Spinner
+        android:id="@+id/Usershcoolmajor"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:spinnerMode="dialog"
+        android:theme="@style/SpinnerTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.749"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Usershcoolnumber"
+        app:layout_constraintVertical_bias="0.028" />
+
 
     <Spinner
         android:id="@+id/Usershcooluniver"

@@ -25,7 +25,8 @@
                 android:ems="10"
                 android:fontFamily="@font/nanumsquarel"
                 android:gravity="center_vertical"
-                android:text="Send Message"
+                android:textStyle="bold"
+                android:text=" Send Message"
                 android:textColor="#52616A"
                 android:textSize="30sp"
 
@@ -45,7 +46,7 @@
                 app:fabSize="mini"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.701"
+                app:layout_constraintHorizontal_bias="0.79"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.538"
@@ -53,21 +54,18 @@
 
             <Button
                 android:id="@+id/send_message"
-                android:layout_width="80dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanumsquarel"
                 android:onClick="sendMessage"
-                android:text="SEND"
-                app:backgroundTint="#111111"
-                tools:layout_editor_absoluteX="315dp"
-                tools:layout_editor_absoluteY="7dp"
+                android:text="🦄"
+                app:backgroundTint="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintHorizontal_bias="0.983"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.538"
-                />
+                app:layout_constraintVertical_bias="0.571" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
