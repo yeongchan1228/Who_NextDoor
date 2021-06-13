@@ -20,7 +20,7 @@
             android:src="@drawable/backicon" />
 
         <TextView
-            android:layout_width="319dp"
+            android:layout_width="292dp"
             android:layout_height="55dp"
             android:fontFamily="@font/nanumsquarel"
             android:freezesText="false"
