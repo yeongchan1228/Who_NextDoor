@@ -34,7 +34,7 @@ public class tPostActivity extends AppCompatActivity {
         textTitle = findViewById(R.id.post_title);
         textContents = findViewById(R.id.post_contents);
         textdate = findViewById(R.id.post_date);
-        textuid = findViewById(R.id.userid);
+        textuid = findViewById(R.id.post_set);
         imageuser = findViewById(R.id.iuser);
 
         textTitle.setText(Title);
