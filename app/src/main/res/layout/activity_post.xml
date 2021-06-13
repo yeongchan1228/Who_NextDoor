@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -45,7 +45,7 @@
                 android:ems="10"
                 android:fontFamily="@font/nanumsquarel"
                 android:gravity="start|top"
-                android:text="익명"
+                android:text="날짜"
                 android:textSize="8pt" />
 
             <Button
@@ -56,6 +56,7 @@
                 android:onClick="openMessage"
                 android:text="쪽지 보내기"
                 app:backgroundTint="#B5D4F1" />
+
             <ImageView
                 android:layout_marginLeft="135dp"
                 android:layout_width="30dp"

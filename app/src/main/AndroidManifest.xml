@@ -37,6 +37,7 @@
         <activity android:name=".Activity.Message_WritingActivity"/>
         <activity android:name=".Activity.Personal_MessageActivity"/>
         <activity android:name=".Activity.foodActivity"/>
+        <activity android:name=".Activity.ViewSettingActivity"/>
 
     </application>
 

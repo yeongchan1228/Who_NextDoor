@@ -40,8 +40,9 @@
             android:fontFamily="@font/nanumsquarel"
             android:gravity="center_horizontal"
             android:textColor="#ffffff"
-            android:layout_marginTop="20dp"
-            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.453"
@@ -56,13 +57,30 @@
             android:layout_below="@+id/student_id"
             android:fontFamily="@font/nanumsquarel"
             android:textColor="#ffffff"
-            android:textSize="16dp"
-            android:layout_marginTop="20dp"
+            android:textSize="12dp"
+            android:layout_marginTop="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.453"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nv_email"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <TextView
+            android:id="@+id/nv_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/student_id"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/nanumsquarel"
+            android:text="🔑201A"
+            android:textColor="#ffffff"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nv_name"
             app:layout_constraintVertical_bias="0.05" />
 
         <TextView
@@ -72,14 +90,14 @@
             android:fontFamily="@font/nanumsquarel"
             android:gravity="center_horizontal"
             android:textColor="#ffffff"
-            android:textSize="16dp"
-            android:layout_marginTop="20dp"
+            android:textSize="12dp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.453"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nv_name"
+            app:layout_constraintTop_toBottomOf="@+id/nv_room"
             app:layout_constraintVertical_bias="0.05"></TextView>
 
 
