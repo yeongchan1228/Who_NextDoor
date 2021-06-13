@@ -148,4 +148,12 @@ public class ChatActivity extends AppCompatActivity {
         return mFormat.format(mDate);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

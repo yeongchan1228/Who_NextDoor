@@ -152,4 +152,5 @@ public class ViewSettingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
+
 }
