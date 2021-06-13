@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -29,29 +30,144 @@
 
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         tools:context=".Activity.HomeActivity"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop = "56dp">
 
-        <Button
-            android:id="@+id/myMessage"
-            android:layout_width="115dp"
+        <LinearLayout
+            android:layout_width="381dp"
             android:layout_height="wrap_content"
-            android:text="내 쪽지 확인"
-            android:onClick="showMyMessage" />
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/foodmenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarel"
+                android:onClick="foodMenu"
+                android:text="식단 바로가기"
+                app:backgroundTint="#B2CDD1"
+                app:icon="@android:drawable/ic_menu_info_details" />
 
-        <Button
-            android:id="@+id/foodmenu"
-            android:layout_width="115dp"
-            android:layout_height="wrap_content"
-            android:text="식단 확인"
-            android:onClick="foodMenu" />
+            <Button
+                android:id="@+id/myMessage"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarel"
+                android:onClick="showMyMessage"
+                android:text="쪽지함"
+                app:backgroundTint="#B2CDD1"
+                app:icon="@android:drawable/stat_notify_chat" />
+
+            <Button
+                android:id="@+id/letter"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquarel"
+                android:onClick="Letter"
+                android:text="채팅방"
+                app:backgroundTint="#C0EEF4"
+                app:icon="@android:drawable/sym_action_chat" />
+
+        </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/식단"
+            android:layout_width="match_parent"
+            android:layout_height="129dp">
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    android:text="날짜" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="15sp"
+
+                    android:textColor="#000000"
+                    android:text="조식" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="15sp"
+
+                    android:textColor="#000000"
+                    android:text="중식" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="석식"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <TableRow android:layout_height="129dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="2021-06-14 (월)"
+
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="쌀밥\n
+미역국\n
+모듬튀김,칠리s\n
+무말랭이무침\n
+구이김\n
+깍두기\n
+계란후라이"
+
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="쌀밥,잡곡밥\n
+떡만두국\n
+제육김치볶음\n
+깐풍블랙알리오\n
+온두부,양념장\n
+구이김\n
+블루베리과일청/우유"
+
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="스팸마요덥밥\n
+우동장국\n
+고기경단스테이크\n
+야채쫄면\n
+오리엔탈상추무침\n
+깍두기\n
+요구르트"
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+            </TableRow>
+
+        </TableLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
