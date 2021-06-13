@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 
 public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHolder> {
@@ -68,6 +69,7 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHol
             }
         }
         holder.tv_title.setText(arrayList.get(position).getTitle());
+        holder.tv_price.setText(arrayList.get(position).getPrice());
         //holder.tv_content.setText(arrayList.get(position).getContents());
     }
 
@@ -78,12 +80,13 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHol
 
     public class BoardViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView tv_title, tv_content;
+        TextView tv_title, tv_price;
 
         public BoardViewHolder(@NonNull View itemView) {
             super(itemView);
             this.imageView = itemView.findViewById(R.id.tb_imageView);
             this.tv_title = itemView.findViewById(R.id.tb_title);
+            this.tv_price = itemView.findViewById(R.id.tb_price);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

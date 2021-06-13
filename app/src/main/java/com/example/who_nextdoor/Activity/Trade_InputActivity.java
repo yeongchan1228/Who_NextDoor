@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,7 +70,7 @@ public class Trade_InputActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        photoadd=findViewById(R.id.Tphoto_add);
+        photoadd = findViewById(R.id.Tphoto_add);
         ibPreview = findViewById(R.id.tb_preview);
         photoadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +104,7 @@ public class Trade_InputActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         final String title = ((EditText) findViewById(R.id.TtitleEditText)).getText().toString();
         final String contents = ((EditText) findViewById(R.id.TcontentsEditText)).getText().toString();
+        final String price = ((EditText) findViewById(R.id.TpriceEditText)).getText().toString();
 
         if(filePath != null){
             progressDialog.setTitle("업로드중...");
@@ -110,10 +113,12 @@ public class Trade_InputActivity extends AppCompatActivity {
             StorageReference storageRef = storage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com").child("t_board/" + filename);
             storageRef.putFile(filePath)
 
+
+
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Upload_tboard_T(title, contents);
+                            Upload_tboard_T(title, contents, price);
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
 
@@ -150,7 +155,7 @@ public class Trade_InputActivity extends AppCompatActivity {
                     return;
                 }
             }
-            Upload_tboard(title, contents);
+            Upload_tboard(title, contents, price);
             AlertDialog.Builder oh = new AlertDialog.Builder(com.example.who_nextdoor.Activity.Trade_InputActivity.this);
 
             oh.setMessage("글 등록 성공");
@@ -170,11 +175,11 @@ public class Trade_InputActivity extends AppCompatActivity {
 
     }
 
-    public void Upload_tboard_T(String title, String contents){ // 사진을 업로드 했을 때
+    public void Upload_tboard_T(String title, String contents, String price){ // 사진을 업로드 했을 때
 
 
         if(!(TextUtils.isEmpty(title)) && !(TextUtils.isEmpty(contents))) {
-            TradeInfo tradeInfo = new TradeInfo(title, contents);
+            TradeInfo tradeInfo = new TradeInfo(title, contents, price);
             tradeInfo.setUid(user.getUid());
             tradeInfo.setDate(getTime());
             tradeInfo.setboard_image("T");
@@ -203,11 +208,11 @@ public class Trade_InputActivity extends AppCompatActivity {
         }
     }
 
-    public void Upload_tboard(String title, String contents){
+    public void Upload_tboard(String title, String contents, String price){
 
 
         if(!(TextUtils.isEmpty(title)) && !(TextUtils.isEmpty(contents))) {
-            TradeInfo tradeInfo = new TradeInfo(title, contents);
+            TradeInfo tradeInfo = new TradeInfo(title, contents, price);
             tradeInfo.setDate(getTime());
             tradeInfo.setUid(user.getUid());
             DocumentReference documentReference2 = db.collection("users").document(user.getUid());
