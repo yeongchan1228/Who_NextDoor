@@ -33,7 +33,6 @@ public class tPostActivity extends AppCompatActivity {
         String date = intent.getStringExtra("Date");
         String Uid = intent.getStringExtra("Uid");
         String profile = intent.getStringExtra("Profile");
-
         imageView = findViewById(R.id.post_imageview);
         textTitle = findViewById(R.id.post_title);
         textContents = findViewById(R.id.post_contents);
