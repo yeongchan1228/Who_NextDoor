@@ -15,14 +15,14 @@
 
         <activity android:name=".Activity.ShowpasswdActivity"></activity>
         <activity android:name=".Activity.GofindpwdActivity" />
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.HomeActivity" />
+        <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.JoinActivity" />
         <activity android:name=".Activity.getUserInfoActivity" />
         <activity android:name=".Activity.getUserInfo2Activity" />
