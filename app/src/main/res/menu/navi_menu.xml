@@ -13,6 +13,10 @@
             android:fontFamily="@font/nanumsquarel"
             android:title="회원정보 수정" />
         <item
+            android:id="@+id/message"
+            android:fontFamily="@font/nanumsquarel"
+            android:title="💌 내 쪽지함" />
+        <item
             android:id="@+id/godorm"
             android:fontFamily="@font/nanumsquarel"
             android:title="레지던스홀 홈페이지💨" />

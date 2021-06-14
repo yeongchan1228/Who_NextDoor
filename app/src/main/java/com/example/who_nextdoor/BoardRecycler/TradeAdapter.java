@@ -68,8 +68,8 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.BoardViewHol
                 });
             }
         }
-        holder.tv_title.setText(arrayList.get(position).getTitle());
-        holder.tv_price.setText(arrayList.get(position).getPrice());
+        holder.tv_title.setText("🛒" + arrayList.get(position).getTitle());
+        holder.tv_price.setText("💲" + arrayList.get(position).getPrice() + "원");
         //holder.tv_content.setText(arrayList.get(position).getContents());
     }
 

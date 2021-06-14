@@ -1,11 +1,9 @@
 package com.example.who_nextdoor.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,20 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.who_nextdoor.BoardRecycler.InformationAdapter;
 import com.example.who_nextdoor.BoardRecycler.MessageAdapter;
-import com.example.who_nextdoor.BoardRecycler.MessageAdapter2;
-import com.example.who_nextdoor.HomeRecycler.Data;
-import com.example.who_nextdoor.HomeRecycler.HomeRecyclerAdapter;
-
 import com.example.who_nextdoor.MessageDataInfo;
-import com.example.who_nextdoor.MessageDataInfo2;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.informationInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -37,17 +26,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class MessageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private EditText search;
     private MessageAdapter adapter;
+    private EditText search;
+
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList arrayList;
-
+    private ArrayList<String> rcvList;
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
 
@@ -59,6 +47,7 @@ public class MessageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
@@ -68,58 +57,73 @@ public class MessageActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();
+        rcvList = new ArrayList<>();
 
         DocumentReference docRef = db.collection("m_board").document(myuid);
-        Intent intent = getIntent();
-        ArrayList<String> UidList = (ArrayList<String>) intent.getSerializableExtra("Uid_list");
-
-        for(int i=0; i<UidList.size(); i++) {
-            /*
-            docRef.collection(UidList.get(i)).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    arrayList.clear();
-                    for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()){
-                        MessageDataInfo messageDataInfo = documentSnapshot.toObject(MessageDataInfo.class);
-                        arrayList.add(messageDataInfo);
-                    }
-                    Collections.sort(arrayList);
-                    Collections.reverse(arrayList);
-                    adapter.notifyDataSetChanged();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(MessageActivity.this,"쪽지가 아무것도 없어요 :(",Toast.LENGTH_SHORT).show();
-                }
-            });
-            */
-        }
-
-
-        adapter = new MessageAdapter(arrayList,this);
-        recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
+        CollectionReference collectionReference = firebaseFirestore.collection("m_board").document(myuid).collection("receiver");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(View v, int pos) {
-                MessageDataInfo getmessageinfo = adapter.getmsginfo(pos);;
-                Intent intent = new Intent(MessageActivity.this, Personal_MessageActivity.class);
-                intent.putExtra("Image", getmessageinfo.getboard_image());
-                intent.putExtra("Contents", getmessageinfo.getContents());
-                intent.putExtra("Date", getmessageinfo.getDate());
-                intent.putExtra("Uid", getmessageinfo.getUid());
-                startActivity(intent);
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                rcvList.clear();
+                for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                    rcvList.add(documentSnapshot.getId());
+                    Collections.sort(rcvList);
+                }
+                arrayList.clear();
+                for(int i=0; i<rcvList.size(); i++) {
+                    docRef.collection("receiver").document(rcvList.get(i)).collection("chat").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots1) {
+                            MessageDataInfo messageDataInfo = queryDocumentSnapshots1.getDocuments().get(0).toObject(MessageDataInfo.class);
+                            arrayList.add(messageDataInfo);
+                            Collections.sort(arrayList);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MessageActivity.this,"쪽지가 아무것도 없어요 :(",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+
+                adapter = new MessageAdapter(arrayList,MessageActivity.this);
+
+                recyclerView.setAdapter(adapter);
+
+                adapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View v, int pos) {
+                        MessageDataInfo getmessageinfo = adapter.getmsginfo(pos);;
+                        Intent intent = new Intent(MessageActivity.this, Personal_MessageActivity.class);
+                        intent.putExtra("RECEIVER_UID", getmessageinfo.getRcvuid());
+                        startActivity(intent);
+                    }
+                });
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MessageActivity.this,"쪽지가 아무것도 없어요 :(",Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
-
-    /*
-    @Override
-    public void onBackPressed() {
+    public void goback(View v) {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        //super.onBackPressed();
+        finish();
     }
-    */
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

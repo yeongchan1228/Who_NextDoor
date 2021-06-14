@@ -1,11 +1,8 @@
 package com.example.who_nextdoor.Activity;
 
-import android.app.Person;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,22 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.who_nextdoor.BoardRecycler.InformationAdapter;
-import com.example.who_nextdoor.BoardRecycler.MessageAdapter;
 import com.example.who_nextdoor.BoardRecycler.MessageAdapter2;
-import com.example.who_nextdoor.MessageDataInfo;
 import com.example.who_nextdoor.MessageDataInfo2;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,7 +41,6 @@ public class Personal_MessageActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String myuid;
     String receiveruid;
-    String now_date;
 
 
     @Override
@@ -74,12 +64,11 @@ public class Personal_MessageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         receiveruid =intent.getStringExtra("RECEIVER_UID");
-        now_date = intent.getStringExtra("NOW_DATE");
         myuid = user.getUid();
 
         //Toast.makeText(Personal_MessageActivity.this, receiveruid + now_date, Toast.LENGTH_SHORT).show();
 
-        db.collection("m_board").document(receiveruid).collection(myuid).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("m_board").document(receiveruid).collection("receiver").document(myuid).collection("chat").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 //Toast.makeText(Personal_MessageActivity.this, "3333333333", Toast.LENGTH_SHORT).show(); // 3
@@ -101,7 +90,7 @@ public class Personal_MessageActivity extends AppCompatActivity {
         });
 
 
-        db.collection("m_board").document(myuid).collection(receiveruid).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("m_board").document(myuid).collection("receiver").document(receiveruid).collection("chat").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 //Toast.makeText(Personal_MessageActivity.this, "1111111", Toast.LENGTH_SHORT).show(); // 4
@@ -140,18 +129,12 @@ public class Personal_MessageActivity extends AppCompatActivity {
         //finish();
     }
 
-    public void goback(View v) {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
+    /*
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, Information_BoardActivity.class);
         startActivity(intent);
-        finish();
+        //super.onBackPressed();
     }
-
+    */
 }

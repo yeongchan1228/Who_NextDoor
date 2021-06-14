@@ -1,22 +1,23 @@
 package com.example.who_nextdoor.BoardRecycler;
 
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Color;
+import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.who_nextdoor.MessageDataInfo;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.informationInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -24,7 +25,12 @@ import java.util.ArrayList;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.BoardViewHolder> {
     private ArrayList<MessageDataInfo> arrayList;
+
     private Context context;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String userid = user.getUid();
+    int position2;
+    String receiveruid;
 
     public interface OnItemClickListener{
         void onItemClick(View v, int pos);
@@ -38,9 +44,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.BoardVie
         this.context = context;
     }
 
-    public MessageDataInfo getmsginfo(int pos){
-        return arrayList.get(pos);
-    }
 
     @NonNull
     @Override
@@ -50,23 +53,38 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.BoardVie
         return holder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
-        holder.tv_content.setText(arrayList.get(position).getContents());
+        position2 = position;
+
+        MessageDataInfo mdata = arrayList.get(position);
+
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
+        StorageReference pathReference = storageReference.child("m_board");
+
+
+        holder.tv_nick.setText("옆집 친구");
+        holder.tv_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        holder.tv_nick.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        holder.tv_nick.setTextColor(Color.parseColor("#1E90FF"));
+        holder.LinearLayout_msg.setGravity(Gravity.LEFT);
+        holder.tv_msg.setText(arrayList.get(position).getContents());
+
+        holder.tv_msg.setText(arrayList.get(position).getContents());
     }
 
-    @Override
-    public int getItemCount() {
-        return (arrayList != null ? arrayList.size() : 0);
-    }
 
     public class BoardViewHolder extends RecyclerView.ViewHolder {
-        //ImageView imageView;
-        TextView tv_content;
+        TextView tv_nick, tv_msg;
+        LinearLayout LinearLayout_msg;
+
         public BoardViewHolder(@NonNull View itemView) {
             super(itemView);
-            //this.imageView = itemView.findViewById(R.id.mes_image);
-            this.tv_content = itemView.findViewById(R.id.mes_content);
+            this.tv_nick = itemView.findViewById(R.id.mes_name);
+            this.tv_msg = itemView.findViewById(R.id.mes_content);
+            this.LinearLayout_msg = itemView.findViewById(R.id.linear_mesitems_main);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -78,4 +96,17 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.BoardVie
             });
         }
     }
+
+    public MessageDataInfo getmsginfo(int pos){
+        return arrayList.get(pos);
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return (arrayList != null ? arrayList.size() : 0);
+    }
+
+
+
 }

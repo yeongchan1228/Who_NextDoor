@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,7 +70,7 @@ public class Trade_InputActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        photoadd=findViewById(R.id.Tphoto_add);
+        photoadd = findViewById(R.id.Tphoto_add);
         ibPreview = findViewById(R.id.tb_preview);
         photoadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +155,7 @@ public class Trade_InputActivity extends AppCompatActivity {
                     return;
                 }
             }
-            Upload_tboard(title, contents);
+            Upload_tboard(title, contents, price);
             AlertDialog.Builder oh = new AlertDialog.Builder(com.example.who_nextdoor.Activity.Trade_InputActivity.this);
 
             oh.setMessage("글 등록 성공");
@@ -173,69 +175,74 @@ public class Trade_InputActivity extends AppCompatActivity {
 
     }
 
-    public void Upload_tboard_T(String title, String contents){ // 사진을 업로드 했을 때
+    public void Upload_tboard_T(String title, String contents, String price){ // 사진을 업로드 했을 때
 
 
         if(!(TextUtils.isEmpty(title)) && !(TextUtils.isEmpty(contents))) {
-            TradeInfo tradeInfo = new TradeInfo(title, contents);
+            TradeInfo tradeInfo = new TradeInfo(title, contents, price);
             tradeInfo.setUid(user.getUid());
             tradeInfo.setDate(getTime());
             tradeInfo.setboard_image("T");
-            DocumentReference documentReference2 = db.collection("users").document(user.getUid());
-            documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    UserInfo userinfo = documentSnapshot.toObject(UserInfo.class);
-                    tradeInfo.setAlias(userinfo.getAlias());
-                    db.collection("t_board").document(title).set(tradeInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(com.example.who_nextdoor.Activity.Trade_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    });
-                }
-            });
 
 
+
+            if (user != null) {
+                db.collection("t_board").document(title).set(tradeInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(com.example.who_nextdoor.Activity.Trade_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+
+            }
+        } else {
+            Toast.makeText(com.example.who_nextdoor.Activity.Trade_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void Upload_tboard(String title, String contents){
+    public void Upload_tboard(String title, String contents, String price){
 
 
         if(!(TextUtils.isEmpty(title)) && !(TextUtils.isEmpty(contents))) {
-            TradeInfo tradeInfo = new TradeInfo(title, contents);
+            TradeInfo tradeInfo = new TradeInfo(title, contents, price);
             tradeInfo.setDate(getTime());
             tradeInfo.setUid(user.getUid());
-            DocumentReference documentReference2 = db.collection("users").document(user.getUid());
-            documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    UserInfo userinfo = documentSnapshot.toObject(UserInfo.class);
-                    tradeInfo.setAlias(userinfo.getAlias());
-                    db.collection("t_board").document(title).set(tradeInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(com.example.who_nextdoor.Activity.Trade_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    });
-                }
-            });
 
 
 
+
+            if (user != null) {
+                db.collection("t_board").document(title).set(tradeInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        DocumentReference documentReference2 = db.collection("users").document(user.getUid());
+                        documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                UserInfo userinfo = documentSnapshot.toObject(UserInfo.class);
+                                tradeInfo.setAlias(userinfo.getAlias());
+                                Toast.makeText(com.example.who_nextdoor.Activity.Trade_InputActivity.this, userinfo.getAlias(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(com.example.who_nextdoor.Activity.Trade_InputActivity.this, "오류 발생", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+
+            }
+        } else {
+            Toast.makeText(com.example.who_nextdoor.Activity.Trade_InputActivity.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT).show();
         }
     }
     public String getTime(){ // 시간 구하기
