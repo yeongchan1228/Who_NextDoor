@@ -81,11 +81,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.BoardViewHolde
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()) {
                             Glide.with(holder.coment_profile).load(task.getResult()).into(holder.coment_profile);
+                            holder.post_nickname.setText("익명");
                         }
                     }
                 });
             }
-            holder.post_nickname.setText("익명");
+
         }
         else{
             if (storageReference != null) {
