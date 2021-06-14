@@ -195,6 +195,17 @@ public class tPostActivity extends AppCompatActivity {
             });
         }
 
+        DocumentReference documentReference2 = db.collection("t_board").document(getTitle)
+                .collection("checkTemperature").document(user.getUid());
+        CheckInfo checkInfo = new CheckInfo();
+        checkInfo.setCheck("F");
+        checkInfo.setFirst(0);
+        documentReference2.set(checkInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+            }
+        });
+
 
     }
 

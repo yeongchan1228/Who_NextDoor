@@ -49,7 +49,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -74,7 +76,8 @@ public class HomeActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.profilebutton);
-
+        TextView textView10 = findViewById(R.id.time);
+        textView10.setText("현재 시간 "+getTime());
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
@@ -357,5 +360,13 @@ public class HomeActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+    public String getTime(){ // 시간 구하기
+        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd k:mm");
+        long mNow;
+        Date mDate;
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        return mFormat.format(mDate);
     }
 }

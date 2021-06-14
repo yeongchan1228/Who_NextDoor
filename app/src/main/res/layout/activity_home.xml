@@ -49,13 +49,12 @@
                 app:srcCompat="@android:drawable/ic_menu_month" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/time"
                 android:layout_width="213dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="@font/nanumsquarer"
-                android:gravity="center"
-                android:text="🗓 2021년 6월 14일 10시 50분" />
+                android:gravity="center" />
 
 
         </LinearLayout>
