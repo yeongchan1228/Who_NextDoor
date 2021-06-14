@@ -71,18 +71,36 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.BoardViewHolde
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
-        if (storageReference != null) {
-            StorageReference profileimage = storageReference.child("anonymous" + ".png");
-            profileimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Glide.with(holder.coment_profile).load(task.getResult()).into(holder.coment_profile);
+        if(arrayList.get(position).getEmail().equals("F")) {
+            if (storageReference != null) {
+                StorageReference profileimage = storageReference.child("anonymous" + ".png");
+                profileimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Glide.with(holder.coment_profile).load(task.getResult()).into(holder.coment_profile);
+                        }
                     }
-                }
-            });
+                });
+            }
+            holder.post_nickname.setText("익명");
         }
-        holder.post_nickname.setText("익명");
+        else{
+            if (storageReference != null) {
+
+                StorageReference profileimage = storageReference.child("users/" + arrayList.get(position).getEmail() +"profile"+".png");
+                profileimage.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Glide.with(holder.coment_profile).load(task.getResult()).circleCrop().into(holder.coment_profile);
+                        }
+                    }
+                });
+            }
+            holder.post_nickname.setText(arrayList.get(position).getAlias());
+        }
+
         holder.post_coments.setText(arrayList.get(position).getComents());
         holder.coment_date.setText(arrayList.get(position).getDate());
         holder.coment_send.setImageResource(R.drawable.coment_icon2);

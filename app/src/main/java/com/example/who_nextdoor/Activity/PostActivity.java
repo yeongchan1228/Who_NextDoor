@@ -140,6 +140,7 @@ public class PostActivity extends AppCompatActivity {
             comentsInfo.setParentTitle(getTitle);
             comentsInfo.setParentDate(getDate);
             comentsInfo.setUid_date(user.getUid()+getTime());
+            comentsInfo.setEmail("F");
             if (user != null) {
                 db.collection("i_board").document(getDate).collection("coments")
                         .document(user.getUid()+comentsInfo.getDate()).set(comentsInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
