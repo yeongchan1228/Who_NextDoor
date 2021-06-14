@@ -5,7 +5,7 @@ public class MessageDataInfo2 implements Comparable<MessageDataInfo2>{
     private String board_image;
     private String uid;
     private String date;
-
+    private  String rcvuid;
 
     public MessageDataInfo2(String contents){
         this.contents = contents;
@@ -34,6 +34,8 @@ public class MessageDataInfo2 implements Comparable<MessageDataInfo2>{
     public void setUid(String uid){this.uid = uid;}
     public String getDate(){return this.date;}
     public void setDate(String date){this.date = date;}
+    public String getRcvuid(){return this.rcvuid;}
+    public void setRcvuid(String rcvuid){this.rcvuid = rcvuid;}
 
     @Override
     public int compareTo(MessageDataInfo2 o) {

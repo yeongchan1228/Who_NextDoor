@@ -1,14 +1,11 @@
 package com.example.who_nextdoor;
 
-import java.util.Comparator;
-import java.util.Date;
-
 public class MessageDataInfo implements Comparable<MessageDataInfo>{
     private String contents;
     private String board_image;
     private String uid;
     private String date;
-
+    private  String rcvuid;
 
     public MessageDataInfo(String contents){
         this.contents = contents;
@@ -36,6 +33,8 @@ public class MessageDataInfo implements Comparable<MessageDataInfo>{
     public void setUid(String uid){this.uid = uid;}
     public String getDate(){return this.date;}
     public void setDate(String date){this.date = date;}
+    public String getRcvuid(){return this.rcvuid;}
+    public void setRcvuid(String rcvuid){this.rcvuid = rcvuid;}
 
     @Override
     public int compareTo(MessageDataInfo o) {

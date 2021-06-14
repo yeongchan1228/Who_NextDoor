@@ -1,8 +1,6 @@
 package com.example.who_nextdoor.Activity;
 
-import android.app.Person;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,31 +10,22 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.who_nextdoor.BoardRecycler.InformationAdapter;
-import com.example.who_nextdoor.MessageDataInfo;
 import com.example.who_nextdoor.MessageDataInfo2;
 import com.example.who_nextdoor.R;
-import com.example.who_nextdoor.UserInfo;
-import com.example.who_nextdoor.informationInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.who_nextdoor.UidDataInfo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -45,7 +34,6 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 public class Message_WritingActivity extends AppCompatActivity {
@@ -164,7 +152,7 @@ public class Message_WritingActivity extends AppCompatActivity {
             messageDataInfo.setUid(user.getUid());
             messageDataInfo.setDate(now_date);
             messageDataInfo.setboard_image("T");
-
+            UidDataInfo uidDataInfo = new UidDataInfo(receiveruid);
             if (user != null) {
                 Intent intent = getIntent();
 
@@ -174,14 +162,16 @@ public class Message_WritingActivity extends AppCompatActivity {
                     //Intent intent2 = new Intent(this, MessageActivity.class);
                     //intent2.putExtra("Uid_list", arrayList);
                     //startActivity(intent2);
-
+                    uidDataInfo.setUid(receiveruid);
+                    messageDataInfo.setRcvuid(receiveruid);
                     now_date = getTime();
                     myuid = user.getUid();
-                }
+                }else{messageDataInfo.setRcvuid(receiveruid);}
 
-                db.collection("m_board").document(myuid).collection(receiveruid).document(now_date).set(messageDataInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("m_board").document(myuid).collection("receiver").document(receiveruid).collection("chat").document(now_date).set(messageDataInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        db.collection("m_board").document(myuid).collection("receiver").document(receiveruid).set(uidDataInfo);
                         Intent intent2 = new Intent(Message_WritingActivity.this, Personal_MessageActivity.class);
                         intent2.putExtra("NOW_DATE", now_date);
                         intent2.putExtra("RECEIVER_UID", receiveruid);
@@ -209,7 +199,7 @@ public class Message_WritingActivity extends AppCompatActivity {
             MessageDataInfo2 messageDataInfo = new MessageDataInfo2(contents);
             messageDataInfo.setUid(user.getUid());
             messageDataInfo.setDate(getTime());
-
+            UidDataInfo uidDataInfo = new UidDataInfo(receiveruid);
             if (user != null) {
                 Intent intent = getIntent();
 
@@ -219,14 +209,15 @@ public class Message_WritingActivity extends AppCompatActivity {
                     //Intent intent2 = new Intent(this, MessageActivity.class);
                     //intent2.putExtra("Uid_list", arrayList);
                     //startActivity(intent2);
-
+                    uidDataInfo.setUid(receiveruid);
+                    messageDataInfo.setRcvuid(receiveruid);
                     now_date = getTime();
                     myuid = user.getUid();
-                }
-
-                db.collection("m_board").document(myuid).collection(receiveruid).document(now_date).set(messageDataInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                }else{messageDataInfo.setRcvuid(receiveruid);}
+                db.collection("m_board").document(myuid).collection("receiver").document(receiveruid).collection("chat").document(now_date).set(messageDataInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        db.collection("m_board").document(myuid).collection("receiver").document(receiveruid).set(uidDataInfo);
                         Intent intent2 = new Intent(Message_WritingActivity.this, Personal_MessageActivity.class);
                         intent2.putExtra("NOW_DATE", now_date);
                         intent2.putExtra("RECEIVER_UID", receiveruid);
@@ -254,12 +245,11 @@ public class Message_WritingActivity extends AppCompatActivity {
         return mFormat.format(mDate);
     }
 
+    /*
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, Information_BoardActivity.class);
         startActivity(intent);
-        finish();
     }
-
+    */
 }
