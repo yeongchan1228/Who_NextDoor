@@ -40,22 +40,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/myMessage"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:fontFamily="@font/nanumsquarel"
-                android:onClick="showMyMessage"
-                android:text="쪽지함"
-
-                android:textStyle="bold"
-                app:backgroundTint="#B5B1D3E6"
-                app:icon="@android:drawable/stat_notify_chat" />
-
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="3dp"
+                android:layout_width="67dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -64,11 +51,11 @@
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="213dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="@font/nanumsquarer"
-                android:gravity="center_horizontal"
-                android:text="2021년 6월 14일 3시 42분" />
+                android:gravity="center"
+                android:text="📅2021년 6월 14일 5시 42분" />
 
 
         </LinearLayout>
@@ -136,7 +123,53 @@
                     android:fontFamily="@font/nanumsquarel"
                     android:gravity="center"
 
-                    android:text="\n쌀밥\n
+                    android:text="08:00~09:30"
+                    android:textColor="#000000"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+
+                    android:text="11:00~14:00"
+                    android:textColor="#000000"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+                    android:text="17:00~18:30"
+                    android:textColor="#000000"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+
+                    android:text=""
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquarel"
+                    android:gravity="center"
+
+                    android:text="쌀밥\n
 미역국\n
 모듬튀김,칠리s\n
 무말랭이무침\n
@@ -152,7 +185,7 @@
                     android:fontFamily="@font/nanumsquarel"
                     android:gravity="center"
 
-                    android:text="\n쌀밥,잡곡밥\n
+                    android:text="쌀밥,잡곡밥\n
 떡만두국\n
 제육김치볶음\n
 깐풍블랙알리오\n
@@ -167,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumsquarel"
                     android:gravity="center"
-                    android:text="\n스팸마요덥밥\n
+                    android:text="스팸마요덥밥\n
 우동장국\n
 고기경단스테이크\n
 야채쫄면\n

@@ -11,7 +11,7 @@
         android:id="@+id/settingUser"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:fontFamily="@font/maru"
+        android:fontFamily="@font/nanumsquarer"
         android:gravity="center"
         android:text="회원 정보 수정"
         android:textColorLink="#03DAC5"
