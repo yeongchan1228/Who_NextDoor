@@ -40,19 +40,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/myMessage"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape"
-                android:fontFamily="@font/nanumsquarel"
-                android:onClick="showMyMessage"
-                android:text="쪽지함"
-
-                android:textStyle="bold"
-                app:backgroundTint="#B5B1D3E6"
-                app:icon="@android:drawable/stat_notify_chat" />
-
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="3dp"
@@ -64,11 +51,11 @@
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="213dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="@font/nanumsquarer"
-                android:gravity="center_horizontal"
-                android:text="2021년 6월 14일 3시 42분" />
+                android:gravity="center"
+                android:text="🗓 2021년 6월 14일 10시 50분" />
 
 
         </LinearLayout>
