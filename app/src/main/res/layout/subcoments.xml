@@ -34,6 +34,13 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
             <ImageView
+                android:id="@+id/subcoment_temperature"
+                android:layout_marginLeft="5dp"
+                android:layout_width="15sp"
+                android:layout_height="15sp"
+
+                ></ImageView>
+            <ImageView
                 android:id="@+id/subcoment_subcomenticon"
                 android:layout_marginLeft="315dp"
                 android:layout_width="15sp"

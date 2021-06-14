@@ -139,6 +139,7 @@ public class PostActivity extends AppCompatActivity {
             comentsInfo.setIamsub("F");
             comentsInfo.setParentTitle(getTitle);
             comentsInfo.setParentDate(getDate);
+            comentsInfo.setUid2(user.getUid());
             comentsInfo.setUid_date(user.getUid()+getTime());
             comentsInfo.setEmail("F");
             if (user != null) {

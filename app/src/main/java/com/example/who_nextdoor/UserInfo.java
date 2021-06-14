@@ -11,7 +11,7 @@ public class UserInfo{
     private String access; // 인증 여부
     private String department;
     private String first; // 첫 번째 회원 정보 입력을 했는지 판단
-
+    private int temperature; // 매너 온도 구현
 
     public UserInfo(){
         this.name = null;
@@ -84,5 +84,11 @@ public class UserInfo{
     }
     public void setDepartment(String department){
         this.department = department;
+    }
+    public int getTemperature(){
+        return this.temperature;
+    }
+    public void setTemperature(int temperature){
+        this.temperature = temperature;
     }
 }

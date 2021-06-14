@@ -68,7 +68,6 @@ public class HomeActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// 화면 회전 막기
         init();
         getData();
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -81,53 +80,15 @@ public class HomeActivity extends AppCompatActivity {
         //View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header_main);
         View nav_header_view = navigationView.getHeaderView(0);
         ImageView nv_profile = (ImageView) nav_header_view.findViewById(R.id.nh_image);
+        ImageView nv_temperature = (ImageView) nav_header_view.findViewById(R.id.nv_temperature);
         nv_profile.setBackground(new ShapeDrawable(new OvalShape()));
         nv_profile.setClipToOutline(true);
         TextView nv_school = (TextView) nav_header_view.findViewById(R.id.student_id);
         TextView nv_name = (TextView) nav_header_view.findViewById(R.id.nv_name);
         TextView nv_email = (TextView) nav_header_view.findViewById(R.id.nv_email);
 
-        DocumentReference documentReference2 = firebaseFirestore.collection("users").document(user.getUid());
-        documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                UserInfo userInfo = documentSnapshot.toObject(UserInfo.class);
-                nv_school.setText(userInfo.getShcoolNumber());
-                nv_name.setText(userInfo.getName());
-                nv_email.setText(userInfo.getAddress());
-
-                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-                StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
-                StorageReference pathReference = storageReference.child("users/"+user.getEmail()+"profile"+".png");
-                if(pathReference != null){
-                    pathReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            if(task.isSuccessful()){
-                                Glide.with(nv_profile).load(task.getResult()).into(nv_profile);
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            nv_profile.setImageResource(R.drawable.human);
-                        }
-                    });
-                }
-                else{
-                    nv_profile.setImageResource(R.drawable.human);
-                }
 
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                nv_school.setText("미정");
-                nv_name.setText("미정");
-                nv_email.setText("미정");
-            }
-        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -242,8 +203,8 @@ public class HomeActivity extends AppCompatActivity {
         }
         else{
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-            DocumentReference documentReference = firebaseFirestore.collection("users").document(user.getUid());
-            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            DocumentReference documentReference2 = firebaseFirestore.collection("users").document(user.getUid());
+            documentReference2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if(task.isSuccessful()){
@@ -276,8 +237,68 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     }
                 }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Intent intent = new Intent(HomeActivity.this, getUserInfoActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             });
         }
+        DocumentReference documentReference2 = firebaseFirestore.collection("users").document(user.getUid());
+        documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserInfo userInfo = documentSnapshot.toObject(UserInfo.class);
+                nv_school.setText(userInfo.getShcoolNumber());
+                nv_name.setText(userInfo.getName());
+                nv_email.setText(userInfo.getAddress());
+                if(userInfo.getTemperature() > 30){
+                    nv_temperature.setImageResource(R.drawable.temperature5);
+                }
+                else if(userInfo.getTemperature() > 10){
+                    nv_temperature.setImageResource(R.drawable.temperature4);
+                }
+
+                else if(userInfo.getTemperature() > -5){
+                    nv_temperature.setImageResource(R.drawable.temperature3);
+                }
+                else if(userInfo.getTemperature() <= -5){
+                    nv_temperature.setImageResource(R.drawable.temperature1);
+                }
+                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+                StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://nextdoor-97fe5.appspot.com");
+                StorageReference pathReference = storageReference.child("users/"+user.getEmail()+"profile"+".png");
+                if(pathReference != null){
+                    pathReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if(task.isSuccessful()){
+                                Glide.with(nv_profile).load(task.getResult()).into(nv_profile);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            nv_profile.setImageResource(R.drawable.human);
+                        }
+                    });
+                }
+                else{
+                    nv_profile.setImageResource(R.drawable.human);
+                }
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                nv_school.setText("미정");
+                nv_name.setText("미정");
+                nv_email.setText("미정");
+            }
+        });
 
     }
 

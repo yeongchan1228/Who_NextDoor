@@ -19,12 +19,14 @@ import com.bumptech.glide.Glide;
 import com.example.who_nextdoor.Activity.PostActivity;
 import com.example.who_nextdoor.ComentsInfo;
 import com.example.who_nextdoor.R;
+import com.example.who_nextdoor.UserInfo;
 import com.example.who_nextdoor.informationInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -100,10 +102,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.BoardViewHolde
             }
             holder.post_nickname.setText(arrayList.get(position).getAlias());
         }
-
         holder.post_coments.setText(arrayList.get(position).getComents());
         holder.coment_date.setText(arrayList.get(position).getDate());
         holder.coment_send.setImageResource(R.drawable.coment_icon2);
+
+
+
+
 
 
 
@@ -115,11 +120,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.BoardViewHolde
     }
 
     public class BoardViewHolder extends RecyclerView.ViewHolder {
-        ImageView coment_profile, coment_send, if_sub;
+        ImageView coment_profile, coment_send, if_sub, temperature;
         TextView post_nickname, post_coments, coment_date;
 
         public BoardViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.temperature = itemView.findViewById(R.id.subcoment_temperature);
             this.coment_profile = itemView.findViewById(R.id.coment_profile);
             this.post_coments = itemView.findViewById(R.id.coment_coments);
             this.post_nickname = itemView.findViewById(R.id.coment_nickname);

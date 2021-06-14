@@ -1,9 +1,11 @@
 package com.example.who_nextdoor.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,10 +50,11 @@ public class tPostActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    ImageView imageView, imageuser;
+    ImageView imageView, imageuser, check_temperature, textutemperature, textdtemperature;
     TextView textTitle, textContents, textdate, textuid;
     EditText comentsInput;
-    String getDate, getTitle;
+    String getDate, getTitle, getuid, real_uid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +66,13 @@ public class tPostActivity extends AppCompatActivity {
         String date = intent.getStringExtra("Date");
         String Uid = intent.getStringExtra("Uid");
         String profile = intent.getStringExtra("Profile");
+        real_uid = intent.getStringExtra("Real_Uid");
         imageView = findViewById(R.id.post_imageview);
         textTitle = findViewById(R.id.post_title);
         textContents = findViewById(R.id.post_contents);
         textdate = findViewById(R.id.post_date);
         textuid = findViewById(R.id.post_set);
+        check_temperature = findViewById(R.id.check_temperature);
         imageuser = findViewById(R.id.iuser);
         ImageView imageView2 = findViewById(R.id.iuser);
         textTitle.setText(Title);
@@ -76,6 +82,13 @@ public class tPostActivity extends AppCompatActivity {
         imageuser.setImageResource(R.drawable.userbasic);
         getTitle = Title;
         getDate = date;
+        getuid = Uid;
+        textutemperature = findViewById(R.id.t_utemperature);
+        textdtemperature = findViewById(R.id.t_dtemperature);
+        textutemperature.setImageResource(R.drawable.up);
+        textdtemperature.setImageResource(R.drawable.down);
+
+
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -87,7 +100,6 @@ public class tPostActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if(task.isSuccessful()){
-
                         Glide.with(imageView2).load(task.getResult()).circleCrop().into(imageView2);
                     }
                 }
@@ -100,6 +112,29 @@ public class tPostActivity extends AppCompatActivity {
         }
         else{
         }
+
+        DocumentReference documentReference = db.collection("users").document(real_uid);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserInfo userInfo = documentSnapshot.toObject(UserInfo.class);
+                if(userInfo.getTemperature() > 30){
+                    check_temperature.setImageResource(R.drawable.temperature5);
+                }
+                else if(userInfo.getTemperature() > 10){
+                    check_temperature.setImageResource(R.drawable.temperature4);
+                }
+
+                else if(userInfo.getTemperature() > -5){
+                    check_temperature.setImageResource(R.drawable.temperature3);
+                }
+                else if(userInfo.getTemperature() <= -5){
+                    check_temperature.setImageResource(R.drawable.temperature1);
+                }
+
+            }
+        });
+
 
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
@@ -172,6 +207,8 @@ public class tPostActivity extends AppCompatActivity {
             comentsInfo.setIamsub("F");
             comentsInfo.setParentTitle(getTitle);
             comentsInfo.setParentDate(getDate);
+            comentsInfo.setUid2(user.getUid());
+            Log.e("dddddd", comentsInfo.getUid2());
             comentsInfo.setUid_date(user.getUid()+getTime());
             comentsInfo.setEmail(user.getEmail());
 
@@ -189,7 +226,7 @@ public class tPostActivity extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
                                 comentsInput.setText(null);
                                 FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-                                CollectionReference collectionReference = firebaseFirestore.collection("t_board").document(getDate).collection("coments");
+                                CollectionReference collectionReference = firebaseFirestore.collection("t_board").document(getTitle).collection("coments");
                                 collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                     @Override
                                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -238,4 +275,127 @@ public class tPostActivity extends AppCompatActivity {
         return mFormat.format(mDate);
     }
 
+    public void uptemperature(View v){
+        DocumentReference documentReference2 = db.collection("t_board").document(getTitle)
+                .collection("checkTemperature").document(user.getUid());
+        documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                CheckInfo checkInfo = documentSnapshot.toObject(CheckInfo.class);
+                if(checkInfo.getCheck().equals("T")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(tPostActivity.this);
+                    builder.setMessage("이미" + getuid + " 님의 매너온도 조정했습니다...");
+                    builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+
+                    alertDialog.show();
+                }
+                else{
+                    DocumentReference documentReference3 = db.collection("users").document(real_uid);
+                    documentReference3.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            UserInfo userinfo = documentSnapshot.toObject(UserInfo.class);
+                            int temperature = userinfo.getTemperature();
+                            temperature--;
+                            userinfo.setTemperature(temperature);
+                            CheckInfo checkInfo = new CheckInfo();
+                            checkInfo.setCheck("T");
+                            documentReference2.set(checkInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(tPostActivity.this);
+
+                                    builder.setMessage(getuid + "님의 매너 온도를 올리셨습니다!!!❤");
+                                    builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    });
+                                    AlertDialog alertDialog = builder.create();
+
+                                    alertDialog.show();
+                                }
+                            });
+                            documentReference3.set(userinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    // 성공
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    public void downtemperature(View v){
+        DocumentReference documentReference2 = db.collection("t_board").document(getTitle)
+                .collection("checkTemperature").document(user.getUid());
+        documentReference2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                CheckInfo checkInfo = documentSnapshot.toObject(CheckInfo.class);
+                if(checkInfo.getCheck().equals("T")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(tPostActivity.this);
+
+                    builder.setMessage("이미" + getuid + " 님의 매너온도 조정했습니다...");
+                    builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+
+                    alertDialog.show();
+                }
+                else{
+                            DocumentReference documentReference3 = db.collection("users").document(real_uid);
+                            documentReference3.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    UserInfo userinfo = documentSnapshot.toObject(UserInfo.class);
+                                    int temperature = userinfo.getTemperature();
+                                    temperature--;
+                                    userinfo.setTemperature(temperature);
+                                    CheckInfo checkInfo = new CheckInfo();
+                                    checkInfo.setCheck("T");
+                                    documentReference2.set(checkInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(tPostActivity.this);
+
+                                            builder.setMessage(getuid + "님의 매너 온도를 내리셨습니다!!!💔");
+                                            builder.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+
+                                                }
+                                            });
+                                            AlertDialog alertDialog = builder.create();
+
+                                            alertDialog.show();
+                                        }
+                                    });
+                                    documentReference3.set(userinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            // 성공
+                                        }
+                                    });
+                                }
+                            });
+                        }
+            }
+        });
+
+    }
 }

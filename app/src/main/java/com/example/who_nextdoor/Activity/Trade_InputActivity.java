@@ -119,6 +119,20 @@ public class Trade_InputActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Upload_tboard_T(title, contents, price);
+
+                            DocumentReference documentReference2 = db.collection("t_board").document(title)
+                                    .collection("checkTemperature").document(user.getUid());
+                            CheckInfo checkInfo = new CheckInfo();
+                            checkInfo.setCheck("F");
+                            checkInfo.setFirst(0);
+                            documentReference2.set(checkInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                }
+                            });
+
+
+
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "업로드 완료!", Toast.LENGTH_SHORT).show();
 
@@ -156,6 +170,19 @@ public class Trade_InputActivity extends AppCompatActivity {
                 }
             }
             Upload_tboard(title, contents, price);
+
+            DocumentReference documentReference2 = db.collection("t_board").document(title)
+                    .collection("checkTemperature").document(user.getUid());
+            CheckInfo checkInfo = new CheckInfo();
+            checkInfo.setCheck("F");
+            checkInfo.setFirst(0);
+            documentReference2.set(checkInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                }
+            });
+
+
             AlertDialog.Builder oh = new AlertDialog.Builder(com.example.who_nextdoor.Activity.Trade_InputActivity.this);
 
             oh.setMessage("글 등록 성공");

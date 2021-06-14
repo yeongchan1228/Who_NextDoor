@@ -233,6 +233,7 @@ public class getUserInfoActivity extends AppCompatActivity {
                             userinfo.setName(meminfo.getName());
                             Log.d(Tag, userinfo.getName());
                             userinfo.setShcoolNumber(meminfo.getShcoolNumber());
+                            userinfo.setTemperature(0);
                             userinfo.setAlias(meminfo.getAlias());
                             userinfo.setBirthDay(meminfo.getBirthDay());
                             userinfo.setPhoneNumber(meminfo.getPhoneNumber());
@@ -305,10 +306,12 @@ public class getUserInfoActivity extends AppCompatActivity {
                                 userinfo.setPhoneNumber(phoneNumber);
                                 userinfo.setBirthDay(birthDay);
                                 userinfo.setAlias(alias);
+                                userinfo.setTemperature(0);
                                 userinfo.setShcoolNumber(schoolnumber);
                                 userinfo.setGender(gender);
                                 userinfo.setAddress(user.getEmail());
-                                userinfo.setDepartment(department);
+                                Toast.makeText(getUserInfoActivity.this,  m, Toast.LENGTH_SHORT).show();
+                                userinfo.setDepartment(m);
                                 userinfo.setFirst("T");
                                 if (user != null) {
                                     db.collection("users").document(user.getUid()).set(userinfo).addOnSuccessListener(new OnSuccessListener<Void>() {

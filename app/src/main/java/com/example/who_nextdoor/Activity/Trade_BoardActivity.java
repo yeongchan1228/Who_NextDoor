@@ -72,6 +72,7 @@ public class Trade_BoardActivity extends AppCompatActivity {
                 intent.putExtra("Uid", tradeInfo.getAlias());
                 intent.putExtra("Date", tradeInfo.getDate());
                 intent.putExtra("Profile",tradeInfo.getEmail());
+                intent.putExtra("Real_Uid",tradeInfo.getUid());
                 startActivity(intent);
             }
         });

@@ -8,6 +8,7 @@ public class ComentsInfo implements Comparable<ComentsInfo> {
     private String uid_date;
     private String parentTitle;
     private String parentDate;
+    private String uid;
     private String iamsub;
     private String Email;
     private String alias;
@@ -41,6 +42,8 @@ public class ComentsInfo implements Comparable<ComentsInfo> {
     public void setEmail(String Email){this.Email = Email;}
     public String getAlias(){return this.alias;}
     public void setAlias(String alias){this.alias = alias;}
+    public String getUid2(){return this.uid;}
+    public void setUid2(String uid){this.uid = uid;}
 
     @Override
     public int compareTo(ComentsInfo o) {
